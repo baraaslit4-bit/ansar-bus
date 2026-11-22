@@ -1,0 +1,2583 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>باص الأنصار — رحلة الـ 40 يوماً إلى الحرم</title>
+
+  <!-- Google Font: Cairo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { cairo: ['Cairo', 'sans-serif'] },
+          colors: {
+            emeraldDeep: '#065f46',
+            emeraldMid: '#047857',
+            emeraldLight: '#ecfdf5',
+            goldDeep: '#d97706',
+            goldWarm: '#f59e0b',
+            goldLight: '#fffbeb',
+            creamBg: '#faf8f5',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #faf8f5;
+      color: #1f2937;
+      -webkit-tap-highlight-color: transparent;
+      overflow-x: hidden;
+    }
+    .islamic-hero {
+      background-color: #065f46;
+      background-image:
+        radial-gradient(rgba(245, 158, 11, 0.16) 1.5px, transparent 1.5px),
+        radial-gradient(rgba(245, 158, 11, 0.08) 1.5px, #065f46 1.5px);
+      background-size: 28px 28px;
+      background-position: 0 0, 14px 14px;
+    }
+    @keyframes popIn {
+      0% { transform: scale(0.93); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .animate-pop { animation: popIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    @keyframes floatSoft {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+    .animate-float { animation: floatSoft 3s ease-in-out infinite; }
+    #confetti-canvas {
+      position: fixed; inset: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 9999;
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-24 selection:bg-emeraldDeep selection:text-white">
+
+  <canvas id="confetti-canvas"></canvas>
+  <div id="toast-container" class="fixed top-4 left-1/2 -translate-x-1/2 z-[100] w-[92%] max-w-md flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- =========================================================
+       TOP HEADER
+  ========================================================== -->
+  <header class="sticky top-0 z-40 bg-emeraldDeep text-white shadow-md border-b border-goldWarm/30">
+    <div class="max-w-3xl mx-auto px-3.5 py-2.5 flex items-center justify-between gap-2">
+      <div class="flex items-center gap-2.5 min-w-0">
+        <div class="w-10 h-10 rounded-xl bg-white/15 border border-goldWarm/50 flex items-center justify-center text-xl shadow-inner shrink-0">🚌</div>
+        <div class="min-w-0">
+          <div class="flex items-center gap-2">
+            <h1 class="font-black text-sm sm:text-base leading-tight text-white truncate">باص الأنصار</h1>
+            <span id="sync-pill" class="inline-flex items-center gap-1 text-[10px] font-bold bg-white/10 px-2 py-0.5 rounded-full border border-white/15 shrink-0">
+              <span id="sync-dot" class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+              <span id="sync-text">جاري المزامنة</span>
+            </span>
+          </div>
+          <p class="text-[11px] text-amber-100 font-semibold truncate">رحلة الـ 40 يوماً إلى الحرم</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-1.5 shrink-0">
+        <button id="btn-switch-student" onclick="openSwitchStudent()" class="hidden text-xs bg-white/10 hover:bg-white/20 border border-white/20 px-2.5 py-1.5 rounded-xl font-bold transition active:scale-95">
+          تبديل الطالب
+        </button>
+        <button onclick="openSupervisorPinModal()" class="text-xs bg-goldWarm/20 hover:bg-goldWarm/30 text-amber-100 border border-goldWarm/50 px-2.5 py-1.5 rounded-xl font-bold transition active:scale-95 flex items-center gap-1">
+          <span>🛡️</span>
+          <span class="hidden sm:inline">لوحة المشرفين</span>
+          <span class="sm:hidden">المشرفين</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================
+       VIEW 1: STUDENT LOGIN (2 SIMPLE STEPS)
+  ========================================================== -->
+  <main id="view-login" class="hidden max-w-2xl mx-auto px-4 pt-5 pb-12">
+    <div class="islamic-hero rounded-3xl p-6 text-white text-center shadow-lg border border-goldWarm/35 mb-6">
+      <div class="inline-flex items-center gap-1.5 bg-white/15 border border-goldWarm/40 px-3.5 py-1 rounded-full text-xs font-bold text-amber-100 mb-3">
+        <span>🚌</span>
+        <span>من 22 نوفمبر حتى 31 ديسمبر 2026</span>
+      </div>
+      <h2 class="text-xl sm:text-2xl font-black mb-2">باص الأنصار — رحلة الـ 40 يوماً إلى الحرم</h2>
+      <p class="text-xs sm:text-sm text-emerald-100 leading-relaxed max-w-md mx-auto">
+        أهلاً بك يا بطل! اختر طليعتك ثم اسمك لتبدأ تسجيل عباداتك اليومية وتفتح تحديات العمرة الممتعة.
+      </p>
+    </div>
+
+    <!-- Step 1: Select Patrol -->
+    <div id="login-step-1" class="animate-pop">
+      <h3 class="text-base font-extrabold text-emeraldDeep mb-3 flex items-center gap-2">
+        <span class="w-6 h-6 rounded-full bg-emeraldDeep text-white text-xs flex items-center justify-center">1</span>
+        <span>اختر طليعتك:</span>
+      </h3>
+      <div id="login-groups-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+    </div>
+
+    <!-- Step 2: Select Student + Optional Avatar -->
+    <div id="login-step-2" class="hidden animate-pop">
+      <div class="flex items-center justify-between mb-3">
+        <h3 id="login-step2-title" class="text-base font-extrabold text-emeraldDeep flex items-center gap-2">
+          <span class="w-6 h-6 rounded-full bg-emeraldDeep text-white text-xs flex items-center justify-center">2</span>
+          <span>اختر اسمك:</span>
+        </h3>
+        <button onclick="showLoginStep(1)" class="text-xs font-bold text-emeraldDeep bg-emeraldLight border border-emeraldDeep/15 px-3 py-1.5 rounded-xl">
+          ← تغيير الطليعة
+        </button>
+      </div>
+
+      <div class="bg-white rounded-2xl p-3.5 shadow-sm border border-gray-100 mb-4">
+        <p class="text-xs font-bold text-gray-500 mb-2">اختر رمزك الشخصي (اختياري):</p>
+        <div id="login-avatars-row" class="flex items-center justify-between gap-1.5"></div>
+      </div>
+
+      <div id="login-students-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5"></div>
+    </div>
+
+    <div class="mt-8 text-center">
+      <button onclick="openSupervisorPinModal()" class="text-xs font-bold text-gray-500 hover:text-emeraldDeep underline underline-offset-4 transition">
+        دخول المشايخ والمشرفين إلى لوحة المتابعة 🛡️
+      </button>
+    </div>
+  </main>
+
+  <!-- =========================================================
+       VIEW 2: MAIN STUDENT APP (4 TABS)
+  ========================================================== -->
+  <main id="view-student" class="hidden max-w-2xl mx-auto px-4 pt-4 pb-8">
+
+    <!-- ==================== TAB 1: الرئيسية ==================== -->
+    <section id="tab-home" class="space-y-4">
+      <!-- Date & Countdown Card (Hijri + Gregorian + Live Umrah Countdown) -->
+      <div class="islamic-hero rounded-3xl p-5 text-white shadow-lg border border-goldWarm/40 space-y-4">
+        <!-- Student Profile Row -->
+        <div class="flex items-center justify-between gap-3">
+          <div class="flex items-center gap-3 min-w-0">
+            <button onclick="openAvatarModal()" title="تغيير الرمز" class="w-13 h-13 w-12 h-12 rounded-2xl bg-white/15 border-2 border-goldWarm flex items-center justify-center text-2xl shadow-md hover:scale-105 transition shrink-0">
+              <span id="hero-avatar">🕋</span>
+            </button>
+            <div class="min-w-0">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <h2 id="hero-student-name" class="text-base sm:text-lg font-black text-white truncate">اسم الطالب</h2>
+                <span id="hero-leader-badge" class="hidden bg-goldWarm text-emeraldDeep text-[10px] font-black px-2 py-0.5 rounded-full">⭐ عريف الطليعة</span>
+              </div>
+              <p id="hero-group-info" class="text-[11px] text-emerald-100 font-semibold truncate">الطليعة • الشيخ</p>
+            </div>
+          </div>
+          <span id="umrah-days-badge" class="shrink-0 bg-goldWarm text-emeraldDeep text-xs font-black px-3 py-1.5 rounded-2xl shadow-sm">
+            باقي -- يوم على العمرة
+          </span>
+        </div>
+
+        <!-- Hijri & Gregorian Dates Strip -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 bg-black/20 rounded-2xl p-3 border border-white/10 text-xs">
+          <div class="flex items-center gap-2">
+            <span class="text-base">🌙</span>
+            <div>
+              <div class="text-[10px] text-emerald-200 font-semibold">التاريخ الهجري</div>
+              <div id="date-hijri" class="font-extrabold text-amber-100">--</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 sm:border-r sm:border-white/15 sm:pr-3">
+            <span class="text-base">📅</span>
+            <div>
+              <div class="text-[10px] text-emerald-200 font-semibold">التاريخ الميلادي</div>
+              <div id="date-gregorian" class="font-extrabold text-white">--</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Countdown Clock -->
+        <div class="bg-white/10 rounded-2xl px-3.5 py-2.5 flex items-center justify-between gap-2 text-xs border border-white/15">
+          <span class="font-bold text-emerald-100">⏳ العدّ التنازلي لانطلاق باص الأنصار:</span>
+          <span id="live-countdown" class="font-black text-goldWarm tracking-wide">--</span>
+        </div>
+
+        <!-- Student Stats (Total Points, Streak, Rank) -->
+        <div class="grid grid-cols-3 gap-2">
+          <div class="bg-white/10 rounded-2xl p-2.5 text-center border border-white/15">
+            <div class="text-[10px] text-emerald-100 font-semibold">مجموع النقاط</div>
+            <div id="stat-total-points" class="text-xl font-black text-goldWarm mt-0.5">0</div>
+            <div id="stat-points-breakdown" class="text-[9px] text-emerald-200 font-bold">عبادة 0 + تحدي 0</div>
+          </div>
+          <div class="bg-white/10 rounded-2xl p-2.5 text-center border border-white/15">
+            <div class="text-[10px] text-emerald-100 font-semibold">سلسلة الالتزام</div>
+            <div class="text-xl font-black text-white mt-0.5"><span id="stat-streak">0</span> 🔥</div>
+            <div class="text-[9px] text-emerald-200 font-bold">أيام متتالية</div>
+          </div>
+          <div class="bg-white/10 rounded-2xl p-2.5 text-center border border-white/15">
+            <div class="text-[10px] text-emerald-100 font-semibold">ترتيبك</div>
+            <div id="stat-rank" class="text-xl font-black text-white mt-0.5">#--</div>
+            <div class="text-[9px] text-emerald-200 font-bold">بين 26 طالباً</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Game Status Banner (Locked / Unlocked) -->
+      <div id="home-game-banner" class="rounded-2xl p-4 shadow-sm border flex items-center justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <div id="home-game-icon" class="w-11 h-11 rounded-2xl flex items-center justify-center text-2xl shrink-0">🔒</div>
+          <div>
+            <h3 id="home-game-title" class="font-black text-sm">تحدي اليوم مقفل</h3>
+            <p id="home-game-sub" class="text-xs mt-0.5">أكمل برنامجك اليومي أولاً لفتح ساحة التحدي وكسب +6 نقاط إضافية!</p>
+          </div>
+        </div>
+        <button id="home-game-btn" onclick="switchTab('tracker')" class="shrink-0 text-xs font-extrabold px-4 py-2.5 rounded-xl shadow-sm transition active:scale-95">
+          عبّئ الآن
+        </button>
+      </div>
+
+      <!-- 40-Day Visual Journey Map (Bus Al-Ansar -> Kaaba) -->
+      <div class="bg-white rounded-3xl p-5 shadow-sm border border-gray-100">
+        <div class="flex items-center justify-between mb-3 gap-2">
+          <h3 class="font-black text-emeraldDeep text-sm sm:text-base flex items-center gap-2">
+            <span>🗺️</span>
+            <span>خريطة رحلة باص الأنصار</span>
+          </h3>
+          <span id="map-days-badge" class="text-xs font-extrabold bg-emeraldLight text-emeraldDeep px-2.5 py-1 rounded-full">
+            0 / 40 يوم التزام
+          </span>
+        </div>
+
+        <div class="relative pt-9 pb-2 px-2">
+          <div class="h-4 w-full bg-gray-100 rounded-full overflow-hidden border border-gray-200">
+            <div id="map-progress-bar" class="h-full bg-gradient-to-l from-goldWarm via-emeraldMid to-emeraldDeep rounded-full transition-all duration-700" style="width: 6%;"></div>
+          </div>
+          <div id="map-bus-marker" class="absolute top-0 transition-all duration-700 translate-x-1/2" style="right: 6%;">
+            <span class="text-2xl drop-shadow-sm animate-float inline-block">🚌</span>
+          </div>
+          <div class="absolute top-0 left-0">
+            <span class="text-2xl drop-shadow-sm">🕋</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-4">
+          <div id="stage-box-1" class="rounded-2xl p-2.5 border text-center transition">
+            <div class="text-lg">🚩</div>
+            <div class="text-xs font-extrabold mt-0.5">محطة الانطلاق</div>
+            <div class="text-[10px] text-gray-500">أيام 1 - 10</div>
+          </div>
+          <div id="stage-box-2" class="rounded-2xl p-2.5 border text-center transition">
+            <div class="text-lg">⛰️</div>
+            <div class="text-xs font-extrabold mt-0.5">محطة الثبات</div>
+            <div class="text-[10px] text-gray-500">أيام 11 - 20</div>
+          </div>
+          <div id="stage-box-3" class="rounded-2xl p-2.5 border text-center transition">
+            <div class="text-lg">🎒</div>
+            <div class="text-xs font-extrabold mt-0.5">محطة الزاد</div>
+            <div class="text-[10px] text-gray-500">أيام 21 - 30</div>
+          </div>
+          <div id="stage-box-4" class="rounded-2xl p-2.5 border text-center transition">
+            <div class="text-lg">🕌</div>
+            <div class="text-xs font-extrabold mt-0.5">محطة الشوق</div>
+            <div class="text-[10px] text-gray-500">أيام 31 - 40</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Daily Fact & Dua Card -->
+      <div class="bg-gradient-to-br from-goldLight to-white rounded-3xl p-5 shadow-sm border border-goldWarm/40">
+        <div class="flex items-center justify-between mb-3 gap-2">
+          <div class="flex items-center gap-2">
+            <span class="w-9 h-9 rounded-xl bg-goldWarm/20 text-xl flex items-center justify-center shrink-0">💡</span>
+            <div>
+              <h3 class="font-black text-emeraldDeep text-sm">معلومة ودعاء اليوم</h3>
+              <p id="daily-tip-day-badge" class="text-[11px] text-goldDeep font-bold">اليوم 1 من 40</p>
+            </div>
+          </div>
+          <button onclick="openTipsArchive()" class="text-xs font-extrabold text-emeraldDeep bg-white border border-goldWarm/50 px-3 py-1.5 rounded-xl hover:bg-goldLight transition active:scale-95 shrink-0">
+            أرشيف الأيام
+          </button>
+        </div>
+
+        <div class="bg-white/95 rounded-2xl p-3.5 border border-goldWarm/25 mb-2.5">
+          <div class="text-xs font-black text-emeraldDeep mb-1 flex items-center gap-1.5">
+            <span>📖</span>
+            <span id="daily-tip-title">معلومة اليوم</span>
+          </div>
+          <p id="daily-tip-body" class="text-sm text-gray-700 leading-relaxed font-semibold"></p>
+        </div>
+
+        <div class="bg-emeraldLight rounded-2xl p-3.5 border border-emeraldDeep/15">
+          <div class="text-xs font-black text-emeraldDeep mb-1 flex items-center gap-1.5">
+            <span>🤲</span>
+            <span>دعاء اليوم</span>
+          </div>
+          <p id="daily-dua-body" class="text-sm text-emeraldDeep font-bold leading-relaxed"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 2: برنامجي اليومي ==================== -->
+    <section id="tab-tracker" class="hidden space-y-4">
+      <div class="bg-white rounded-3xl p-4 shadow-sm border border-gray-100 sticky top-[62px] z-30 space-y-2.5">
+        <div class="flex items-center justify-between gap-2 flex-wrap">
+          <div class="flex items-center gap-2 flex-1 min-w-[200px]">
+            <button type="button" onclick="selectTrackerToday()" id="btn-jump-today" class="px-3 py-2 rounded-xl text-xs font-extrabold bg-emeraldDeep text-white shrink-0 transition active:scale-95">
+              اليوم
+            </button>
+            <select id="tracker-day-select" onchange="onTrackerDayChange(this.value)" class="flex-1 text-xs font-extrabold bg-creamBg border border-gray-200 rounded-xl px-3 py-2 text-emeraldDeep focus:outline-none focus:border-emeraldDeep"></select>
+          </div>
+          <div class="text-left shrink-0">
+            <div class="text-sm font-black text-emeraldDeep flex items-center gap-1 justify-end">
+              <span>نقاط اليوم:</span>
+              <span id="tracker-live-points" class="text-lg text-goldDeep">0</span>
+              <span class="text-xs text-gray-400">/ 135</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="edit-mode-banner" class="hidden bg-goldLight border border-goldWarm/50 rounded-2xl px-3 py-2 flex items-center justify-between gap-2 text-xs">
+          <span class="font-extrabold text-amber-900">✏️ تم التعبئة سابقاً — يمكنك التعديل</span>
+          <span id="edit-mode-saved-pts" class="font-black text-emeraldDeep bg-white px-2 py-0.5 rounded-lg border border-goldWarm/30">0 نقطة</span>
+        </div>
+      </div>
+
+      <!-- Section 1: الفرائض -->
+      <div class="bg-white rounded-3xl p-4 sm:p-5 shadow-sm border border-gray-100">
+        <div class="flex items-center justify-between mb-3.5">
+          <h3 class="font-black text-emeraldDeep text-base flex items-center gap-2">
+            <span class="w-8 h-8 rounded-xl bg-emeraldLight flex items-center justify-center text-lg">🕌</span>
+            <span>1. الفرائض (الأساس)</span>
+          </h3>
+          <span class="text-[11px] font-bold text-gray-500">حتى 50 نقطة</span>
+        </div>
+        <div id="prayers-container" class="space-y-3"></div>
+      </div>
+
+      <!-- Section 2: السنن والنوافل -->
+      <div class="bg-white rounded-3xl p-4 sm:p-5 shadow-sm border border-gray-100">
+        <div class="flex items-center justify-between mb-3.5">
+          <h3 class="font-black text-emeraldDeep text-base flex items-center gap-2">
+            <span class="w-8 h-8 rounded-xl bg-goldLight flex items-center justify-center text-lg">✨</span>
+            <span>2. السنن والنوافل</span>
+          </h3>
+          <span class="text-[11px] font-bold text-gray-500">حتى 45 نقطة</span>
+        </div>
+
+        <div class="space-y-3">
+          <div class="p-3.5 rounded-2xl bg-creamBg border border-gray-100">
+            <div class="flex items-center justify-between mb-2.5">
+              <span class="font-extrabold text-sm text-gray-800">السنن الرواتب</span>
+              <span class="text-[11px] font-bold text-emeraldDeep">10 أو 5 نقاط</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <button type="button" id="btn-rawatib-full" onclick="setRawatib('full')" class="py-3 px-3 rounded-xl text-xs font-extrabold border transition active:scale-95">كاملة (10 نقاط)</button>
+              <button type="button" id="btn-rawatib-partial" onclick="setRawatib('partial')" class="py-3 px-3 rounded-xl text-xs font-extrabold border transition active:scale-95">جزء منها (5 نقاط)</button>
+            </div>
+          </div>
+
+          <button type="button" id="toggle-duha" onclick="toggleSunnah('duha')" class="w-full p-4 rounded-2xl border flex items-center justify-between transition active:scale-[0.99]">
+            <div class="flex items-center gap-3 text-right">
+              <span class="text-2xl">☀️</span>
+              <div>
+                <div class="font-extrabold text-sm">صلاة الضحى</div>
+                <div class="text-[11px] text-gray-500">ركعتان فأكثر بعد شروق الشمس</div>
+              </div>
+            </div>
+            <span class="pts-pill text-xs font-black px-3 py-1.5 rounded-xl">+10 نقاط</span>
+          </button>
+
+          <button type="button" id="toggle-witr" onclick="toggleSunnah('witr')" class="w-full p-4 rounded-2xl border flex items-center justify-between transition active:scale-[0.99]">
+            <div class="flex items-center gap-3 text-right">
+              <span class="text-2xl">🌙</span>
+              <div>
+                <div class="font-extrabold text-sm">صلاة الوتر</div>
+                <div class="text-[11px] text-gray-500">ختام صلاة الليل ولو بركعة</div>
+              </div>
+            </div>
+            <span class="pts-pill text-xs font-black px-3 py-1.5 rounded-xl">+10 نقاط</span>
+          </button>
+
+          <button type="button" id="toggle-qiyam" onclick="toggleSunnah('qiyam')" class="w-full p-4 rounded-2xl border flex items-center justify-between transition active:scale-[0.99]">
+            <div class="flex items-center gap-3 text-right">
+              <span class="text-2xl">🌟</span>
+              <div>
+                <div class="font-extrabold text-sm flex items-center gap-1.5">
+                  <span>قيام الليل</span>
+                  <span class="text-[10px] bg-goldWarm/20 text-goldDeep px-2 py-0.5 rounded-full">بونص</span>
+                </div>
+                <div class="text-[11px] text-gray-500">ولو ركعتين قبل النوم</div>
+              </div>
+            </div>
+            <span class="pts-pill text-xs font-black px-3 py-1.5 rounded-xl">+15 نقطة</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Section 3: زاد القلب -->
+      <div class="bg-white rounded-3xl p-4 sm:p-5 shadow-sm border border-gray-100">
+        <div class="flex items-center justify-between mb-3.5">
+          <h3 class="font-black text-emeraldDeep text-base flex items-center gap-2">
+            <span class="w-8 h-8 rounded-xl bg-emeraldLight flex items-center justify-center text-lg">💚</span>
+            <span>3. زاد القلب</span>
+          </h3>
+          <span class="text-[11px] font-bold text-gray-500">حتى 40 نقطة</span>
+        </div>
+
+        <div class="space-y-3">
+          <button type="button" id="toggle-quran" onclick="toggleHeart('quran')" class="w-full p-4 rounded-2xl border flex items-center justify-between transition active:scale-[0.99]">
+            <div class="flex items-center gap-3 text-right">
+              <span class="text-2xl">📖</span>
+              <div>
+                <div class="font-extrabold text-sm">ورد القرآن</div>
+                <div class="text-[11px] text-gray-500">قراءة وردك اليومي بتدبر</div>
+              </div>
+            </div>
+            <span class="pts-pill text-xs font-black px-3 py-1.5 rounded-xl">+10 نقاط</span>
+          </button>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <button type="button" id="toggle-morningAdhkar" onclick="toggleHeart('morningAdhkar')" class="w-full p-4 rounded-2xl border flex items-center justify-between transition active:scale-[0.99]">
+              <div class="flex items-center gap-2.5 text-right"><span class="text-xl">🌅</span><span class="font-extrabold text-sm">أذكار الصباح</span></div>
+              <span class="pts-pill text-xs font-black px-2.5 py-1 rounded-xl">+5</span>
+            </button>
+            <button type="button" id="toggle-eveningAdhkar" onclick="toggleHeart('eveningAdhkar')" class="w-full p-4 rounded-2xl border flex items-center justify-between transition active:scale-[0.99]">
+              <div class="flex items-center gap-2.5 text-right"><span class="text-xl">🌇</span><span class="font-extrabold text-sm">أذكار المساء</span></div>
+              <span class="pts-pill text-xs font-black px-2.5 py-1 rounded-xl">+5</span>
+            </button>
+          </div>
+
+          <button type="button" id="toggle-dua" onclick="toggleHeart('dua')" class="w-full p-4 rounded-2xl border flex items-center justify-between transition active:scale-[0.99]">
+            <div class="flex items-center gap-3 text-right">
+              <span class="text-2xl">🤲</span>
+              <div>
+                <div class="font-extrabold text-sm">الدعاء</div>
+                <div class="text-[11px] text-gray-500">الدعاء لنفسك ولوالديك وللمسلمين</div>
+              </div>
+            </div>
+            <span class="pts-pill text-xs font-black px-3 py-1.5 rounded-xl">+5 نقاط</span>
+          </button>
+
+          <div class="pt-2">
+            <div class="text-xs font-black text-emeraldDeep mb-2.5">📿 الذكر اليومي (اضغط "تم" أو استخدم المسبحة الإلكترونية):</div>
+            <div class="space-y-2.5">
+              <div id="dhikr-row-tasbih100" class="p-3.5 rounded-2xl border flex items-center justify-between gap-2 transition">
+                <div class="flex items-center gap-2.5"><span class="text-xl">✨</span><div><div class="font-extrabold text-sm">100 تسبيحة</div><div class="text-[11px] text-gray-500">سبحان الله وبحمده (+5 نقاط)</div></div></div>
+                <div class="flex items-center gap-1.5 shrink-0">
+                  <button type="button" onclick="openMisbaha('tasbih100', '100 تسبيحة', 'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ')" class="bg-goldLight text-goldDeep border border-goldWarm/40 text-xs font-extrabold px-3 py-2.5 rounded-xl active:scale-95">📿 مسبحة</button>
+                  <button type="button" id="dhikr-btn-tasbih100" onclick="toggleHeart('tasbih100')" class="text-xs font-extrabold px-3.5 py-2.5 rounded-xl border active:scale-95">تم</button>
+                </div>
+              </div>
+
+              <div id="dhikr-row-salawat100" class="p-3.5 rounded-2xl border flex items-center justify-between gap-2 transition">
+                <div class="flex items-center gap-2.5"><span class="text-xl">💚</span><div><div class="font-extrabold text-sm">100 صلاة على النبي ﷺ</div><div class="text-[11px] text-gray-500">اللهم صلّ على محمد (+5 نقاط)</div></div></div>
+                <div class="flex items-center gap-1.5 shrink-0">
+                  <button type="button" onclick="openMisbaha('salawat100', '100 صلاة على النبي ﷺ', 'اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى نَبِيِّنَا مُحَمَّدٍ ﷺ')" class="bg-goldLight text-goldDeep border border-goldWarm/40 text-xs font-extrabold px-3 py-2.5 rounded-xl active:scale-95">📿 مسبحة</button>
+                  <button type="button" id="dhikr-btn-salawat100" onclick="toggleHeart('salawat100')" class="text-xs font-extrabold px-3.5 py-2.5 rounded-xl border active:scale-95">تم</button>
+                </div>
+              </div>
+
+              <div id="dhikr-row-istighfar100" class="p-3.5 rounded-2xl border flex items-center justify-between gap-2 transition">
+                <div class="flex items-center gap-2.5"><span class="text-xl">🌿</span><div><div class="font-extrabold text-sm">100 استغفار</div><div class="text-[11px] text-gray-500">أستغفر الله العظيم (+5 نقاط)</div></div></div>
+                <div class="flex items-center gap-1.5 shrink-0">
+                  <button type="button" onclick="openMisbaha('istighfar100', '100 استغفار', 'أَسْتَغْفِرُ اللَّهَ الْعَظِيمَ وَأَتُوبُ إِلَيْهِ')" class="bg-goldLight text-goldDeep border border-goldWarm/40 text-xs font-extrabold px-3 py-2.5 rounded-xl active:scale-95">📿 مسبحة</button>
+                  <button type="button" id="dhikr-btn-istighfar100" onclick="toggleHeart('istighfar100')" class="text-xs font-extrabold px-3.5 py-2.5 rounded-xl border active:scale-95">تم</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Oath & Save -->
+      <div class="bg-white rounded-3xl p-5 shadow-sm border-2 border-emeraldDeep/20">
+        <label class="flex items-start gap-3 cursor-pointer select-none mb-4">
+          <input type="checkbox" id="pledge-checkbox" class="mt-1 w-5 h-5 accent-emeraldDeep rounded cursor-pointer" />
+          <div>
+            <span class="font-black text-sm text-emeraldDeep block">ميثاق الصدق</span>
+            <span class="text-xs text-gray-600 font-bold">أعاهد الله أن إجاباتي صادقة.</span>
+          </div>
+        </label>
+        <button id="btn-save-log" onclick="saveDailyLog()" class="w-full py-4 rounded-2xl bg-emeraldDeep hover:bg-emeraldMid text-white font-black text-base shadow-md transition active:scale-[0.98] flex items-center justify-center gap-2">
+          <span>💾</span>
+          <span id="btn-save-log-text">حفظ إنجاز اليوم</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 3: ساحة التحدي (40-DAY GAME) ==================== -->
+    <section id="tab-games" class="hidden space-y-4">
+      <!-- Locked Screen -->
+      <div id="game-locked-box" class="hidden bg-white rounded-3xl p-7 text-center shadow-sm border-2 border-amber-200 animate-pop">
+        <div class="w-20 h-20 rounded-3xl bg-amber-100 text-4xl flex items-center justify-center mx-auto mb-4">🔒</div>
+        <h3 class="text-xl font-black text-emeraldDeep mb-2">ساحة التحدي مقفلة حالياً!</h3>
+        <p class="text-sm text-gray-600 font-semibold leading-relaxed mb-5 max-w-sm mx-auto">
+          أكمل برنامجك اليومي أولاً واضغط حفظ لتفتح تحدي اليوم وتكسب حتى <span class="text-goldDeep font-black">+6 نقاط إضافية</span> لرفع ترتيبك وطليعتك!
+        </p>
+        <button onclick="switchTab('tracker')" class="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-emeraldDeep hover:bg-emeraldMid text-white font-black text-sm shadow-md transition active:scale-95">
+          الانتقال إلى برنامجي اليومي ✅
+        </button>
+      </div>
+
+      <!-- Unlocked Hub -->
+      <div id="game-unlocked-box" class="hidden space-y-4">
+        <!-- Today's Challenge Header Card -->
+        <div class="islamic-hero rounded-3xl p-5 text-white shadow-lg border border-goldWarm/40">
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <span id="game-day-pill" class="bg-goldWarm text-emeraldDeep text-xs font-black px-3 py-1 rounded-full">تحدي اليوم 1</span>
+            <span id="game-type-pill" class="bg-white/15 text-amber-100 text-xs font-bold px-3 py-1 rounded-full border border-white/20">تحدي الأربعين</span>
+          </div>
+          <h3 id="game-topic-title" class="text-lg sm:text-xl font-black mb-1">موضوع اليوم</h3>
+          <p id="game-topic-desc" class="text-xs text-emerald-100 mb-4 leading-relaxed"></p>
+
+          <div id="game-hub-action-area"></div>
+        </div>
+
+        <!-- Active Quiz Container -->
+        <div id="quiz-arena" class="hidden bg-white rounded-3xl p-5 shadow-sm border border-gray-100 animate-pop">
+          <div class="flex items-center justify-between mb-3">
+            <span id="quiz-progress-text" class="text-xs font-black text-emeraldDeep bg-emeraldLight px-3 py-1 rounded-full">السؤال 1 من 3</span>
+            <div class="flex items-center gap-1.5 text-sm font-black" id="quiz-timer-badge">
+              <span>⏱️</span>
+              <span id="quiz-timer-sec">20</span>
+              <span class="text-xs">ث</span>
+            </div>
+          </div>
+
+          <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden mb-4">
+            <div id="quiz-timer-bar" class="h-full bg-goldWarm transition-all duration-1000 linear" style="width: 100%;"></div>
+          </div>
+
+          <h4 id="quiz-question-text" class="text-base sm:text-lg font-black text-gray-800 leading-relaxed mb-4"></h4>
+          <div id="quiz-options-list" class="space-y-2.5"></div>
+
+          <!-- Immediate 1-line educational explanation -->
+          <div id="quiz-explanation-box" class="hidden mt-4 p-3.5 rounded-2xl border text-xs sm:text-sm font-bold leading-relaxed animate-pop">
+            <div id="quiz-exp-status" class="font-black mb-1"></div>
+            <div id="quiz-exp-text" class="text-gray-700"></div>
+            <button id="quiz-next-btn" onclick="nextQuizQuestion()" class="mt-3 w-full py-3 rounded-xl bg-emeraldDeep text-white font-black text-xs shadow transition active:scale-95">
+              السؤال التالي ←
+            </button>
+          </div>
+        </div>
+
+        <!-- Active Matching Game Container (Every 5th Day) -->
+        <div id="match-arena" class="hidden bg-white rounded-3xl p-5 shadow-sm border border-gray-100 animate-pop">
+          <div class="flex items-center justify-between gap-2 mb-3 flex-wrap">
+            <div>
+              <h4 class="font-black text-emeraldDeep text-base">🃏 بطاقات المصطلحات</h4>
+              <p class="text-[11px] text-gray-500 font-bold">اختر المصطلح ثم اختر معناه الصحيح لتوصيلهما</p>
+            </div>
+            <div class="flex items-center gap-2 text-xs font-black">
+              <span class="bg-creamBg border border-gray-200 px-2.5 py-1 rounded-xl text-emeraldDeep">⏱️ <span id="match-timer">0</span>ث</span>
+              <span class="bg-creamBg border border-gray-200 px-2.5 py-1 rounded-xl text-goldDeep">🔄 <span id="match-moves">0</span> محاولة</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
+            <div>
+              <div class="text-xs font-extrabold text-emeraldDeep mb-2 text-center bg-emeraldLight py-1 rounded-xl">المصطلح / المعلم</div>
+              <div id="match-terms-col" class="space-y-2"></div>
+            </div>
+            <div>
+              <div class="text-xs font-extrabold text-goldDeep mb-2 text-center bg-goldLight py-1 rounded-xl">المعنى الصحيح</div>
+              <div id="match-defs-col" class="space-y-2"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Game Result Box -->
+        <div id="game-result-box" class="hidden bg-white rounded-3xl p-6 text-center shadow-sm border-2 border-goldWarm animate-pop">
+          <div class="text-5xl mb-2">🏆</div>
+          <h4 id="game-result-title" class="text-xl font-black text-emeraldDeep mb-1">أحسنت يا بطل!</h4>
+          <p id="game-result-sub" class="text-xs sm:text-sm text-gray-600 font-bold mb-4"></p>
+          <div class="bg-goldLight rounded-2xl p-3.5 border border-goldWarm/40 mb-4 inline-block min-w-[200px]">
+            <div class="text-xs font-bold text-goldDeep">نقاط التحدي المكتسبة</div>
+            <div id="game-result-pts" class="text-3xl font-black text-emeraldDeep mt-0.5">+6 نقاط</div>
+          </div>
+          <div>
+            <button onclick="renderGamesTab()" class="px-6 py-2.5 rounded-xl bg-emeraldDeep text-white font-black text-xs">
+              العودة لساحة التحدي
+            </button>
+          </div>
+        </div>
+
+        <!-- Practice Past Unlocked Days -->
+        <div class="bg-white rounded-3xl p-4 sm:p-5 shadow-sm border border-gray-100">
+          <div class="flex items-center justify-between mb-3">
+            <h4 class="font-black text-emeraldDeep text-sm">📚 تحديات الأيام السابقة (للتدريب والمراجعة)</h4>
+            <span class="text-[10px] font-bold text-gray-400">بدون نقاط إضافية</span>
+          </div>
+          <div id="past-games-grid" class="grid grid-cols-5 sm:grid-cols-8 gap-2"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 4: لوحة الشرف ==================== -->
+    <section id="tab-leaderboard" class="hidden space-y-4">
+      <div class="bg-white rounded-3xl p-5 shadow-sm border border-gray-100">
+        <div class="flex items-center justify-between gap-2 mb-1">
+          <h3 class="font-black text-emeraldDeep text-base flex items-center gap-2">
+            <span>🏆</span>
+            <span>سباق الطلائع (باص الأنصار)</span>
+          </h3>
+          <span class="text-[11px] font-extrabold bg-goldLight text-goldDeep px-2.5 py-1 rounded-full border border-goldWarm/30">متوسط نقاط الطالب</span>
+        </div>
+        <p class="text-xs text-gray-500 mb-4">يشمل نقاط العبادة اليومية + بونص ساحة التحدي، مقسوماً على عدد طلاب الطليعة للعدالة.</p>
+        <div id="groups-race-container" class="space-y-3.5"></div>
+      </div>
+
+      <div class="bg-white rounded-3xl p-5 shadow-sm border border-gray-100">
+        <div class="flex items-center justify-between gap-2 mb-3.5 flex-wrap">
+          <h3 class="font-black text-emeraldDeep text-base flex items-center gap-2">
+            <span>🌟</span>
+            <span>فرسان باص الأنصار</span>
+          </h3>
+          <select id="lb-group-filter" onchange="renderLeaderboard()" class="text-xs font-bold bg-creamBg border border-gray-200 rounded-xl px-3 py-2 text-emeraldDeep focus:outline-none">
+            <option value="all">جميع الطلائع (26 طالباً)</option>
+          </select>
+        </div>
+        <div id="students-rank-container" class="space-y-2"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Fixed Bottom Mobile Nav (4 Tabs) -->
+  <nav id="bottom-nav" class="hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-[0_-4px_20px_rgba(0,0,0,0.06)]">
+    <div class="max-w-2xl mx-auto grid grid-cols-4 p-1.5 gap-1">
+      <button id="nav-home" onclick="switchTab('home')" class="flex flex-col items-center justify-center py-2 rounded-2xl transition">
+        <span class="text-xl leading-none mb-1">🚌</span>
+        <span class="text-[10px] sm:text-[11px] font-extrabold">الرئيسية</span>
+      </button>
+      <button id="nav-tracker" onclick="switchTab('tracker')" class="flex flex-col items-center justify-center py-2 rounded-2xl transition">
+        <span class="text-xl leading-none mb-1">✅</span>
+        <span class="text-[10px] sm:text-[11px] font-extrabold">برنامجي</span>
+      </button>
+      <button id="nav-games" onclick="switchTab('games')" class="flex flex-col items-center justify-center py-2 rounded-2xl transition relative">
+        <span class="text-xl leading-none mb-1">🎮</span>
+        <span class="text-[10px] sm:text-[11px] font-extrabold">ساحة التحدي</span>
+        <span id="nav-game-dot" class="hidden absolute top-1.5 left-1/4 w-2 h-2 rounded-full bg-goldWarm animate-ping"></span>
+      </button>
+      <button id="nav-leaderboard" onclick="switchTab('leaderboard')" class="flex flex-col items-center justify-center py-2 rounded-2xl transition">
+        <span class="text-xl leading-none mb-1">🏆</span>
+        <span class="text-[10px] sm:text-[11px] font-extrabold">لوحة الشرف</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- =========================================================
+       VIEW 3: SUPERVISOR DASHBOARD (PIN: 2026)
+  ========================================================== -->
+  <main id="view-supervisor" class="hidden max-w-5xl mx-auto px-4 pt-5 pb-12 space-y-5">
+    <div class="islamic-hero text-white rounded-3xl p-5 shadow-md flex flex-col sm:flex-row sm:items-center justify-between gap-4 border border-goldWarm/40">
+      <div>
+        <div class="inline-flex items-center gap-1.5 bg-goldWarm/20 text-amber-100 text-xs font-bold px-2.5 py-0.5 rounded-full mb-1">
+          <span>🚌</span>
+          <span>باص الأنصار • لوحة المشرفين</span>
+        </div>
+        <h2 class="text-xl font-black">لوحة تحكم المشرفين والمشايخ</h2>
+        <p class="text-xs text-emerald-100 mt-0.5">متابعة العبادة + نقاط ساحة التحدي + حذف السجلات التجريبية + تصدير إكسل</p>
+      </div>
+      <div class="flex items-center gap-2 flex-wrap">
+        <button onclick="exportExcelCSV()" class="bg-goldWarm hover:bg-amber-500 text-emeraldDeep font-black text-xs px-4 py-2.5 rounded-xl shadow transition active:scale-95 flex items-center gap-1.5">
+          <span>📥</span>
+          <span>تصدير إلى إكسل (CSV)</span>
+        </button>
+        <button onclick="exitSupervisorView()" class="bg-white/15 hover:bg-white/25 text-white font-bold text-xs px-4 py-2.5 rounded-xl border border-white/20 transition active:scale-95">
+          العودة للتطبيق
+        </button>
+      </div>
+    </div>
+
+    <!-- Filters Bar -->
+    <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 grid grid-cols-1 sm:grid-cols-3 gap-3">
+      <div class="flex flex-col gap-1">
+        <label class="text-xs font-extrabold text-gray-600">تاريخ المتابعة:</label>
+        <input type="date" id="sup-date-input" onchange="renderSupervisorDashboard()" class="text-xs font-bold bg-creamBg border border-gray-200 rounded-xl px-3 py-2.5 text-emeraldDeep focus:outline-none" />
+      </div>
+      <div class="flex flex-col gap-1">
+        <label class="text-xs font-extrabold text-gray-600">تصفية حسب الطليعة:</label>
+        <select id="sup-group-filter" onchange="renderSupervisorDashboard()" class="text-xs font-bold bg-creamBg border border-gray-200 rounded-xl px-3 py-2.5 text-emeraldDeep focus:outline-none">
+          <option value="all">الكل (جميع الطلائع)</option>
+        </select>
+      </div>
+      <div class="flex flex-col gap-1">
+        <label class="text-xs font-extrabold text-gray-600">حالة التعبئة:</label>
+        <select id="sup-status-filter" onchange="renderSupervisorDashboard()" class="text-xs font-bold bg-creamBg border border-gray-200 rounded-xl px-3 py-2.5 text-emeraldDeep focus:outline-none">
+          <option value="all">الكل</option>
+          <option value="submitted">عبّى اليوم ✅</option>
+          <option value="missing">لم يعبّئ اليوم ❌</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- KPI Cards -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+      <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+        <div class="text-xs font-bold text-gray-500">عبّأوا في هذا التاريخ</div>
+        <div id="kpi-submitted" class="text-2xl font-black text-emeraldDeep mt-1">0 / 26</div>
+        <div id="kpi-submitted-pct" class="text-[11px] font-bold text-emeraldMid mt-0.5">0% التزام</div>
+      </div>
+      <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+        <div class="text-xs font-bold text-gray-500">الفجر بالمسجد اليوم</div>
+        <div id="kpi-fajr" class="text-2xl font-black text-goldDeep mt-1">0</div>
+        <div id="kpi-fajr-pct" class="text-[11px] font-bold text-gray-500 mt-0.5">0% من الطلاب</div>
+      </div>
+      <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+        <div class="text-xs font-bold text-gray-500">أتموا تحدي اليوم</div>
+        <div id="kpi-games-today" class="text-2xl font-black text-emeraldDeep mt-1">0</div>
+        <div class="text-[11px] font-bold text-gray-500 mt-0.5">في ساحة التحدي</div>
+      </div>
+      <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+        <div class="text-xs font-bold text-gray-500">أعلى طليعة (بالمعدل)</div>
+        <div id="kpi-top-group" class="text-sm font-black text-emeraldDeep mt-1.5 leading-snug">--</div>
+        <div id="kpi-top-group-avg" class="text-[11px] font-bold text-goldDeep mt-0.5">متوسط 0 نقطة</div>
+      </div>
+    </div>
+
+    <!-- Tracking Table -->
+    <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+      <div class="p-4 border-b border-gray-100 flex items-center justify-between flex-wrap gap-2">
+        <h3 class="font-black text-emeraldDeep text-sm">جدول متابعة الطلاب التفصيلي</h3>
+        <span id="sup-count-badge" class="text-xs font-bold bg-emeraldLight text-emeraldDeep px-2.5 py-1 rounded-full">26 طالباً</span>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-right border-collapse">
+          <thead>
+            <tr class="bg-creamBg text-gray-600 text-xs font-extrabold border-b border-gray-100">
+              <th class="py-3 px-4">الطالب</th>
+              <th class="py-3 px-3">الطليعة</th>
+              <th class="py-3 px-3 text-center">الحالة</th>
+              <th class="py-3 px-3 text-center">عبادة اليوم</th>
+              <th class="py-3 px-3 text-center">بونص التحدي</th>
+              <th class="py-3 px-3 text-center">المجموع الكلي</th>
+              <th class="py-3 px-3 text-center">إجراءات</th>
+            </tr>
+          </thead>
+          <tbody id="sup-table-body" class="divide-y divide-gray-100 text-xs sm:text-sm"></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- =========================================================
+       MODALS
+  ========================================================== -->
+  <!-- 1. Electronic Misbaha -->
+  <div id="modal-misbaha" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl w-full max-w-sm p-6 text-center shadow-2xl animate-pop border border-goldWarm/40">
+      <div class="flex items-center justify-between mb-3">
+        <h3 id="misbaha-title" class="font-black text-emeraldDeep text-base">المسبحة الإلكترونية</h3>
+        <button onclick="closeMisbaha()" class="w-8 h-8 rounded-full bg-gray-100 text-gray-600 font-bold">✕</button>
+      </div>
+      <p id="misbaha-phrase" class="text-base font-extrabold text-emeraldDeep bg-emeraldLight py-2.5 px-4 rounded-2xl mb-5 border border-emeraldDeep/10"></p>
+      <div class="relative w-52 h-52 mx-auto mb-5 flex items-center justify-center">
+        <svg class="w-full h-full -rotate-90" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="52" stroke="#e5e7eb" stroke-width="8" fill="none" />
+          <circle id="misbaha-ring" cx="60" cy="60" r="52" stroke="#065f46" stroke-width="8" fill="none"
+                  stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="326.7" class="transition-all duration-100" />
+        </svg>
+        <button onclick="tapMisbaha()" class="absolute inset-4 rounded-full bg-gradient-to-br from-emeraldDeep to-emeraldMid text-white shadow-lg active:scale-95 transition flex flex-col items-center justify-center select-none border-4 border-goldWarm/50">
+          <span id="misbaha-count" class="text-5xl font-black leading-none">0</span>
+          <span class="text-xs font-bold text-amber-200 mt-1">من 100</span>
+          <span class="text-[10px] text-emerald-100 mt-1">اضغط للعدّ</span>
+        </button>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="resetMisbaha()" class="flex-1 py-2.5 rounded-xl bg-gray-100 text-gray-700 font-bold text-xs">تصفير</button>
+        <button onclick="closeMisbaha()" class="flex-1 py-2.5 rounded-xl bg-emeraldDeep text-white font-bold text-xs">إغلاق</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Supervisor PIN -->
+  <div id="modal-pin" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl w-full max-w-xs p-6 text-center shadow-2xl animate-pop">
+      <div class="w-12 h-12 rounded-2xl bg-emeraldLight text-2xl flex items-center justify-center mx-auto mb-3">🛡️</div>
+      <h3 class="font-black text-emeraldDeep text-base mb-1">دخول المشرفين والمشايخ</h3>
+      <p class="text-xs text-gray-500 mb-4">أدخل الرمز السري للوصول إلى لوحة المتابعة</p>
+      <input type="password" inputmode="numeric" id="pin-input" maxlength="6" placeholder="••••"
+             class="w-full text-center text-2xl tracking-[0.5em] font-black py-3 rounded-2xl border-2 border-gray-200 focus:border-emeraldDeep focus:outline-none mb-2" />
+      <p id="pin-error" class="hidden text-xs font-bold text-rose-600 mb-2">الرمز السري غير صحيح.</p>
+      <div class="flex gap-2 mt-3">
+        <button onclick="closePinModal()" class="flex-1 py-2.5 rounded-xl bg-gray-100 text-gray-700 font-bold text-xs">إلغاء</button>
+        <button onclick="verifyPin()" class="flex-1 py-2.5 rounded-xl bg-emeraldDeep text-white font-extrabold text-xs">دخول</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Student Details Modal -->
+  <div id="modal-details" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl w-full max-w-md max-h-[88vh] flex flex-col shadow-2xl animate-pop overflow-hidden">
+      <div class="p-4 bg-emeraldDeep text-white flex items-center justify-between">
+        <div>
+          <h3 id="details-title" class="font-black text-base">تفاصيل الطالب</h3>
+          <p id="details-subtitle" class="text-xs text-amber-200">التاريخ</p>
+        </div>
+        <button onclick="closeDetailsModal()" class="w-8 h-8 rounded-full bg-white/15 font-bold">✕</button>
+      </div>
+      <div id="details-content" class="p-4 overflow-y-auto space-y-3 text-sm"></div>
+      <div id="details-footer" class="p-3.5 bg-gray-50 border-t border-gray-100 flex items-center justify-between gap-2"></div>
+    </div>
+  </div>
+
+  <!-- 4. Custom Confirmation Modal -->
+  <div id="modal-confirm" class="hidden fixed inset-0 z-[60] bg-black/65 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl w-full max-w-sm p-6 text-center shadow-2xl animate-pop border-2 border-rose-200">
+      <div class="w-14 h-14 rounded-2xl bg-rose-100 text-rose-600 text-3xl flex items-center justify-center mx-auto mb-3">🗑️</div>
+      <h3 id="confirm-title" class="font-black text-gray-900 text-base mb-1.5">تأكيد الحذف</h3>
+      <p id="confirm-message" class="text-xs sm:text-sm text-gray-600 font-semibold leading-relaxed mb-5"></p>
+      <div class="flex items-center gap-2.5">
+        <button onclick="closeConfirmModal()" class="flex-1 py-3 rounded-xl bg-gray-100 text-gray-700 font-extrabold text-xs">إلغاء</button>
+        <button onclick="executeConfirmedAction()" class="flex-1 py-3 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-black text-xs shadow">نعم، احذف</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Tips Archive -->
+  <div id="modal-archive" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl w-full max-w-lg max-h-[85vh] flex flex-col shadow-2xl animate-pop overflow-hidden">
+      <div class="p-4 bg-emeraldDeep text-white flex items-center justify-between">
+        <div>
+          <h3 class="font-black text-base">أرشيف الأيام — باص الأنصار</h3>
+          <p class="text-xs text-amber-200">معلومات وأدعية رحلة الـ 40 يوماً</p>
+        </div>
+        <button onclick="closeTipsArchive()" class="w-8 h-8 rounded-full bg-white/15 font-bold">✕</button>
+      </div>
+      <div id="archive-list" class="p-4 overflow-y-auto space-y-3"></div>
+    </div>
+  </div>
+
+  <!-- 6. Avatar Modal -->
+  <div id="modal-avatar" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl w-full max-w-xs p-5 text-center shadow-2xl animate-pop">
+      <h3 class="font-black text-emeraldDeep text-base mb-3">اختر رمزك الشخصي</h3>
+      <div id="modal-avatar-grid" class="grid grid-cols-4 gap-2.5 mb-4"></div>
+      <button onclick="closeAvatarModal()" class="w-full py-2.5 rounded-xl bg-gray-100 font-bold text-xs text-gray-700">إغلاق</button>
+    </div>
+  </div>
+
+  <!-- 7. Celebration Modal (Unlocks Game!) -->
+  <div id="modal-celebration" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl w-full max-w-sm p-6 text-center shadow-2xl animate-pop border-2 border-goldWarm">
+      <div class="text-5xl mb-3 animate-bounce">🎉</div>
+      <h3 id="celebration-title" class="text-xl font-black text-emeraldDeep mb-1">بارك الله فيك يا بطل!</h3>
+      <p id="celebration-text" class="text-sm text-gray-600 font-semibold mb-4 leading-relaxed"></p>
+      <div class="bg-goldLight rounded-2xl p-3.5 border border-goldWarm/40 mb-4">
+        <div class="text-xs font-bold text-goldDeep">نقاطك المسجّلة لهذا اليوم</div>
+        <div id="celebration-score" class="text-3xl font-black text-emeraldDeep mt-0.5">0 نقطة</div>
+      </div>
+      <div class="space-y-2">
+        <button id="celebration-game-btn" onclick="goToGameFromCelebration()" class="w-full py-3.5 rounded-2xl bg-goldWarm hover:bg-amber-500 text-emeraldDeep font-black text-sm shadow-md">
+          🎮 العب تحدي اليوم الآن (+6 نقاط)
+        </button>
+        <button onclick="closeCelebration()" class="w-full py-2.5 rounded-2xl bg-gray-100 text-gray-700 font-bold text-xs">
+          العودة للرئيسية
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       APPLICATION SCRIPT (FIREBASE v10.12.2 + 40-DAY GAME ENGINE)
+  ========================================================== -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, collection, doc, setDoc, deleteDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    // 1. EXACT FIREBASE CONFIG
+    const firebaseConfig = {
+      apiKey: "AIzaSyDCuJcG2ANw3e3cCzwwaiUDki8sHL0LFK0",
+      authDomain: "ansar-bus.firebaseapp.com",
+      projectId: "ansar-bus",
+      storageBucket: "ansar-bus.firebasestorage.app",
+      messagingSenderId: "861413578558",
+      appId: "1:861413578558:web:45c5648a452f1164d73e6f",
+      measurementId: "G-6QMYKHSRKT"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const LOGS_COL = 'ansar_bus_logs';
+    const GAMES_COL = 'ansar_bus_games';
+
+    // 2. CONSTANTS & ROSTER
+    const START_DATE = '2026-11-22';
+    const END_DATE = '2026-12-31';
+    const TARGET_UMRAH_ISO = '2026-12-31T00:00:00';
+    const SUPERVISOR_PIN = '2026';
+
+    const LS_STUDENT = 'ansar_bus_cur_student_v3';
+    const LS_LOGS = 'ansar_bus_logs_cache_v3';
+    const LS_GAMES = 'ansar_bus_games_cache_v3';
+    const LS_AVATARS = 'ansar_bus_avatars_v3';
+
+    const AVATARS = ['🕋', '🕌', '🚌', '🌙', '⭐', '🦁', '🦅', '📖'];
+
+    const GROUPS = [
+      { id: 'g1', name: 'طليعة عبد الله بن رواحة', sheikh: 'محمد أيمن', gradient: 'from-emerald-700 to-emerald-900', pill: 'bg-emerald-100 text-emerald-800', icon: '🦅' },
+      { id: 'g2', name: 'طليعة البراء بن مالك', sheikh: 'براء سليط', gradient: 'from-teal-700 to-teal-900', pill: 'bg-teal-100 text-teal-800', icon: '🛡️' },
+      { id: 'g3', name: 'طليعة سعد بن معاذ', sheikh: 'بشار أبو غوش', gradient: 'from-amber-600 to-amber-800', pill: 'bg-amber-100 text-amber-800', icon: '⚔️' },
+      { id: 'g4', name: 'طليعة أبو أيوب الأنصاري', sheikh: 'خالد خاطر', gradient: 'from-green-700 to-green-900', pill: 'bg-green-100 text-green-800', icon: '🚩' }
+    ];
+
+    const STUDENTS = [
+      { id: 'st_01', name: 'ثابت سلامة', groupId: 'g1', isLeader: true },
+      { id: 'st_02', name: 'يوسف ابو عافية', groupId: 'g1', isLeader: false },
+      { id: 'st_03', name: 'ابراهيم ابوشما', groupId: 'g1', isLeader: false },
+      { id: 'st_04', name: 'مصطفى العابد', groupId: 'g1', isLeader: false },
+      { id: 'st_05', name: 'أسعد أبو حسن', groupId: 'g1', isLeader: false },
+      { id: 'st_06', name: 'محمد حرب', groupId: 'g1', isLeader: false },
+      { id: 'st_07', name: 'سيف زيدان', groupId: 'g1', isLeader: false },
+      { id: 'st_08', name: 'يوسف صمادي', groupId: 'g2', isLeader: true },
+      { id: 'st_09', name: 'مثنى الكسواني', groupId: 'g2', isLeader: false },
+      { id: 'st_10', name: 'عبدالرحمن ثلجي', groupId: 'g2', isLeader: false },
+      { id: 'st_11', name: 'البراء عودةالله', groupId: 'g2', isLeader: false },
+      { id: 'st_12', name: 'شادي اللحام', groupId: 'g2', isLeader: false },
+      { id: 'st_13', name: 'صلاح العابد', groupId: 'g2', isLeader: false },
+      { id: 'st_14', name: 'حمزة عصفور', groupId: 'g2', isLeader: false },
+      { id: 'st_15', name: 'براء الهروط', groupId: 'g3', isLeader: true },
+      { id: 'st_16', name: 'يعقوب سامرائي', groupId: 'g3', isLeader: false },
+      { id: 'st_17', name: 'محمد ياسر', groupId: 'g3', isLeader: false },
+      { id: 'st_18', name: 'عبد الرحمن ياسر', groupId: 'g3', isLeader: false },
+      { id: 'st_19', name: 'أمير أبو المنى', groupId: 'g3', isLeader: false },
+      { id: 'st_20', name: 'هاشم مهداوي', groupId: 'g3', isLeader: false },
+      { id: 'st_21', name: 'خالد الجندي', groupId: 'g4', isLeader: true },
+      { id: 'st_22', name: 'اسحق سامرائي', groupId: 'g4', isLeader: false },
+      { id: 'st_23', name: 'أبان جعفر دراج', groupId: 'g4', isLeader: false },
+      { id: 'st_24', name: 'عبد الله أبو صالحة', groupId: 'g4', isLeader: false },
+      { id: 'st_25', name: 'محمد ابو صالحة', groupId: 'g4', isLeader: false },
+      { id: 'st_26', name: 'يوسف البدوي', groupId: 'g4', isLeader: false }
+    ];
+
+    const PRAYERS_LIST = [
+      { key: 'fajr', label: 'صلاة الفجر', icon: '🌌' },
+      { key: 'dhuhr', label: 'صلاة الظهر', icon: '☀️' },
+      { key: 'asr', label: 'صلاة العصر', icon: '🌤️' },
+      { key: 'maghrib', label: 'صلاة المغرب', icon: '🌅' },
+      { key: 'isha', label: 'صلاة العشاء', icon: '🌙' }
+    ];
+
+    // 40 Daily Tips & Duas
+    const DAILY_TIPS_40 = [
+      { title: 'الإخلاص مفتاح القبول', tip: 'أول خطوة قبل السفر للعمرة هي تجديد النية: أن تكون رحلتنا في باص الأنصار خالصة لوجه الله تعالى.', dua: 'اللهم إني نويت العمرة فيسرها لي وتقبلها مني.' },
+      { title: 'فضل العمرة العظيم', tip: 'قال النبي ﷺ: "العمرة إلى العمرة كفارة لما بينهما"، فهي تغسل القلوب وتجدد الإيمان.', dua: 'اللهم اغفر لي ذنوبي وطهّر قلبي وبارك لي في أيامي.' },
+      { title: 'المعتمر ضيف الرحمن', tip: 'حين تسافر لمكة تكون في ضيافة الله عز وجل، فأحسن الأدب واستعد للقاء الكريم.', dua: 'اللهم اجعلني من ضيوفك المقبولين المكرمين.' },
+      { title: 'بر الوالدين قبل السفر', tip: 'رضى والديك ودعاؤهما لك هو أجمل زاد تحمله في حقيبتك قبل السفر.', dua: 'رب ارحمهما كما ربياني صغيراً.' },
+      { title: 'صلاة الفجر زاد الأبطال', tip: 'من صلى الفجر في جماعة فهو في ذمة الله وحفظه طوال يومه.', dua: 'اللهم أعني على ذكرك وشكرك وحسن عبادتك.' },
+      { title: 'أركان العمرة الأساسية', tip: 'أركان العمرة ثلاثة: الإحرام، الطواف بالكعبة، والسعي بين الصفا والمروة (وواجبها الحلق أو التقصير).', dua: 'اللهم فقّهني في الدين وعلمني مناسك عمرتي.' },
+      { title: 'ما هو الميقات؟', tip: 'الميقات هو المكان الذي نبدأ منه الإحرام قبل دخول مكة، وميقات أهل الأردن والشام هو الجحفة (رابغ).', dua: 'لبيك اللهم عمرة، لبيك اللهم لبيك.' },
+      { title: 'معنى التلبية', tip: 'عندما نقول "لبيك اللهم لبيك" فنحن نجيب نداء الله بكل حب وطاعة.', dua: 'لبيك اللهم لبيك، لبيك لا شريك لك لبيك.' },
+      { title: 'لباس الإحرام للفتيان', tip: 'لباس الإحرام (الإزار والرداء) أبيض بسيط يجعل الجميع متساوين أمام الله.', dua: 'اللهم جمّل قلبي بالتقوى والتواضع.' },
+      { title: 'انتهاء محطة الانطلاق!', tip: 'أكملت 10 أيام! أحب الأعمال إلى الله أدومها وإن قلّ.', dua: 'اللهم يا مقلب القلوب ثبت قلبي على دينك.' },
+      { title: 'آداب السفر في باص الأنصار', tip: 'نلتزم بالنظام، نحترم المشايخ، نساعد إخواننا، ونشغل وقتنا بالذكر.', dua: 'سبحان الذي سخر لنا هذا وما كنا له مقرنين.' },
+      { title: 'دعاء السفر', tip: 'ترديد دعاء السفر عند انطلاق الباص يحفظ المسافرين ويملأ الرحلة بالبركة.', dua: 'اللهم إنا نسألك في سفرنا هذا البر والتقوى.' },
+      { title: 'محظورات الإحرام باختصار', tip: 'بعد الإحرام لا نقص الشعر أو الأظافر، ولا نضع الطيب، ولا نغطي الرأس.', dua: 'اللهم ارزقني تعظيم شعائرك وحفظ حدودك.' },
+      { title: 'دخول المسجد الحرام', tip: 'ندخل بالقدم اليمنى بهدوء وخشوع، ونبتعد عن التدافع والركض.', dua: 'اللهم افتح لي أبواب رحمتك.' },
+      { title: 'أول نظرة إلى الكعبة', tip: 'لحظة رؤية الكعبة لأول مرة من أجمل لحظات العمر، ارفع يديك وادعُ الله.', dua: 'اللهم زد هذا البيت تشريفاً وتعظيماً وتكريماً.' },
+      { title: 'الطواف حول الكعبة', tip: 'الطواف 7 أشواط حول الكعبة بحيث تكون الكعبة على يسارك.', dua: 'ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة وقنا عذاب النار.' },
+      { title: 'الإشارة للحجر الأسود', tip: 'عند الزحام لا تزاحم أحداً، يكفي أن تشير للحجر الأسود بيدك اليمنى وتقول: الله أكبر.', dua: 'بسم الله والله أكبر.' },
+      { title: 'الركن اليماني', tip: 'بين الركن اليماني والحجر الأسود نكثر من دعاء: ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة.', dua: 'ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة وقنا عذاب النار.' },
+      { title: 'مقام إبراهيم عليه السلام', tip: 'بعد الطواف نصلي ركعتين خفيفتين خلف مقام إبراهيم أو في أي مكان بالمسجد.', dua: 'رب اجعلني مقيم الصلاة ومن ذريتي.' },
+      { title: 'انتهاء محطة الثبات!', tip: 'وصلت لمنتصف الرحلة (20 يوماً)! الثبات على الطاعة صفة الطالب القوي.', dua: 'اللهم زدني إيماناً ويقيناً وعلماً نافعاً.' },
+      { title: 'بركة ماء زمزم', tip: 'ماء زمزم لما شُرب له! اشرب منه وادعُ الله بالعلم النافع والشفاء.', dua: 'اللهم إني أسألك علماً نافعاً ورزقاً واسعاً وشفاءً من كل داء.' },
+      { title: 'قصة الصفا والمروة', tip: 'نتذكر في السعي السيدة هاجر وتوكلها العظيم على الله حتى فجّر لها زمزم.', dua: 'إن الصفا والمروة من شعائر الله.' },
+      { title: 'العلمان الأخضران', tip: 'أثناء السعي يسرع الشباب قليلاً (هرولة خفيفة) بين العلامتين الخضراوين.', dua: 'رب اغفر وارحم إنك أنت الأعز الأكرم.' },
+      { title: 'الحلق أو التقصير', tip: 'بعد السعي نحلق الشعر أو نقصره من جميع الرأس، وبذلك نتم العمرة.', dua: 'اللهم تقبل منا إنك أنت السميع العليم.' },
+      { title: 'أجر الصلاة في الحرم', tip: 'الصلاة في المسجد الحرام تعدل 100,000 صلاة فيما سواه!', dua: 'اللهم اجعل قرة عيني في الصلاة.' },
+      { title: 'حفظ اللسان في الحرم', tip: 'الكلمة الطيبة صدقة، والابتسامة في وجه أخيك صدقة.', dua: 'اللهم احفظ لساني من كل سوء.' },
+      { title: 'الرفق بالناس', tip: 'افسح الطريق لكبار السن وكن قدوة بأخلاقك الإسلامية في الحرم.', dua: 'اللهم اهدني لأحسن الأخلاق.' },
+      { title: 'الصلاة على النبي ﷺ', tip: 'من صلى على النبي ﷺ مرة صلى الله عليه بها عشراً.', dua: 'اللهم صلّ وسلم وبارك على نبينا محمد.' },
+      { title: 'فضل المسجد النبوي', tip: 'الصلاة في المسجد النبوي خير من 1000 صلاة فيما سواه إلا المسجد الحرام.', dua: 'اللهم ارزقني زيارة مسجد نبيك ﷺ.' },
+      { title: 'انتهاء محطة الزاد!', tip: 'بقي 10 أيام فقط! أنت الآن في محطة الشوق.', dua: 'اللهم بلغنا الحرم سالمين غانمين.' },
+      { title: 'الروضة الشريفة', tip: 'ما بين بيت النبي ﷺ ومنبره روضة من رياض الجنة.', dua: 'اللهم اجعلني من أهل جنتك.' },
+      { title: 'السلام على النبي ﷺ', tip: 'نخفض أصواتنا أدباً واحتراماً ونسلم على النبي ﷺ وصاحبيه.', dua: 'السلام عليك يا رسول الله ورحمة الله وبركاته.' },
+      { title: 'مسجد قباء', tip: 'من توضأ في بيته ثم صلى في مسجد قباء ركعتين كان له كأجر عمرة.', dua: 'اللهم تقبل صلاتي واكتب لي أجر العمرة.' },
+      { title: 'جبل أُحد', tip: 'قال النبي ﷺ: "أُحد جبل يحبنا ونحبه".', dua: 'اللهم ارضَ عن أصحاب نبيك أجمعين.' },
+      { title: 'القرآن رفيق الرحلة', tip: 'اجعل لك وقتاً يومياً لتلاوة القرآن في صحن الحرم.', dua: 'اللهم اجعل القرآن ربيع قلبي.' },
+      { title: 'أخوّة الطليعة', tip: 'تعاونوا في حمل الأغراض وتذكير بعضكم بالصلاة.', dua: 'اللهم ألف بين قلوبنا واجمعنا على طاعتك.' },
+      { title: 'قائمة الدعوات', tip: 'جهّز قائمة بأسماء من تحب أن تدعو لهم أمام الكعبة.', dua: 'اللهم اغفر للمؤمنين والمؤمنات.' },
+      { title: 'تجهيز الحقيبة بنظام', tip: 'جهّز حقيبتك بنفسك: الإحرام، حذاء مريح، ومصحف جيب.', dua: 'اللهم يسر لي أمري واشرح لي صدري.' },
+      { title: 'شكر الله على النعمة', tip: 'اشكر الله أنه اختارك ويسّر لك هذه الرحلة المباركة.', dua: 'الحمد لله حمداً كثيراً طيباً مباركاً فيه.' },
+      { title: 'يوم انطلاق باص الأنصار!', tip: 'أتممت الـ 40 يوماً بنجاح يا بطل! عمرة مقبولة بإذن الله.', dua: 'اللهم تقبل عمرتنا وردّنا سالمين غانمين.' }
+    ];
+
+    // =========================================================
+    // 3. 40-DAY EDUCATIONAL GAME CURRICULUM
+    // Regular days = 3 Timed MCQs | Every 5th day = Matching Game
+    // =========================================================
+    const GAMES_40 = {
+      // STAGE 1 (1-10)
+      1: { type: 'quiz', topic: 'فضل العمرة وأركانها الأساسية', qs: [
+        { q: 'كم عدد أركان العمرة الأساسية؟', opts: ['ركنان', '3 أركان', '5 أركان', '7 أركان'], a: 1, exp: 'أركان العمرة 3: الإحرام، الطواف، والسعي بين الصفا والمروة.' },
+        { q: 'قال النبي ﷺ: "العمرة إلى العمرة..."', opts: ['كفارة لما بينهما', 'أجرها عشر حسنات', 'تعدل صيام يوم', 'لا شيء مما سبق'], a: 0, exp: 'العمرة إلى العمرة كفارة لما بينهما من الذنوب الصغائر.' },
+        { q: 'ما أول ركن يبدأ به المعتمر؟', opts: ['الطواف', 'السعي', 'الإحرام', 'التقصير'], a: 2, exp: 'الإحرام هو نية الدخول في العمرة وهو أول ركن.' }
+      ]},
+      2: { type: 'quiz', topic: 'المواقيت المكانية وميقات أهل الأردن', qs: [
+        { q: 'ما هو ميقات أهل الأردن والشام إذا جاؤوا براً بالباص؟', opts: ['ذو الحليفة', 'الجحفة (رابغ)', 'قرن المنازل', 'يلملم'], a: 1, exp: 'ميقات أهل الشام والأردن هو الجحفة، والناس يحرمون اليوم من رابغ.' },
+        { q: 'ما هو ميقات أهل المدينة المنورة؟', opts: ['ذو الحليفة (أبيار علي)', 'ذات عرق', 'الجحفة', 'التنعيم'], a: 0, exp: 'ذو الحليفة (أبيار علي) هو ميقات أهل المدينة ومن مرّ بها.' },
+        { q: 'هل يجوز للمعتمر تجاوز الميقات بدون إحرام؟', opts: ['نعم عادي', 'لا يجوز', 'فقط في الليل', 'فقط للأطفال'], a: 1, exp: 'لا يجوز لمن أراد العمرة أن يتجاوز الميقات دون أن يحرم منه.' }
+      ]},
+      3: { type: 'quiz', topic: 'آداب وسنن ما قبل الإحرام', qs: [
+        { q: 'ما هو اللباس الذي يلبسه الفتى عند الإحرام؟', opts: ['ثوب أبيض مخيط', 'إزار ورداء غير مخيطين', 'بنطال وقميص', 'ملابس رياضية'], a: 1, exp: 'يلبس الذكر إزاراً ورداءً أبيضين غير مخيطين.' },
+        { q: 'من سنن ما قبل الإحرام:', opts: ['الاغتسال وتقليم الأظافر', 'تغطية الرأس', 'النوم', 'الصيام'], a: 0, exp: 'يُسن الاغتسال وتقليم الأظافر والتطيب في البدن قبل عقد نية الإحرام.' },
+        { q: 'متى يضع المعتمر العطر (الطيب)؟', opts: ['بعد الإحرام', 'على البدن قبل نية الإحرام', 'أثناء الطواف', 'على لباس الإحرام بعد النية'], a: 1, exp: 'يُسن التطيب في البدن قبل نية الإحرام، ويحرم بعد النية.' }
+      ]},
+      4: { type: 'quiz', topic: 'قصة الصحابي عبد الله بن رواحة (طليعة 1)', qs: [
+        { q: 'بماذا اشتهر الصحابي الجليل عبد الله بن رواحة رضي الله عنه؟', opts: ['شاعر الرسول ﷺ وأحد أمراء مؤتة', 'بناء الكعبة', 'فتح الأندلس', 'جمع القرآن'], a: 0, exp: 'كان شاعراً يدافع عن الإسلام واختاره النبي ﷺ ثالث أمراء غزوة مؤتة.' },
+        { q: 'في أي غزوة استُشهد عبد الله بن رواحة في أرض الأردن؟', opts: ['غزوة بدر', 'غزوة مؤتة', 'غزوة أحد', 'غزوة تبوك'], a: 1, exp: 'استُشهد رضي الله عنه في غزوة مؤتة بمحافظة الكرك في الأردن.' },
+        { q: 'ما موقف عبد الله بن رواحة عندما تردد قليلاً في مؤتة؟', opts: ['انسحب', 'شجّع نفسه بشعر حماسي وتقدم بثبات', 'انتظر الليل', 'ترك الراية'], a: 1, exp: 'قال أبياته الشهيرة: "أقسمت يا نفس لتنزلنّه..." وتقدم شجاعاً.' }
+      ]},
+      5: { type: 'match', topic: 'مصطلحات الإحرام والمواقيت', pairs: [
+        { t: 'الإحرام', d: 'نية الدخول في نسك العمرة' },
+        { t: 'الميقات', d: 'المكان المحدد لبدء الإحرام' },
+        { t: 'الجحفة (رابغ)', d: 'ميقات أهل الأردن والشام' },
+        { t: 'الإزار والرداء', d: 'لباس الإحرام للرجال والفتيان' }
+      ]},
+      6: { type: 'quiz', topic: 'محظورات الإحرام', qs: [
+        { q: 'أي مما يلي يُعد من محظورات الإحرام؟', opts: ['شرب الماء', 'تغطية الرأس بملاصق كالطاقية', 'لبس النظارة', 'حمل الحقيبة'], a: 1, exp: 'تغطية الرأس بملاصق (كالطاقية والشماغ) من محظورات الإحرام للذكور.' },
+        { q: 'هل يجوز قص الأظافر أو الشعر أثناء الإحرام؟', opts: ['نعم', 'لا، هو من المحظورات', 'فقط الأظافر', 'فقط الشعر'], a: 1, exp: 'إزالة الشعر وتقليم الأظافر من محظورات الإحرام حتى التحلل.' },
+        { q: 'هل يجوز للمحرم أن يغتسل بالماء أو يستظل بمظلة؟', opts: ['نعم يجوز', 'لا يجوز', 'فقط في الشتاء', 'مكروه'], a: 0, exp: 'يجوز الاغتسال بالماء بدون صابون معطر، ويجوز الاستظلال بمظلة لا تلامس الرأس.' }
+      ]},
+      7: { type: 'quiz', topic: 'التلبية: صيغتها ووقتها', qs: [
+        { q: 'ما هي بداية صيغة التلبية الصحيحة؟', opts: ['لبيك اللهم لبيك...', 'سبحان الله وبحمده', 'الله أكبر كبيراً', 'الحمد لله رب العالمين'], a: 0, exp: 'لبيك اللهم لبيك، لبيك لا شريك لك لبيك، إن الحمد والنعمة لك والملك لا شريك لك.' },
+        { q: 'متى يتوقف المعتمر عن التلبية؟', opts: ['عند دخول مكة', 'عند بدء الطواف بالكعبة', 'عند النوم', 'بعد السعي'], a: 1, exp: 'يُقطع المعتمر التلبية عندما يبدأ بالطواف عند الحجر الأسود.' },
+        { q: 'هل يُسن للذكور رفع الصوت بالتلبية؟', opts: ['نعم يُسن رفع الصوت بها', 'لا، تُقال سراً فقط', 'فقط في الباص', 'لا تُقال أصلاً'], a: 0, exp: 'أمر النبي ﷺ الرجال برفع أصواتهم بالتلبية إظهاراً للشعيرة.' }
+      ]},
+      8: { type: 'quiz', topic: 'قصة الصحابي البراء بن مالك (طليعة 2)', qs: [
+        { q: 'من هو أخو الصحابي البراء بن مالك رضي الله عنه؟', opts: ['أنس بن مالك خادم النبي ﷺ', 'خالد بن الوليد', 'بلال بن رباح', 'زيد بن حارثة'], a: 0, exp: 'البراء بن مالك هو شقيق الصحابي الجليل أنس بن مالك رضي الله عنهما.' },
+        { q: 'بماذا اشتهر البراء بن مالك في معركة اليمامة؟', opts: ['ألقى بنفسه داخل حديقة الموت ليفتح الباب للمسلمين', 'كان طبيباً', 'بنى مسجداً', 'قاد السفن'], a: 0, exp: 'طلب من المسلمين أن يقذفوه فوق السور فقاتل وفتح لهم باب الحديقة.' },
+        { q: 'قال النبي ﷺ عن البراء بن مالك: "لو أقسم على الله..."', opts: ['لأبرّه', 'لأعطاه مالاً', 'لجعله ملكاً', 'لنجح في التجارة'], a: 0, exp: 'كان البراء مستجاب الدعوة بإذن الله، فإذا أقسم على الله أبرّ قسمه.' }
+      ]},
+      9: { type: 'quiz', topic: 'مواقف عملية في الإحرام', qs: [
+        { q: 'لو لبستَ الإحرام ونسيت فوضعتَ عطراً ثم تذكرت، ماذا تفعل؟', opts: ['تفسد عمرتك', 'تغسله فوراً ولا شيء عليك لأنك ناسٍ', 'ترجع للأردن', 'تعيد الإحرام'], a: 1, exp: 'من فعل محظوراً ناسياً فلا إثم عليه ولا فدية، ويزيله فور تذكره.' },
+        { q: 'هل يجوز للمحرم لبس الساعة أو حزام النقود؟', opts: ['نعم يجوز', 'لا يجوز', 'الساعة فقط', 'الحزام فقط'], a: 0, exp: 'يجوز لبس الساعة والنظارة وحزام حفظ النقود أثناء الإحرام.' },
+        { q: 'لو نزل المطر هل يجوز تغطية الرأس بالرداء؟', opts: ['لا يجوز تغطية الرأس بملاصق', 'نعم عادي', 'فقط لدقيقة', 'نعم بالطاقية'], a: 0, exp: 'لا يغطي المحرم رأسه بملاصق، لكن يجوز أن يستظل بسقف أو مظلة.' }
+      ]},
+      10: { type: 'match', topic: 'مسموح أم محظور في الإحرام؟', pairs: [
+        { t: 'تغطية الرأس بالطاقية', d: 'محظور من محظورات الإحرام ❌' },
+        { t: 'لبس النظارة والساعة', d: 'مسموح وجائز أثناء الإحرام ✅' },
+        { t: 'وضع العطر بعد النية', d: 'محظور يجب تجنبه ❌' },
+        { t: 'الاستظلال بالمظلة', d: 'مسموح لأنها لا تلامس الرأس ✅' }
+      ]},
+
+      // STAGE 2 (11-20)
+      11: { type: 'quiz', topic: 'آداب دخول المسجد الحرام ورؤية الكعبة', qs: [
+        { q: 'بأي قدم ندخل المسجد الحرام؟', opts: ['القدم اليمنى', 'القدم اليسرى', 'لا فرق', 'القفز'], a: 0, exp: 'السنة دخول جميع المساجد بالقدم اليمنى وقول: اللهم افتح لي أبواب رحمتك.' },
+        { q: 'ما الدعاء المأثور عند دخول المسجد؟', opts: ['اللهم افتح لي أبواب رحمتك', 'اللهم إني أسألك من فضلك', 'سبحان الذي سخر لنا هذا', 'باسمك اللهم أموت وأحيا'], a: 0, exp: 'عند الدخول نقول: اللهم افتح لي أبواب رحمتك، وعند الخروج: اللهم إني أسألك من فضلك.' },
+        { q: 'كيف يكون تصرفنا عند رؤية الكعبة المشرفة لأول مرة؟', opts: ['الركض والتصوير بصوت عالٍ', 'الخشوع ورفع اليدين بالدعاء', 'الجلوس فوراً', 'اللعب'], a: 1, exp: 'رؤية الكعبة لحظة عظيمة يُستحب فيها الخشوع والدعاء.' }
+      ]},
+      12: { type: 'quiz', topic: 'معالم الكعبة المشرفة', qs: [
+        { q: 'من أي ركن في الكعبة يبدأ الطواف؟', opts: ['الركن اليماني', 'الحجر الأسود', 'باب الكعبة', 'حجر إسماعيل'], a: 1, exp: 'يبدأ الطواف وينتهي عند الحجر الأسود.' },
+        { q: 'ما اسم المكان الواقع بين الحجر الأسود وباب الكعبة؟', opts: ['الملتزم', 'الصفا', 'المروة', 'مقام إبراهيم'], a: 0, exp: 'الملتزم هو الجزء بين الحجر الأسود وباب الكعبة.' },
+        { q: 'ما حكم الطواف من داخل حجر إسماعيل (الحطيم)؟', opts: ['صحيح', 'لا يصح الشوط لأنه جزء من الكعبة', 'أفضل', 'مكروه فقط'], a: 1, exp: 'حجر إسماعيل جزء من الكعبة، فيجب الطواف من خارجه.' }
+      ]},
+      13: { type: 'quiz', topic: 'أحكام الطواف', qs: [
+        { q: 'كم عدد أشواط الطواف حول الكعبة؟', opts: ['3 أشواط', '5 أشواط', '7 أشواط', '10 أشواط'], a: 2, exp: 'الطواف 7 أشواط كاملة تبدأ وتنتهي بالحجر الأسود.' },
+        { q: 'في أي جهة تكون الكعبة بالنسبة للطائف؟', opts: ['على يساره', 'على يمينه', 'أمامه', 'خلفه'], a: 0, exp: 'تكون الكعبة على يسار الطائف طوال الأشواط السبعة.' },
+        { q: 'هل يُشترط الوضوء (الطهارة) لصحة الطواف؟', opts: ['نعم يُشترط الوضوء', 'لا يُشترط', 'فقط في الشوط الأول', 'اختياري'], a: 0, exp: 'الطواف كالصلاة، فيُشترط له الطهارة والوضوء.' }
+      ]},
+      14: { type: 'quiz', topic: 'قصة الصحابي سعد بن معاذ (طليعة 3)', qs: [
+        { q: 'ماذا حدث عند وفاة الصحابي الجليل سعد بن معاذ رضي الله عنه؟', opts: ['اهتز له عرش الرحمن', 'خسفت الشمس', 'أمطرت السماء ذهباً', 'توقفت الرياح'], a: 0, exp: 'قال النبي ﷺ: "اهتز عرش الرحمن لموت سعد بن معاذ".' },
+        { q: 'كان سعد بن معاذ رضي الله عنه سيد قبيلة:', opts: ['الأوس في المدينة', 'قريش في مكة', 'ثقيف في الطائف', 'هوازن'], a: 0, exp: 'كان سيد الأوس، وبإسلامه أسلمت قبيلته كلها في يوم واحد.' },
+        { q: 'كم سنة عاش سعد بن معاذ في الإسلام قبل استشهاده؟', opts: ['حوالي 6 سنوات فقط مليئة بالخير', '40 سنة', '25 سنة', 'سنة واحدة'], a: 0, exp: 'أسلم وعمره 31 واستشهد وعمره 37، فالعبرة ببركة العمل لا بطول العمر.' }
+      ]},
+      15: { type: 'match', topic: 'معالم الكعبة والمسجد الحرام', pairs: [
+        { t: 'الحجر الأسود', d: 'نقطة بداية ونهاية كل شوط في الطواف' },
+        { t: 'الركن اليماني', d: 'الركن الذي يسبق الحجر الأسود مباشرة' },
+        { t: 'حجر إسماعيل', d: 'جزء من الكعبة يُطاف من خارجه' },
+        { t: 'مقام إبراهيم', d: 'الحجر الذي وقف عليه إبراهيم عند بناء الكعبة' }
+      ]},
+      16: { type: 'quiz', topic: 'سنن الطواف', qs: [
+        { q: 'ما معنى "الاضطباع" في طواف العمرة؟', opts: ['كشف الكتف الأيمن وجعل الرداء تحت الإبط', 'المشي ببطء', 'رفع اليدين', 'الجلوس'], a: 0, exp: 'الاضطباع هو كشف الكتف الأيمن للرجال أثناء طواف العمرة فقط.' },
+        { q: 'ما معنى "الرَّمَل" في الطواف؟', opts: ['الإسراع الخفيف في الأشواط الثلاثة الأولى', 'الوقوف عند الباب', 'الجلوس في الشوط الأخير', 'الركض السريع جداً'], a: 0, exp: 'الرَّمَل هو الإسراع بالمشي مع تقارب الخطى في الأشواط الثلاثة الأولى للرجال.' },
+        { q: 'ما الدعاء المسنون بين الركن اليماني والحجر الأسود؟', opts: ['ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة وقنا عذاب النار', 'دعاء السفر', 'دعاء النوم', 'دعاء الاستفتاح'], a: 0, exp: 'كان النبي ﷺ يردد هذه الآية الكريمة بين الركن اليماني والحجر الأسود.' }
+      ]},
+      17: { type: 'quiz', topic: 'مقام إبراهيم وركعتا الطواف', qs: [
+        { q: 'كم عدد ركعات سنة الطواف بعد الانتهاء من الأشواط السبعة؟', opts: ['ركعتان', '4 ركعات', 'ركعة واحدة', '6 ركعات'], a: 0, exp: 'يُسن صلاة ركعتين خفيفتين بعد الطواف خلف مقام إبراهيم أو في أي مكان بالمسجد.' },
+        { q: 'ما السورتان اللتان يُسن قراءتهما في ركعتي الطواف؟', opts: ['الكافرون والإخلاص', 'الفلق والناس', 'الضحى والشرح', 'العصر والكوثر'], a: 0, exp: 'يُسن قراءة سورة الكافرون في الأولى والإخلاص في الثانية بعد الفاتحة.' },
+        { q: 'هل يجوز ترك الكتف الأيمن مكشوفاً (الاضطباع) أثناء صلاة ركعتي الطواف؟', opts: ['لا، نغطي الكتفين عند الصلاة', 'نعم نتركه مكشوفاً', 'لا فرق', 'نكشف الأيسر'], a: 0, exp: 'الاضطباع خاص بالطواف فقط، وعند الصلاة يجب تغطية الكتفين.' }
+      ]},
+      18: { type: 'quiz', topic: 'قصة الصحابي أبو أيوب الأنصاري (طليعة 4)', qs: [
+        { q: 'بأي شرف عظيم فاز أبو أيوب الأنصاري عند هجرة النبي ﷺ؟', opts: ['استضاف النبي ﷺ في بيته بالمدينة', 'هاجر إلى الحبشة', 'كان مؤذن مكة', 'كان أصغر صحابي'], a: 0, exp: 'بركت ناقة النبي ﷺ أمام بيت أبي أيوب فاستضافه لمدة 7 أشهر.' },
+        { q: 'كيف كان أدب أبي أيوب الأنصاري مع النبي ﷺ في بيته؟', opts: ['رفض أن يكون في الطابق العلوي فوق النبي ﷺ', 'سافر وترك البيت', 'لم يكلمه', 'طلب منه الانتقال'], a: 0, exp: 'انزعج أن يمشي فوق سقف تحته رسول الله ﷺ، فنزل النبي ﷺ تحت ثم انتقل فوق إكراماً لأبي أيوب.' },
+        { q: 'أين دُفن الصحابي الجليل أبو أيوب الأنصاري؟', opts: ['قرب أسوار القسطنطينية (إسطنبول)', 'في مكة', 'في الطائف', 'في مصر'], a: 0, exp: 'خرج مجاهداً رغم كبر سنه ودُفن قرب أسوار القسطنطينية.' }
+      ]},
+      19: { type: 'quiz', topic: 'بئر زمزم وآداب الشرب منها', qs: [
+        { q: 'قال النبي ﷺ: "ماء زمزم..."', opts: ['لما شُرب له', 'للصيف فقط', 'للكبار فقط', 'لا يُشرب واقفاً'], a: 0, exp: 'يُستحب الدعاء عند شرب ماء زمزم، فإنه لما شُرب له بنية صادقة.' },
+        { q: 'بسبب من فجّر الله بئر زمزم؟', opts: ['السيدة هاجر وابنها إسماعيل عليه السلام', 'سيدنا موسى', 'سيدنا يوسف', 'سيدنا نوح'], a: 0, exp: 'فجّرها الله رحمة بالسيدة هاجر وابنها إسماعيل عليه السلام.' },
+        { q: 'من آداب الشرب من ماء زمزم:', opts: ['التسمية والدعاء والشرب على 3 أنفاس', 'السرعة دون تسمية', 'سكبه على الأرض', 'الضحك'], a: 0, exp: 'نسمي الله، نشرب على ثلاث دفعات، ندعو الله، ونحمد الله.' }
+      ]},
+      20: { type: 'match', topic: 'مصطلحات وأحكام الطواف', pairs: [
+        { t: 'الطواف', d: '7 أشواط حول الكعبة على اليسار' },
+        { t: 'الاضطباع', d: 'كشف الكتف الأيمن للرجال في الطواف' },
+        { t: 'الرَّمَل', d: 'الإسراع الخفيف في الأشواط الثلاثة الأولى' },
+        { t: 'ركعتا الطواف', d: 'ركعتان تُصليان بعد إتمام الأشواط السبعة' }
+      ]},
+
+      // STAGE 3 (21-30)
+      21: { type: 'quiz', topic: 'قصة السيدة هاجر والصفا والمروة', qs: [
+        { q: 'لماذا كانت السيدة هاجر تسعى بين الصفا والمروة؟', opts: ['بحثاً عن الماء لطفلها إسماعيل', 'للتنزه', 'للصيد', 'لرؤية القمر'], a: 0, exp: 'كانت تصعد الصفا ثم المروة 7 مرات بحثاً عن ماء أو قافلة تنقذ طفلها.' },
+        { q: 'من الملك الذي ضرب الأرض فخرج ماء زمزم؟', opts: ['جبريل عليه السلام', 'ميكائيل', 'إسرافيل', 'رضوان'], a: 0, exp: 'أرسل الله جبريل عليه السلام فضرب الأرض بجناحه أو عقبه فنبع ماء زمزم.' },
+        { q: 'ما الدرس الأهم الذي نتعلمه من قصة السيدة هاجر؟', opts: ['التوكل على الله مع الأخذ بالأسباب', 'الاستسلام بسرعة', 'الجلوس دون عمل', 'الخوف'], a: 0, exp: 'توكلت على الله تماماً ومع ذلك سعت وبذلت جهدها.' }
+      ]},
+      22: { type: 'quiz', topic: 'أحكام السعي بين الصفا والمروة', qs: [
+        { q: 'من أين يبدأ السعي وأين ينتهي؟', opts: ['يبدأ بالصفا وينتهي بالمروة', 'يبدأ بالمروة وينتهي بالصفا', 'من أي جهة', 'من الكعبة'], a: 0, exp: 'الذهاب من الصفا للمروة شوط، والعودة من المروة للصفا شوط، فالشوط السابع ينتهي بالمروة.' },
+        { q: 'كم عدد أشواط السعي؟', opts: ['7 أشواط', '14 شوطاً', '5 أشواط', '3 أشواط'], a: 0, exp: 'السعي 7 أشواط فقط (وليس 7 ذهاباً وإياباً).' },
+        { q: 'ماذا يُسن للفتيان والرجال بين العلمين الأخضرين؟', opts: ['الهرولة (الجري الخفيف) إن لم يكن زحام', 'الوقوف', 'الجلوس', 'الرجوع'], a: 0, exp: 'يُسن للرجال الإسراع الخفيف بين العلامتين الخضراوين اقتداءً بالسنة.' }
+      ]},
+      23: { type: 'quiz', topic: 'التحلل من العمرة', qs: [
+        { q: 'كيف يتحلل المعتمر من إحرامه بعد انتهاء السعي؟', opts: ['بحلق الشعر أو تقصيره من جميع الرأس', 'بخلع الإحرام فقط', 'بالنوم', 'بشرب زمزم'], a: 0, exp: 'لا يتحلل المعتمر إلا بالحلق أو التقصير الشامل لجميع الرأس.' },
+        { q: 'أيهما أفضل للرجال والفتيان: الحلق أم التقصير؟', opts: ['الحلق أفضل لأن النبي ﷺ دعا للمحلقين ثلاثاً', 'التقصير أفضل', 'لا يُسن أي منهما', 'قص شعرة واحدة'], a: 0, exp: 'دعا النبي ﷺ للمحلقين ثلاث مرات وللمقصرين مرة واحدة، وكلاهما جائز.' },
+        { q: 'ما الخطأ الذي يقع فيه بعض الناس عند التقصير؟', opts: ['قص بضع شعرات فقط من جهة واحدة', 'تقصير جميع الرأس', 'الحلق بالموسى', 'الذهاب للحلاق'], a: 0, exp: 'يجب أن يشمل التقصير جميع أنحاء الرأس وليس جانباً واحداً فقط.' }
+      ]},
+      24: { type: 'quiz', topic: 'مواقف بطولية للصحابة الأربعة (1)', qs: [
+        { q: 'أي صحابي من أصحاب الطلائع دعا له النبي ﷺ في بيته بالبركة؟', opts: ['أبو أيوب الأنصاري', 'خالد بن الوليد', 'عمرو بن العاص', 'سلمان الفارسي'], a: 0, exp: 'كان أبو أيوب يتتبع موضع أصابع النبي ﷺ في الطعام تبركاً ومحبة.' },
+        { q: 'أي صحابي من أصحاب الطلائع كان يُلقب بشاعر الرسول ﷺ مع حسان بن ثابت؟', opts: ['عبد الله بن رواحة', 'أبو هريرة', 'معاذ بن جبل', 'أبو ذر'], a: 0, exp: 'كان عبد الله بن رواحة شاعراً مبدعاً ينصر الإسلام بشعره وسيفه.' },
+        { q: 'ما الصفة المشتركة بين الصحابة الأربعة (أصحاب طلائعنا)؟', opts: ['جميعهم من الأنصار الأبطال', 'جميعهم من قريش', 'جميعهم من اليمن', 'جميعهم من الشام'], a: 0, exp: 'كلهم من الأنصار الأوفياء، ولذلك سُمّي باصنا: باص الأنصار!' }
+      ]},
+      25: { type: 'match', topic: 'ترتيب مناسك العمرة الصحيح', pairs: [
+        { t: '1. الإحرام', d: 'النية والتلبية من الميقات' },
+        { t: '2. الطواف', d: '7 أشواط حول الكعبة ثم ركعتان' },
+        { t: '3. السعي', d: '7 أشواط تبدأ بالصفا وتنتهي بالمروة' },
+        { t: '4. التحلل', d: 'الحلق أو التقصير من جميع الرأس' }
+      ]},
+      26: { type: 'quiz', topic: 'فضل المدينة المنورة والمسجد النبوي', qs: [
+        { q: 'كم تعدل الصلاة الواحدة في المسجد النبوي الشريف؟', opts: ['خير من 1000 صلاة فيما سواه إلا المسجد الحرام', '100 صلاة', '10 صلوات', '500 صلاة'], a: 0, exp: 'الصلاة في المسجد النبوي خير من ألف صلاة فيما سواه إلا المسجد الحرام.' },
+        { q: 'ما الاسم القديم للمدينة المنورة قبل هجرة النبي ﷺ؟', opts: ['يثرب', 'الطائف', 'خيبر', 'تبوك'], a: 0, exp: 'كان اسمها يثرب فغيّرها النبي ﷺ إلى طيبة والمدينة المنورة.' },
+        { q: 'بماذا دعا النبي ﷺ للمدينة المنورة؟', opts: ['بالبركة وأن يحببها الله للمسلمين', 'بالثلج الدائم', 'بالبحر', 'بالذهب'], a: 0, exp: 'دعا النبي ﷺ: "اللهم حبب إلينا المدينة كحبنا مكة أو أشد".' }
+      ]},
+      27: { type: 'quiz', topic: 'الروضة الشريفة والسلام على النبي ﷺ', qs: [
+        { q: 'قال النبي ﷺ: "ما بين بيتي ومنبري..."', opts: ['روضة من رياض الجنة', 'باب من أبواب السماء', 'أجمل حديقة', 'طريق النجاح'], a: 0, exp: 'الروضة الشريفة بقعة مباركة في المسجد النبوي تُميّز بسجادها الأخضر.' },
+        { q: 'من هما الصحابيان المدفونان بجانب النبي ﷺ؟', opts: ['أبو بكر الصديق وعمر بن الخطاب', 'عثمان وعلي', 'بلال وزيد', 'سعد والبراء'], a: 0, exp: 'دُفن بجانبه ﷺ رفيقاه أبو بكر الصديق وعمر بن الخطاب رضي الله عنهما.' },
+        { q: 'كيف نسلم على النبي ﷺ عند قبره الشريف؟', opts: ['بصوت خافت وأدب وخشوع', 'بصوت مرتفع جداً', 'بالتدافع', 'بالتلويح'], a: 0, exp: 'يُسن خفض الصوت والأدب التام في المسجد النبوي.' }
+      ]},
+      28: { type: 'quiz', topic: 'مسجد قباء وفضل الصلاة فيه', qs: [
+        { q: 'ما أجر من توضأ في بيته ثم أتى مسجد قباء فصلى فيه ركعتين؟', opts: ['كأجر عمرة', 'أجر صيام يوم', 'أجر صدقة', 'أجر 10 صلوات'], a: 0, exp: 'أخبر النبي ﷺ أن الصلاة فيه بعد الوضوء من البيت تعدل أجر عمرة.' },
+        { q: 'ما ميزة مسجد قباء التاريخية؟', opts: ['أول مسجد بُني في الإسلام', 'أكبر مسجد في العالم', 'مسجد في مكة', 'بُني في عهد عمر'], a: 0, exp: 'مسجد قباء هو أول مسجد أسسه النبي ﷺ عند وصوله للمدينة.' },
+        { q: 'في أي يوم كان النبي ﷺ يزور مسجد قباء غالباً؟', opts: ['يوم السبت', 'يوم الاثنين', 'يوم الخميس', 'يوم الأحد'], a: 0, exp: 'كان النبي ﷺ يأتي مسجد قباء كل سبت ماشياً وراكباً.' }
+      ]},
+      29: { type: 'quiz', topic: 'جبل أُحد ودروس غزوة أُحد', qs: [
+        { q: 'ماذا قال النبي ﷺ عن جبل أُحد؟', opts: ['أُحد جبل يحبنا ونحبه', 'أُحد أعلى جبل', 'أُحد جبل في مكة', 'أُحد جبل بعيد'], a: 0, exp: 'كان النبي ﷺ يحب جبل أحد ويقول: هذا جبل يحبنا ونحبه.' },
+        { q: 'ما الدرس الأهم الذي نتعلمه من الرماة في غزوة أحد؟', opts: ['أهمية طاعة القائد والالتزام بالتعليمات', 'جمع الغنائم بسرعة', 'ترك الموقع', 'النوم'], a: 0, exp: 'مخالفة أوامر النبي ﷺ من بعض الرماة تسببت في تحول المعركة.' },
+        { q: 'من هو سيد الشهداء المدفون عند جبل أحد؟', opts: ['حمزة بن عبد المطلب عم النبي ﷺ', 'خالد بن الوليد', 'أبو عبيدة', 'سعد بن أبي وقاص'], a: 0, exp: 'استُشهد حمزة رضي الله عنه في أحد وسماه النبي ﷺ سيد الشهداء.' }
+      ]},
+      30: { type: 'match', topic: 'أبرز معالم المدينة المنورة', pairs: [
+        { t: 'المسجد النبوي', d: 'الصلاة فيه خير من 1000 صلاة' },
+        { t: 'الروضة الشريفة', d: 'ما بين بيت النبي ﷺ ومنبره' },
+        { t: 'مسجد قباء', d: 'أول مسجد في الإسلام والصلاة فيه كعمرة' },
+        { t: 'جبل أُحد', d: 'جبل يحبنا ونحبه وعنده شهداء أحد' }
+      ]},
+
+      // STAGE 4 (31-40)
+      31: { type: 'quiz', topic: 'آداب السفر ودعاء الركوب', qs: [
+        { q: 'ماذا نقول عند ركوب الباص قبل الانطلاق؟', opts: ['بسم الله، الحمد لله، سبحان الذي سخر لنا هذا...', 'أهلاً وسهلاً', 'تصبحون على خير', 'لا نقول شيئاً'], a: 0, exp: 'نبدأ بالتسمية والحمد ثم دعاء السفر والتكبير ثلاثاً.' },
+        { q: 'هل دعوة المسافر مستجابة بإذن الله؟', opts: ['نعم، من الدعوات التي لا تُرد', 'لا', 'فقط في الطائرة', 'فقط ليلاً'], a: 0, exp: 'ثلاث دعوات مستجابات، ومنها دعوة المسافر.' },
+        { q: 'من آداب السفر الجماعي في الباص:', opts: ['تعيين أمير (الشيخ) وطاعته', 'مخالفة المواعيد', 'رمي القمامة في الباص', 'إزعاج النائمين'], a: 0, exp: 'السنة في السفر الجماعي تعيين أمير والالتزام بتوجيهاته.' }
+      ]},
+      32: { type: 'quiz', topic: 'أحكام صلاة المسافر (الجمع والقصر)', qs: [
+        { q: 'كيف يصلي المسافر صلاة الظهر والعصر والعشاء؟', opts: ['يقصرها إلى ركعتين', 'يصليها 4 ركعات دائماً', 'يصليها 3 ركعات', 'لا يصليها'], a: 0, exp: 'يُسن للمسافر قصر الصلاة الرباعية (الظهر، العصر، العشاء) إلى ركعتين.' },
+        { q: 'هل تُقصر صلاة الفجر والمغرب في السفر؟', opts: ['لا، تبقيان كما هما (2 و 3)', 'نعم تُقصران', 'المغرب فقط', 'الفجر فقط'], a: 0, exp: 'الفجر ركعتان والمغرب ثلاث ركعات لا قصر فيهما.' },
+        { q: 'ما هي الصلوات التي يجوز الجمع بينها في السفر؟', opts: ['الظهر مع العصر، والمغرب مع العشاء', 'الفجر مع الظهر', 'العصر مع المغرب', 'العشاء مع الفجر'], a: 0, exp: 'يُجمع بين الظهر والعصر، وبين المغرب والعشاء، أما الفجر فلا تُجمع مع غيرها.' }
+      ]},
+      33: { type: 'quiz', topic: 'آداب الرفقة في باص الأنصار', qs: [
+        { q: 'إذا رأيت زميلك في الطليعة يحمل حقيبة ثقيلة، ماذا تفعل؟', opts: ['أساعده في حملها بابتسامة', 'أضحك عليه', 'أسبقه للباص', 'أتجاهله'], a: 0, exp: 'التعاون ومساعدة الإخوان من أعظم أخلاق المسلم في السفر.' },
+        { q: 'إذا نادى الشيخ للتجمع عند الباص الساعة 5:00، متى تكون جاهزاً؟', opts: ['قبل الموعد بـ 5 دقائق', 'الساعة 5:20', 'عندما يتصل بي', 'آخر واحد'], a: 0, exp: 'احترام المواعيد يريح جميع ركاب باص الأنصار ويكسبك احترام الجميع.' },
+        { q: 'كيف نحافظ على نظافة باص الأنصار طوال الرحلة؟', opts: ['نضع النفايات في الكيس المخصص', 'نرميها تحت المقعد', 'نرميها من النافذة', 'نتركها للسائق'], a: 0, exp: 'النظافة من الإيمان وتعكس صورة رائعة عن طلابنا.' }
+      ]},
+      34: { type: 'quiz', topic: 'مواقف بطولية للصحابة الأربعة (2)', qs: [
+        { q: 'لماذا سُمّي الصحابة الذين ناصروا النبي ﷺ في المدينة بـ "الأنصار"؟', opts: ['لأنهم نصروا الله ورسوله وآووا المهاجرين', 'لأنهم من مكة', 'لأنهم تجار', 'لأنهم شعراء'], a: 0, exp: 'نصروا الإسلام بأموالهم وأنفسهم فمدحهم الله في القرآن الكريم.' },
+        { q: 'قال النبي ﷺ: "آية الإيمان حب..."', opts: ['الأنصار', 'المال', 'الشهرة', 'السفر'], a: 0, exp: 'محبة الأنصار رضي الله عنهم علامة من علامات الإيمان.' },
+        { q: 'كيف نقتدي بأصحاب طلائعنا الأربعة في هذه الرحلة؟', opts: ['بالشجاعة، الأدب، الكرم، وحب النبي ﷺ', 'بالكسل', 'بالتنافس بالخصام', 'بالصمت فقط'], a: 0, exp: 'طلائعنا تحمل أسماء عظماء الأنصار لنقتدي بأخلاقهم العالية.' }
+      ]},
+      35: { type: 'match', topic: 'أحكام المسافر وآداب السفر', pairs: [
+        { t: 'قصر الصلاة', d: 'صلاة الرباعية ركعتين في السفر' },
+        { t: 'جمع الصلاة', d: 'الظهر مع العصر، والمغرب مع العشاء' },
+        { t: 'المسح على الخفين', d: 'رخصة للمسافر لمدة 3 أيام بلياليها' },
+        { t: 'دعاء السفر', d: 'سبحان الذي سخر لنا هذا وما كنا له مقرنين' }
+      ]},
+      36: { type: 'quiz', topic: 'أخطاء شائعة في العمرة (1)', qs: [
+        { q: 'هل يجب على المعتمر قراءة دعاء محدد لكل شوط من كتاب؟', opts: ['لا، يدعو بما يشاء من خيري الدنيا والآخرة', 'نعم وإلا بطل طوافه', 'يجب حفظ 7 صفحات', 'لا يجوز الدعاء'], a: 0, exp: 'ليس لكل شوط دعاء خاص، بل تدعو الله بخشوع بما يفتح الله به عليك.' },
+        { q: 'هل يجوز إيذاء الناس ومزاحمتهم لتقبيل الحجر الأسود؟', opts: ['لا يجوز أبداً، الإشارة تكفي عند الزحام', 'نعم يجب تقبيله ولو بالزحام', 'عادي', 'مطلوب'], a: 0, exp: 'تقبيل الحجر سنة، وأذى المسلمين حرام، فلا نرتكب حراماً لأجل سنة.' },
+        { q: 'لو انتقض وضوؤك أثناء الطواف، ماذا تفعل؟', opts: ['تذهب وتتوضأ ثم تعيد الطواف', 'تكمل بدون وضوء', 'تترك العمرة', 'تصلي فقط'], a: 0, exp: 'الطهارة شرط لصحة الطواف، فإذا انتقض الوضوء يتوضأ ويستأنف.' }
+      ]},
+      37: { type: 'quiz', topic: 'أخطاء شائعة في العمرة (2)', qs: [
+        { q: 'هل يُشترط الوضوء لصحة السعي بين الصفا والمروة؟', opts: ['يُستحب الوضوء لكن السعي يصح بدونه', 'يبطل السعي بدونه', 'ممنوع الوضوء', 'لا أدري'], a: 0, exp: 'الوضوء شرط في الطواف، أما في السعي فهو مستحب فقط ويصح السعي بدونه.' },
+        { q: 'ما حكم الانشغال بالتصوير طوال الطواف والسعي؟', opts: ['يُذهب الخشوع ويُفوّت الأجر العظيم', 'أفضل من الدعاء', 'سنة مؤكدة', 'واجب'], a: 0, exp: 'صورة سريعة للذكرى لا بأس بها، لكن الانشغال بالهاتف يُضيّع لذة العبادة.' },
+        { q: 'هل يجوز للرجل أن يتحلل قبل أن يحلق أو يقصر شعره؟', opts: ['لا، لا يتم التحلل إلا بالحلق أو التقصير', 'نعم بمجرد انتهاء السعي', 'نعم بعد شرب زمزم', 'نعم في الفندق'], a: 0, exp: 'يبقى محرماً حتى يحلق أو يقصر من جميع رأسه.' }
+      ]},
+      38: { type: 'quiz', topic: 'اختبر جاهزيتك: مواقف عملية في الحرم', qs: [
+        { q: 'إذا ضعتَ عن طليعتك في الحرم لا قدر الله، ما التصرف الأصح؟', opts: ['أبقى هادئاً وأتجه لنقطة التجمع المتفق عليها مع الشيخ', 'أركض في كل مكان', 'أبكي وأجلس', 'أخرج من الحرم وحدي'], a: 0, exp: 'الهدوء والالتزام بنقطة التجمع وبطاقة التعريف يحل الموقف فوراً.' },
+        { q: 'أثناء الطواف أُقيمت صلاة الفريضة (مثلاً المغرب)، ماذا تفعل؟', opts: ['تتوقف وتصلي الجماعة ثم تكمل من حيث توقفت', 'تكمل الطواف وتترك الصلاة', 'تعيد من الشوط الأول', 'تخرج من المسجد'], a: 0, exp: 'تُصلي الفريضة مع الإمام ثم تكمل باقي أشواطك.' },
+        { q: 'أردت أن تشرب ماء زمزم وأنت في السعي، هل يجوز؟', opts: ['نعم يجوز الشرب والراحة قليلاً أثناء السعي', 'لا يجوز', 'يبطل السعي', 'فقط بعد الشوط السابع'], a: 0, exp: 'يجوز شرب الماء والاستراحة اليسيرة أثناء السعي.' }
+      ]},
+      39: { type: 'quiz', topic: 'التحدي الكبير: مراجعة شاملة', qs: [
+        { q: 'كم تعدل الصلاة الواحدة في المسجد الحرام؟', opts: ['100,000 صلاة فيما سواه', '1,000 صلاة', '500 صلاة', '100 صلاة'], a: 0, exp: 'الصلاة في المسجد الحرام بمائة ألف صلاة فيما سواه!' },
+        { q: 'ما هي أركان العمرة الثلاثة بالترتيب؟', opts: ['الإحرام، الطواف، السعي', 'الطواف، السعي، الإحرام', 'السعي، الحلق، الطواف', 'الإحرام، زمزم، الدعاء'], a: 0, exp: 'تبدأ بالإحرام، ثم الطواف، ثم السعي (ثم الحلق أو التقصير).' },
+        { q: 'من هو الصحابي الذي اهتز لموته عرش الرحمن؟', opts: ['سعد بن معاذ رضي الله عنه', 'أبو أيوب الأنصاري', 'عبد الله بن رواحة', 'البراء بن مالك'], a: 0, exp: 'سعد بن معاذ سيد الأوس رضي الله عنه.' }
+      ]},
+      40: { type: 'match', topic: 'البطاقة الذهبية الختامية لباص الأنصار', pairs: [
+        { t: 'المسجد الحرام', d: 'الصلاة فيه بـ 100,000 صلاة' },
+        { t: 'المسجد النبوي', d: 'الصلاة فيه بأكثر من 1,000 صلاة' },
+        { t: 'الأنصار الأربعة', d: 'عبد الله، البراء، سعد، وأبو أيوب' },
+        { t: 'العمرة المقبولة', d: 'كفارة لما بينهما وزاد للقلب' }
+      ]}
+    };
+
+    // =========================================================
+    // 4. STATE & CACHE (OPTIMISTIC UI)
+    // =========================================================
+    const safeJson = (s, fb) => { try { return s ? JSON.parse(s) : fb; } catch { return fb; } };
+
+    let currentStudentId = localStorage.getItem(LS_STUDENT) || null;
+    if (currentStudentId && !STUDENTS.some(s => s.id === currentStudentId)) {
+      currentStudentId = null;
+      localStorage.removeItem(LS_STUDENT);
+    }
+
+    let logs = safeJson(localStorage.getItem(LS_LOGS), {});       // `${studentId}_${dateStr}`
+    let games = safeJson(localStorage.getItem(LS_GAMES), {});     // `${studentId}_${dayNum}`
+    let avatars = safeJson(localStorage.getItem(LS_AVATARS), {}); // `${studentId}` -> emoji
+
+    let chosenLoginAvatar = AVATARS[0];
+    let activeTab = 'home';
+    let selectedTrackerDate = getDateStr(0);
+    let draftData = createEmptyData();
+
+    // Misbaha state
+    let misbahaKey = null;
+    let misbahaCounter = 0;
+
+    // Confirm modal callback
+    let confirmCallback = null;
+
+    // Active Game runtime state
+    let quizState = null;
+    let quizTimerInt = null;
+    let matchState = null;
+    let matchTimerInt = null;
+
+    function createEmptyData() {
+      return {
+        prayers: { fajr: null, dhuhr: null, asr: null, maghrib: null, isha: null },
+        sunnah: { rawatib: null, duha: false, witr: false, qiyam: false },
+        heart: { quran: false, morningAdhkar: false, eveningAdhkar: false, dua: false, tasbih100: false, salawat100: false, istighfar100: false }
+      };
+    }
+
+    function getDateStr(offsetDays = 0) {
+      const d = new Date();
+      d.setDate(d.getDate() + offsetDays);
+      return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    }
+
+    function getJourneyDayNum(dateStr = getDateStr(0)) {
+      const start = new Date(START_DATE + 'T00:00:00').getTime();
+      const cur = new Date(dateStr + 'T00:00:00').getTime();
+      const diff = Math.floor((cur - start) / (1000 * 60 * 60 * 24)) + 1;
+      return Math.max(1, Math.min(40, diff));
+    }
+
+    function formatShortArabicDate(dateStr) {
+      try {
+        return new Intl.DateTimeFormat('ar-JO', { weekday: 'short', month: 'short', day: 'numeric' }).format(new Date(dateStr + 'T12:00:00'));
+      } catch { return dateStr; }
+    }
+
+    function computeWorshipPoints(data) {
+      if (!data) return 0;
+      let pts = 0;
+      const p = data.prayers || {};
+      ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'].forEach(k => {
+        if (p[k] === 'mosque') pts += 10;
+        else if (p[k] === 'home') pts += 7;
+        else if (p[k] === 'late') pts += 3;
+      });
+      const s = data.sunnah || {};
+      if (s.rawatib === 'full') pts += 10;
+      else if (s.rawatib === 'partial') pts += 5;
+      if (s.duha) pts += 10;
+      if (s.witr) pts += 10;
+      if (s.qiyam) pts += 15;
+      const h = data.heart || {};
+      if (h.quran) pts += 10;
+      if (h.morningAdhkar) pts += 5;
+      if (h.eveningAdhkar) pts += 5;
+      if (h.dua) pts += 5;
+      if (h.tasbih100) pts += 5;
+      if (h.salawat100) pts += 5;
+      if (h.istighfar100) pts += 5;
+      return pts;
+    }
+
+    function getStudentStats(studentId) {
+      let worshipPoints = 0;
+      let gamePoints = 0;
+      const completedDates = new Set();
+
+      Object.values(logs).forEach(l => {
+        if (l.studentId !== studentId) return;
+        const pts = typeof l.points === 'number' ? l.points : computeWorshipPoints(l.data);
+        if (pts > 0) {
+          worshipPoints += pts;
+          completedDates.add(l.dateKey);
+        }
+      });
+
+      Object.values(games).forEach(g => {
+        if (g.studentId === studentId && typeof g.bonusPoints === 'number') {
+          gamePoints += g.bonusPoints;
+        }
+      });
+
+      let streak = 0;
+      let offset = completedDates.has(getDateStr(0)) ? 0 : -1;
+      while (completedDates.has(getDateStr(offset))) {
+        streak++;
+        offset--;
+      }
+
+      return {
+        worshipPoints,
+        gamePoints,
+        totalPoints: worshipPoints + gamePoints,
+        daysCompleted: completedDates.size,
+        streak
+      };
+    }
+
+    function hasSubmittedToday(studentId) {
+      const l = logs[`${studentId}_${getDateStr(0)}`];
+      return Boolean(l && (l.points || computeWorshipPoints(l.data)) > 0);
+    }
+
+    // =========================================================
+    // 5. FIREBASE REALTIME SYNC & SYNC INDICATOR
+    // =========================================================
+    function setSyncStatus(mode) {
+      const dot = document.getElementById('sync-dot');
+      const txt = document.getElementById('sync-text');
+      if (mode === 'saving') { dot.className = 'w-2 h-2 rounded-full bg-amber-400 animate-pulse'; txt.textContent = 'جاري الحفظ...'; }
+      else if (mode === 'saved') { dot.className = 'w-2 h-2 rounded-full bg-emerald-400'; txt.textContent = 'تم الحفظ ✓'; }
+      else if (mode === 'connected') { dot.className = 'w-2 h-2 rounded-full bg-emerald-400'; txt.textContent = 'متصل بالسحابة'; }
+      else { dot.className = 'w-2 h-2 rounded-full bg-rose-400'; txt.textContent = 'وضع محلي'; }
+    }
+
+    function initRealtimeSync() {
+      try {
+        onSnapshot(collection(db, LOGS_COL), (snap) => {
+          const map = {};
+          snap.forEach(d => { map[d.id] = d.data(); });
+          logs = map;
+          localStorage.setItem(LS_LOGS, JSON.stringify(logs));
+          setSyncStatus('connected');
+          refreshActiveUI();
+        }, () => setSyncStatus('offline'));
+
+        onSnapshot(collection(db, GAMES_COL), (snap) => {
+          const map = {};
+          snap.forEach(d => { map[d.id] = d.data(); });
+          games = map;
+          localStorage.setItem(LS_GAMES, JSON.stringify(games));
+          refreshActiveUI();
+        }, () => {});
+      } catch {
+        setSyncStatus('offline');
+      }
+    }
+
+    function refreshActiveUI() {
+      if (currentStudentId && !document.getElementById('view-student').classList.contains('hidden')) {
+        renderHomeTab();
+        if (activeTab === 'tracker') populateTrackerDaySelect();
+        if (activeTab === 'games' && !quizState && !matchState) renderGamesTab();
+        if (activeTab === 'leaderboard') renderLeaderboard();
+      }
+      if (!document.getElementById('view-supervisor').classList.contains('hidden')) {
+        renderSupervisorDashboard();
+      }
+    }
+
+    // =========================================================
+    // 6. HIJRI + GREGORIAN DATES & LIVE COUNTDOWN
+    // =========================================================
+    function renderHeaderDates() {
+      const now = new Date();
+      try {
+        document.getElementById('date-hijri').textContent = new Intl.DateTimeFormat('ar-SA-u-ca-islamic', {
+          day: 'numeric', month: 'long', year: 'numeric'
+        }).format(now);
+      } catch {
+        document.getElementById('date-hijri').textContent = 'التاريخ الهجري';
+      }
+      try {
+        document.getElementById('date-gregorian').textContent = new Intl.DateTimeFormat('ar-JO', {
+          weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+        }).format(now);
+      } catch {
+        document.getElementById('date-gregorian').textContent = getDateStr(0);
+      }
+    }
+
+    function startCountdown() {
+      const target = new Date(TARGET_UMRAH_ISO).getTime();
+      function tick() {
+        const diff = Math.max(0, target - Date.now());
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const mins = Math.floor((diff / (1000 * 60)) % 60);
+        const badge = document.getElementById('umrah-days-badge');
+        const clock = document.getElementById('live-countdown');
+        if (badge) badge.textContent = days > 0 ? `باقي ${days} يوم على العمرة` : 'اليوم انطلاق العمرة! 🕋';
+        if (clock) clock.textContent = diff > 0 ? `${days} يوم • ${hours} ساعة • ${mins} دقيقة` : 'انطلق باص الأنصار! 🚌🕋';
+      }
+      tick();
+      setInterval(tick, 1000 * 30);
+    }
+
+    // =========================================================
+    // 7. LOGIN FLOW (2 STEPS)
+    // =========================================================
+    function showLoginScreen() {
+      document.getElementById('view-login').classList.remove('hidden');
+      document.getElementById('view-student').classList.add('hidden');
+      document.getElementById('view-supervisor').classList.add('hidden');
+      document.getElementById('bottom-nav').classList.add('hidden');
+      document.getElementById('btn-switch-student').classList.add('hidden');
+      showLoginStep(1);
+    }
+
+    window.showLoginStep = function(step) {
+      document.getElementById('login-step-1').classList.toggle('hidden', step !== 1);
+      document.getElementById('login-step-2').classList.toggle('hidden', step !== 2);
+    };
+
+    function renderLoginGroups() {
+      document.getElementById('login-groups-grid').innerHTML = GROUPS.map(g => {
+        const count = STUDENTS.filter(s => s.groupId === g.id).length;
+        return `
+          <button onclick="pickLoginGroup('${g.id}')" class="bg-white hover:bg-emeraldLight/60 rounded-3xl p-4 shadow-sm border-2 border-gray-100 hover:border-emeraldDeep text-right transition active:scale-[0.98] flex items-center gap-3.5">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br ${g.gradient} text-white text-2xl flex items-center justify-center shadow shrink-0">${g.icon}</div>
+            <div class="flex-1 min-w-0">
+              <div class="font-black text-emeraldDeep text-sm sm:text-base truncate">${g.name}</div>
+              <div class="text-xs text-gray-500 font-bold mt-0.5">الشيخ ${g.sheikh}</div>
+              <span class="inline-block mt-1.5 text-[10px] font-extrabold ${g.pill} px-2 py-0.5 rounded-full">${count} طلاب</span>
+            </div>
+            <span class="text-gray-300 font-bold text-lg">←</span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    window.pickLoginGroup = function(groupId) {
+      const g = GROUPS.find(x => x.id === groupId);
+      document.getElementById('login-step2-title').innerHTML = `<span class="w-6 h-6 rounded-full bg-emeraldDeep text-white text-xs flex items-center justify-center">2</span><span>اختر اسمك (${g.name}):</span>`;
+      renderLoginAvatarsRow();
+      document.getElementById('login-students-grid').innerHTML = STUDENTS.filter(s => s.groupId === groupId).map(s => `
+        <button onclick="loginAs('${s.id}')" class="bg-white hover:bg-emeraldLight rounded-2xl p-3.5 shadow-sm border border-gray-200 hover:border-emeraldDeep text-right transition active:scale-[0.98] flex items-center justify-between gap-2">
+          <div class="flex items-center gap-2.5">
+            <span class="w-9 h-9 rounded-xl bg-creamBg border border-gray-200 flex items-center justify-center text-lg">${avatars[s.id] || '👤'}</span>
+            <div>
+              <div class="font-extrabold text-sm text-gray-800">${s.name}</div>
+              ${s.isLeader ? '<span class="inline-block text-[10px] font-black bg-goldLight text-goldDeep border border-goldWarm/40 px-2 py-0.5 rounded-full mt-0.5">⭐ عريف الطليعة</span>' : ''}
+            </div>
+          </div>
+          <span class="text-xs font-extrabold text-emeraldDeep bg-emeraldLight px-3 py-1.5 rounded-xl">دخول</span>
+        </button>
+      `).join('');
+      showLoginStep(2);
+    };
+
+    function renderLoginAvatarsRow() {
+      document.getElementById('login-avatars-row').innerHTML = AVATARS.map(av => `
+        <button type="button" onclick="setLoginAvatar('${av}')" class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl text-xl flex items-center justify-center border-2 transition ${av === chosenLoginAvatar ? 'border-emeraldDeep bg-emeraldLight scale-110' : 'border-gray-100 bg-creamBg'}">${av}</button>
+      `).join('');
+    }
+
+    window.setLoginAvatar = function(av) { chosenLoginAvatar = av; renderLoginAvatarsRow(); };
+
+    window.loginAs = function(studentId) {
+      currentStudentId = studentId;
+      localStorage.setItem(LS_STUDENT, studentId);
+      if (!avatars[studentId]) {
+        avatars[studentId] = chosenLoginAvatar;
+        localStorage.setItem(LS_AVATARS, JSON.stringify(avatars));
+      }
+      enterStudentApp();
+      const s = STUDENTS.find(x => x.id === studentId);
+      showToast(`أهلاً بك يا بطل ${s.name} في باص الأنصار! 🚌`, 'success');
+    };
+
+    window.openSwitchStudent = function() {
+      currentStudentId = null;
+      localStorage.removeItem(LS_STUDENT);
+      showLoginScreen();
+    };
+
+    function enterStudentApp() {
+      document.getElementById('view-login').classList.add('hidden');
+      document.getElementById('view-supervisor').classList.add('hidden');
+      document.getElementById('view-student').classList.remove('hidden');
+      document.getElementById('bottom-nav').classList.remove('hidden');
+      document.getElementById('btn-switch-student').classList.remove('hidden');
+      switchTab('home');
+    }
+
+    // =========================================================
+    // 8. TAB NAVIGATION & HOME DASHBOARD
+    // =========================================================
+    window.switchTab = function(tab) {
+      if (quizTimerInt) { clearInterval(quizTimerInt); quizTimerInt = null; }
+      if (matchTimerInt) { clearInterval(matchTimerInt); matchTimerInt = null; }
+      quizState = null; matchState = null;
+
+      activeTab = tab;
+      ['home', 'tracker', 'games', 'leaderboard'].forEach(t => {
+        document.getElementById(`tab-${t}`).classList.toggle('hidden', t !== tab);
+        const btn = document.getElementById(`nav-${t}`);
+        btn.className = t === tab
+          ? 'flex flex-col items-center justify-center py-2 rounded-2xl bg-emeraldLight text-emeraldDeep transition relative'
+          : 'flex flex-col items-center justify-center py-2 rounded-2xl text-gray-500 hover:bg-gray-50 transition relative';
+      });
+
+      if (tab === 'home') renderHomeTab();
+      if (tab === 'tracker') { populateTrackerDaySelect(); loadTrackerForDate(selectedTrackerDate); }
+      if (tab === 'games') renderGamesTab();
+      if (tab === 'leaderboard') renderLeaderboard();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    function renderHomeTab() {
+      const s = STUDENTS.find(x => x.id === currentStudentId);
+      if (!s) return;
+      const g = GROUPS.find(x => x.id === s.groupId);
+      const stats = getStudentStats(s.id);
+
+      // Compute rank
+      const sorted = STUDENTS.map(st => ({ id: st.id, pts: getStudentStats(st.id).totalPoints })).sort((a, b) => b.pts - a.pts);
+      const myRank = sorted.findIndex(x => x.id === s.id) + 1;
+
+      document.getElementById('hero-avatar').textContent = avatars[s.id] || '🕋';
+      document.getElementById('hero-student-name').textContent = s.name;
+      document.getElementById('hero-group-info').textContent = `${g.name} • الشيخ ${g.sheikh}`;
+      document.getElementById('hero-leader-badge').classList.toggle('hidden', !s.isLeader);
+
+      document.getElementById('stat-total-points').textContent = stats.totalPoints;
+      document.getElementById('stat-points-breakdown').textContent = `عبادة ${stats.worshipPoints} + تحدي ${stats.gamePoints}`;
+      document.getElementById('stat-streak').textContent = stats.streak;
+      document.getElementById('stat-rank').textContent = `#${myRank}`;
+
+      // Game Locked/Unlocked Banner
+      const unlocked = hasSubmittedToday(s.id);
+      const dayNum = getJourneyDayNum();
+      const playedToday = Boolean(games[`${s.id}_${dayNum}`]);
+      const banner = document.getElementById('home-game-banner');
+      const icon = document.getElementById('home-game-icon');
+      const title = document.getElementById('home-game-title');
+      const sub = document.getElementById('home-game-sub');
+      const btn = document.getElementById('home-game-btn');
+      const dot = document.getElementById('nav-game-dot');
+
+      if (!unlocked) {
+        banner.className = 'bg-white rounded-2xl p-4 shadow-sm border border-amber-200 flex items-center justify-between gap-3';
+        icon.className = 'w-11 h-11 rounded-2xl bg-amber-100 flex items-center justify-center text-2xl shrink-0';
+        icon.textContent = '🔒';
+        title.textContent = 'ساحة التحدي مقفلة اليوم';
+        title.className = 'font-black text-sm text-gray-800';
+        sub.textContent = 'أكمل برنامجك اليومي أولاً لفتح تحدي اليوم (+6 نقاط).';
+        btn.className = 'shrink-0 bg-emeraldDeep text-white text-xs font-extrabold px-4 py-2.5 rounded-xl shadow-sm active:scale-95';
+        btn.textContent = 'عبّئ الآن';
+        btn.onclick = () => switchTab('tracker');
+        dot.classList.add('hidden');
+      } else if (!playedToday) {
+        banner.className = 'bg-goldLight rounded-2xl p-4 shadow-sm border-2 border-goldWarm flex items-center justify-between gap-3';
+        icon.className = 'w-11 h-11 rounded-2xl bg-goldWarm text-emeraldDeep flex items-center justify-center text-2xl shrink-0';
+        icon.textContent = '🎮';
+        title.textContent = `تحدي اليوم ${dayNum} مفتوح الآن!`;
+        title.className = 'font-black text-sm text-emeraldDeep';
+        sub.textContent = 'العب الآن واكسب حتى +6 نقاط إضافية لطليعتك.';
+        btn.className = 'shrink-0 bg-emeraldDeep text-white text-xs font-extrabold px-4 py-2.5 rounded-xl shadow-sm active:scale-95';
+        btn.textContent = 'العب الآن';
+        btn.onclick = () => switchTab('games');
+        dot.classList.remove('hidden');
+      } else {
+        banner.className = 'bg-emeraldLight rounded-2xl p-4 shadow-sm border border-emeraldDeep/20 flex items-center justify-between gap-3';
+        icon.className = 'w-11 h-11 rounded-2xl bg-emeraldDeep text-white flex items-center justify-center text-xl shrink-0';
+        icon.textContent = '🏆';
+        title.textContent = `أتممت برنامج وتحدي اليوم ${dayNum}!`;
+        title.className = 'font-black text-sm text-emeraldDeep';
+        sub.textContent = `حصلت على +${games[`${s.id}_${dayNum}`].bonusPoints} نقاط من تحدي اليوم.`;
+        btn.className = 'shrink-0 bg-white text-emeraldDeep border border-emeraldDeep/20 text-xs font-extrabold px-3.5 py-2 rounded-xl';
+        btn.textContent = 'ساحة التحدي';
+        btn.onclick = () => switchTab('games');
+        dot.classList.add('hidden');
+      }
+
+      // 40-Day Map
+      const days = Math.min(40, stats.daysCompleted);
+      const pct = Math.max(6, Math.round((days / 40) * 100));
+      document.getElementById('map-days-badge').textContent = `${days} / 40 يوم التزام`;
+      document.getElementById('map-progress-bar').style.width = `${pct}%`;
+      document.getElementById('map-bus-marker').style.right = `${Math.min(92, pct)}%`;
+
+      [
+        { id: 'stage-box-1', min: 1, max: 10 },
+        { id: 'stage-box-2', min: 11, max: 20 },
+        { id: 'stage-box-3', min: 21, max: 30 },
+        { id: 'stage-box-4', min: 31, max: 40 }
+      ].forEach(st => {
+        const el = document.getElementById(st.id);
+        if (days >= st.max) el.className = 'rounded-2xl p-2.5 border-2 border-emeraldDeep bg-emeraldLight text-emeraldDeep text-center shadow-sm';
+        else if (days >= st.min || (st.id === 'stage-box-1' && days === 0)) el.className = 'rounded-2xl p-2.5 border-2 border-goldWarm bg-goldLight text-amber-900 text-center shadow-sm';
+        else el.className = 'rounded-2xl p-2.5 border border-gray-100 bg-gray-50 text-gray-400 text-center';
+      });
+    }
+
+    function renderDailyTip() {
+      const dayNum = getJourneyDayNum();
+      const item = DAILY_TIPS_40[dayNum - 1] || DAILY_TIPS_40[0];
+      document.getElementById('daily-tip-day-badge').textContent = `اليوم ${dayNum} من 40`;
+      document.getElementById('daily-tip-title').textContent = item.title;
+      document.getElementById('daily-tip-body').textContent = item.tip;
+      document.getElementById('daily-dua-body').textContent = `«${item.dua}»`;
+    }
+
+    // =========================================================
+    // 9. DAILY TRACKER (OPTIMISTIC + EDIT PREVIOUS DAYS)
+    // =========================================================
+    function populateTrackerDaySelect() {
+      const sel = document.getElementById('tracker-day-select');
+      const todayStr = getDateStr(0);
+      const set = new Set([todayStr, getDateStr(-1)]);
+
+      const start = new Date(START_DATE + 'T12:00:00');
+      const today = new Date(todayStr + 'T12:00:00');
+      const end = new Date(END_DATE + 'T12:00:00');
+      const limit = today < end ? today : end;
+      for (let d = new Date(start); d <= limit; d.setDate(d.getDate() + 1)) {
+        set.add(`${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`);
+      }
+      Object.values(logs).forEach(l => { if (l.studentId === currentStudentId && l.dateKey) set.add(l.dateKey); });
+
+      const sorted = Array.from(set).sort((a, b) => b.localeCompare(a));
+      sel.innerHTML = sorted.map(ds => {
+        const has = Boolean(logs[`${currentStudentId}_${ds}`]);
+        const pre = ds === todayStr ? 'اليوم — ' : ds === getDateStr(-1) ? 'أمس — ' : '';
+        return `<option value="${ds}">${pre}${formatShortArabicDate(ds)}${has ? ' ✅' : ''}</option>`;
+      }).join('');
+
+      if (!set.has(selectedTrackerDate)) selectedTrackerDate = todayStr;
+      sel.value = selectedTrackerDate;
+      document.getElementById('btn-jump-today').className = selectedTrackerDate === todayStr
+        ? 'px-3 py-2 rounded-xl text-xs font-extrabold bg-emeraldDeep text-white shrink-0'
+        : 'px-3 py-2 rounded-xl text-xs font-extrabold bg-emeraldLight text-emeraldDeep border border-emeraldDeep/20 shrink-0';
+    }
+
+    window.selectTrackerToday = function() {
+      selectedTrackerDate = getDateStr(0);
+      populateTrackerDaySelect();
+      loadTrackerForDate(selectedTrackerDate);
+    };
+
+    window.onTrackerDayChange = function(val) {
+      selectedTrackerDate = val;
+      populateTrackerDaySelect();
+      loadTrackerForDate(val);
+    };
+
+    function loadTrackerForDate(dateKey) {
+      const existing = logs[`${currentStudentId}_${dateKey}`];
+      const banner = document.getElementById('edit-mode-banner');
+      const btnText = document.getElementById('btn-save-log-text');
+
+      if (existing && existing.data) {
+        draftData = {
+          prayers: { ...createEmptyData().prayers, ...(existing.data.prayers || {}) },
+          sunnah: { ...createEmptyData().sunnah, ...(existing.data.sunnah || {}) },
+          heart: { ...createEmptyData().heart, ...(existing.data.heart || {}) }
+        };
+        document.getElementById('pledge-checkbox').checked = true;
+        banner.classList.remove('hidden');
+        document.getElementById('edit-mode-saved-pts').textContent = `${existing.points || computeWorshipPoints(existing.data)} نقطة`;
+        btnText.textContent = 'حفظ التعديلات';
+      } else {
+        draftData = createEmptyData();
+        document.getElementById('pledge-checkbox').checked = false;
+        banner.classList.add('hidden');
+        btnText.textContent = 'حفظ إنجاز اليوم';
+      }
+      renderTrackerUI();
+    }
+
+    function renderTrackerUI() {
+      document.getElementById('prayers-container').innerHTML = PRAYERS_LIST.map(p => {
+        const val = draftData.prayers[p.key];
+        const cls = (t) => val === t
+          ? (t === 'mosque' ? 'bg-emeraldDeep text-white border-emeraldDeep' : t === 'home' ? 'bg-teal-600 text-white border-teal-600' : 'bg-amber-500 text-white border-amber-500')
+          : 'bg-white text-gray-600 border-gray-200';
+        return `
+          <div class="p-3.5 rounded-2xl bg-creamBg border border-gray-100">
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-extrabold text-sm text-gray-800">${p.icon} ${p.label}</span>
+              <span class="text-[11px] font-bold ${val ? 'text-emeraldDeep' : 'text-gray-400'}">${val === 'mosque' ? '+10' : val === 'home' ? '+7' : val === 'late' ? '+3' : 'اختر'}</span>
+            </div>
+            <div class="grid grid-cols-3 gap-1.5">
+              <button type="button" onclick="setPrayer('${p.key}','mosque')" class="py-2.5 rounded-xl text-xs font-extrabold border transition active:scale-95 ${cls('mosque')}">مسجد (10)</button>
+              <button type="button" onclick="setPrayer('${p.key}','home')" class="py-2.5 rounded-xl text-xs font-extrabold border transition active:scale-95 ${cls('home')}">بالبيت (7)</button>
+              <button type="button" onclick="setPrayer('${p.key}','late')" class="py-2.5 rounded-xl text-xs font-extrabold border transition active:scale-95 ${cls('late')}">متأخر (3)</button>
+            </div>
+          </div>`;
+      }).join('');
+
+      document.getElementById('btn-rawatib-full').className = `py-3 px-3 rounded-xl text-xs font-extrabold border transition active:scale-95 ${draftData.sunnah.rawatib === 'full' ? 'bg-emeraldDeep text-white border-emeraldDeep' : 'bg-white text-gray-600 border-gray-200'}`;
+      document.getElementById('btn-rawatib-partial').className = `py-3 px-3 rounded-xl text-xs font-extrabold border transition active:scale-95 ${draftData.sunnah.rawatib === 'partial' ? 'bg-teal-600 text-white border-teal-600' : 'bg-white text-gray-600 border-gray-200'}`;
+
+      ['duha', 'witr', 'qiyam'].forEach(k => styleToggle(`toggle-${k}`, draftData.sunnah[k]));
+      ['quran', 'morningAdhkar', 'eveningAdhkar', 'dua'].forEach(k => styleToggle(`toggle-${k}`, draftData.heart[k]));
+
+      ['tasbih100', 'salawat100', 'istighfar100'].forEach(k => {
+        const done = draftData.heart[k];
+        document.getElementById(`dhikr-row-${k}`).className = `p-3.5 rounded-2xl border flex items-center justify-between gap-2 transition ${done ? 'bg-emeraldLight border-emeraldDeep' : 'bg-creamBg border-gray-100'}`;
+        const btn = document.getElementById(`dhikr-btn-${k}`);
+        btn.className = `text-xs font-extrabold px-3.5 py-2.5 rounded-xl border transition active:scale-95 ${done ? 'bg-emeraldDeep text-white border-emeraldDeep' : 'bg-white text-gray-600 border-gray-200'}`;
+        btn.textContent = done ? 'تم ✅' : 'تم';
+      });
+
+      document.getElementById('tracker-live-points').textContent = computeWorshipPoints(draftData);
+    }
+
+    function styleToggle(id, active) {
+      const el = document.getElementById(id);
+      const pill = el.querySelector('.pts-pill');
+      el.className = active
+        ? 'w-full p-4 rounded-2xl border-2 border-emeraldDeep bg-emeraldLight text-emeraldDeep flex items-center justify-between transition shadow-sm'
+        : 'w-full p-4 rounded-2xl border border-gray-200 bg-creamBg text-gray-700 flex items-center justify-between transition';
+      if (pill) pill.className = active ? 'pts-pill text-xs font-black px-3 py-1.5 rounded-xl bg-emeraldDeep text-white' : 'pts-pill text-xs font-black px-3 py-1.5 rounded-xl bg-white text-gray-500 border border-gray-200';
+    }
+
+    window.setPrayer = (k, v) => { draftData.prayers[k] = draftData.prayers[k] === v ? null : v; renderTrackerUI(); };
+    window.setRawatib = (v) => { draftData.sunnah.rawatib = draftData.sunnah.rawatib === v ? null : v; renderTrackerUI(); };
+    window.toggleSunnah = (k) => { draftData.sunnah[k] = !draftData.sunnah[k]; renderTrackerUI(); };
+    window.toggleHeart = (k) => { draftData.heart[k] = !draftData.heart[k]; renderTrackerUI(); };
+
+    window.saveDailyLog = function() {
+      if (!document.getElementById('pledge-checkbox').checked) {
+        showToast('يرجى تفعيل "ميثاق الصدق" قبل الحفظ ✋', 'warning');
+        return;
+      }
+      const pts = computeWorshipPoints(draftData);
+      if (pts === 0) {
+        showToast('اختر عبادة واحدة على الأقل قبل الحفظ 📝', 'warning');
+        return;
+      }
+
+      const s = STUDENTS.find(x => x.id === currentStudentId);
+      const docId = `${s.id}_${selectedTrackerDate}`;
+      const isToday = selectedTrackerDate === getDateStr(0);
+      const record = {
+        studentId: s.id, groupId: s.groupId, dateKey: selectedTrackerDate,
+        data: JSON.parse(JSON.stringify(draftData)), points: pts, pledge: true,
+        updatedAt: new Date().toISOString()
+      };
+
+      // Optimistic immediate update
+      logs[docId] = record;
+      localStorage.setItem(LS_LOGS, JSON.stringify(logs));
+      populateTrackerDaySelect();
+      loadTrackerForDate(selectedTrackerDate);
+      renderHomeTab();
+
+      fireConfetti();
+      document.getElementById('celebration-title').textContent = isToday ? 'أحسنت! انفتح لك تحدي اليوم 🎮' : 'تم حفظ تعديلاتك بنجاح!';
+      document.getElementById('celebration-text').textContent = isToday
+        ? 'تقبّل الله طاعاتك! يمكنك الآن الدخول إلى ساحة التحدي وكسب +6 نقاط إضافية.'
+        : 'تم تحديث نقاطك وترتيبك في باص الأنصار فوراً.';
+      document.getElementById('celebration-score').textContent = `${pts} نقطة`;
+      document.getElementById('celebration-game-btn').classList.toggle('hidden', !isToday);
+      document.getElementById('modal-celebration').classList.remove('hidden');
+
+      setSyncStatus('saving');
+      setDoc(doc(db, LOGS_COL, docId), record)
+        .then(() => setSyncStatus('saved'))
+        .catch(() => setSyncStatus('offline'));
+    };
+
+    window.closeCelebration = () => { document.getElementById('modal-celebration').classList.add('hidden'); switchTab('home'); };
+    window.goToGameFromCelebration = () => { document.getElementById('modal-celebration').classList.add('hidden'); switchTab('games'); };
+
+    // =========================================================
+    // 10. GAMES TAB (40-DAY CURRICULUM: QUIZ + MATCHING)
+    // =========================================================
+    window.renderGamesTab = function() {
+      const unlocked = hasSubmittedToday(currentStudentId);
+      document.getElementById('game-locked-box').classList.toggle('hidden', unlocked);
+      document.getElementById('game-unlocked-box').classList.toggle('hidden', !unlocked);
+      if (!unlocked) return;
+
+      document.getElementById('quiz-arena').classList.add('hidden');
+      document.getElementById('match-arena').classList.add('hidden');
+      document.getElementById('game-result-box').classList.add('hidden');
+
+      const todayDay = getJourneyDayNum();
+      const cfg = GAMES_40[todayDay] || GAMES_40[1];
+      const saved = games[`${currentStudentId}_${todayDay}`];
+
+      document.getElementById('game-day-pill').textContent = `تحدي اليوم ${todayDay} من 40`;
+      document.getElementById('game-type-pill').textContent = cfg.type === 'match' ? '🃏 بطاقات المصطلحات' : '⏱️ تحدي الأربعين (3 أسئلة)';
+      document.getElementById('game-topic-title').textContent = cfg.topic;
+      document.getElementById('game-topic-desc').textContent = cfg.type === 'match'
+        ? 'وصّل كل مصطلح بمعناه الصحيح بأسرع وقت لتكسب +6 نقاط إضافية!'
+        : 'أجب عن 3 أسئلة (20 ثانية لكل سؤال) لتكسب نقطتين عن كل إجابة صحيحة (+6 نقاط كحد أقصى).';
+
+      const actionArea = document.getElementById('game-hub-action-area');
+      if (saved) {
+        actionArea.innerHTML = `
+          <div class="bg-white/15 rounded-2xl p-3 flex items-center justify-between gap-2 border border-goldWarm/40">
+            <div class="text-xs font-extrabold text-amber-100">✅ أتممت تحدي اليوم وحصلت على <span class="text-goldWarm text-sm">+${saved.bonusPoints} نقاط</span></div>
+            <button onclick="startDayGame(${todayDay}, true)" class="shrink-0 bg-white text-emeraldDeep font-black text-xs px-3.5 py-2 rounded-xl active:scale-95">إعادة للتدريب</button>
+          </div>`;
+      } else {
+        actionArea.innerHTML = `
+          <button onclick="startDayGame(${todayDay}, false)" class="w-full py-3.5 rounded-2xl bg-goldWarm hover:bg-amber-500 text-emeraldDeep font-black text-sm shadow-md transition active:scale-[0.98]">
+            🚀 ابدأ تحدي اليوم الآن
+          </button>`;
+      }
+
+      // Past days grid
+      const grid = document.getElementById('past-games-grid');
+      let html = '';
+      for (let d = 1; d <= todayDay; d++) {
+        const done = Boolean(games[`${currentStudentId}_${d}`]);
+        const isMatch = d % 5 === 0;
+        html += `
+          <button onclick="startDayGame(${d}, ${d !== todayDay || done})" class="py-2 rounded-xl text-xs font-black border transition active:scale-95 flex flex-col items-center justify-center ${done ? 'bg-emeraldLight border-emeraldDeep text-emeraldDeep' : d === todayDay ? 'bg-goldLight border-goldWarm text-goldDeep' : 'bg-creamBg border-gray-200 text-gray-600'}">
+            <span>${d}</span>
+            <span class="text-[9px]">${isMatch ? '🃏' : '❓'}</span>
+          </button>`;
+      }
+      grid.innerHTML = html;
+    };
+
+    window.startDayGame = function(dayNum, isPractice) {
+      const cfg = GAMES_40[dayNum] || GAMES_40[1];
+      document.getElementById('game-result-box').classList.add('hidden');
+      if (cfg.type === 'quiz') startQuiz(dayNum, cfg, isPractice);
+      else startMatchingGame(dayNum, cfg, isPractice);
+    };
+
+    // --- QUIZ ENGINE ---
+    function startQuiz(dayNum, cfg, isPractice) {
+      quizState = { dayNum, cfg, isPractice, idx: 0, correct: 0, answered: false, timeLeft: 20 };
+      document.getElementById('match-arena').classList.add('hidden');
+      document.getElementById('quiz-arena').classList.remove('hidden');
+      renderQuizQuestion();
+    }
+
+    function renderQuizQuestion() {
+      if (quizTimerInt) clearInterval(quizTimerInt);
+      const qObj = quizState.cfg.qs[quizState.idx];
+      quizState.answered = false;
+      quizState.timeLeft = 20;
+
+      document.getElementById('quiz-progress-text').textContent = `السؤال ${quizState.idx + 1} من ${quizState.cfg.qs.length}`;
+      document.getElementById('quiz-question-text').textContent = qObj.q;
+      document.getElementById('quiz-explanation-box').classList.add('hidden');
+
+      document.getElementById('quiz-options-list').innerHTML = qObj.opts.map((opt, i) => `
+        <button id="qopt-${i}" onclick="answerQuiz(${i})" class="w-full text-right p-3.5 rounded-2xl border-2 border-gray-200 bg-creamBg hover:border-emeraldDeep font-extrabold text-sm text-gray-800 transition active:scale-[0.99]">
+          ${opt}
+        </button>
+      `).join('');
+
+      updateQuizTimerUI();
+      quizTimerInt = setInterval(() => {
+        quizState.timeLeft--;
+        updateQuizTimerUI();
+        if (quizState.timeLeft <= 0) {
+          clearInterval(quizTimerInt);
+          answerQuiz(-1);
+        }
+      }, 1000);
+    }
+
+    function updateQuizTimerUI() {
+      document.getElementById('quiz-timer-sec').textContent = quizState.timeLeft;
+      const bar = document.getElementById('quiz-timer-bar');
+      bar.style.width = `${(quizState.timeLeft / 20) * 100}%`;
+      bar.className = `h-full transition-all duration-1000 linear ${quizState.timeLeft <= 5 ? 'bg-rose-500' : 'bg-goldWarm'}`;
+    }
+
+    window.answerQuiz = function(selectedIdx) {
+      if (!quizState || quizState.answered) return;
+      quizState.answered = true;
+      if (quizTimerInt) clearInterval(quizTimerInt);
+
+      const qObj = quizState.cfg.qs[quizState.idx];
+      const isRight = selectedIdx === qObj.a;
+      if (isRight) quizState.correct++;
+
+      qObj.opts.forEach((_, i) => {
+        const btn = document.getElementById(`qopt-${i}`);
+        btn.disabled = true;
+        if (i === qObj.a) btn.className = 'w-full text-right p-3.5 rounded-2xl border-2 border-emeraldDeep bg-emeraldLight text-emeraldDeep font-black text-sm';
+        else if (i === selectedIdx) btn.className = 'w-full text-right p-3.5 rounded-2xl border-2 border-rose-500 bg-rose-50 text-rose-700 font-extrabold text-sm';
+        else btn.className = 'w-full text-right p-3.5 rounded-2xl border border-gray-100 bg-gray-50 text-gray-400 font-bold text-sm';
+      });
+
+      const expBox = document.getElementById('quiz-explanation-box');
+      expBox.className = `mt-4 p-3.5 rounded-2xl border text-xs sm:text-sm font-bold leading-relaxed animate-pop ${isRight ? 'bg-emeraldLight border-emeraldDeep/30' : 'bg-amber-50 border-amber-300'}`;
+      document.getElementById('quiz-exp-status').textContent = isRight ? '✅ إجابة صحيحة! (+2 نقاط)' : selectedIdx === -1 ? '⏱️ انتهى الوقت!' : '💡 إجابة غير صحيحة، تعلّم المعلومة:';
+      document.getElementById('quiz-exp-text').textContent = qObj.exp;
+      document.getElementById('quiz-next-btn').textContent = quizState.idx === quizState.cfg.qs.length - 1 ? 'عرض النتيجة 🏆' : 'السؤال التالي ←';
+      expBox.classList.remove('hidden');
+    };
+
+    window.nextQuizQuestion = function() {
+      if (quizState.idx < quizState.cfg.qs.length - 1) {
+        quizState.idx++;
+        renderQuizQuestion();
+      } else {
+        const bonus = quizState.correct * 2;
+        finishGame(quizState.dayNum, 'quiz', bonus, `أجبت إجابة صحيحة على ${quizState.correct} من ${quizState.cfg.qs.length} أسئلة`, quizState.isPractice);
+      }
+    };
+
+    // --- MATCHING GAME ENGINE (DAYS 5, 10, 15, 20, 25, 30, 35, 40) ---
+    function startMatchingGame(dayNum, cfg, isPractice) {
+      const pairs = cfg.pairs.map((p, idx) => ({ ...p, id: idx }));
+      const shuffledTerms = [...pairs].sort(() => Math.random() - 0.5);
+      const shuffledDefs = [...pairs].sort(() => Math.random() - 0.5);
+
+      matchState = {
+        dayNum, isPractice, pairs, shuffledTerms, shuffledDefs,
+        selectedTermId: null, matchedIds: new Set(), moves: 0, seconds: 0
+      };
+
+      document.getElementById('quiz-arena').classList.add('hidden');
+      document.getElementById('match-arena').classList.remove('hidden');
+      document.getElementById('match-moves').textContent = '0';
+      document.getElementById('match-timer').textContent = '0';
+
+      if (matchTimerInt) clearInterval(matchTimerInt);
+      matchTimerInt = setInterval(() => {
+        matchState.seconds++;
+        document.getElementById('match-timer').textContent = matchState.seconds;
+      }, 1000);
+
+      renderMatchingBoard();
+    }
+
+    function renderMatchingBoard() {
+      document.getElementById('match-terms-col').innerHTML = matchState.shuffledTerms.map(item => {
+        const done = matchState.matchedIds.has(item.id);
+        const sel = matchState.selectedTermId === item.id;
+        return `
+          <button ${done ? 'disabled' : ''} onclick="pickMatchTerm(${item.id})" class="w-full p-3 rounded-2xl border-2 text-xs sm:text-sm font-black transition active:scale-95 ${done ? 'bg-emeraldLight border-emeraldDeep/30 text-emeraldDeep opacity-60' : sel ? 'bg-emeraldDeep text-white border-emeraldDeep shadow-md' : 'bg-creamBg border-gray-200 text-gray-800 hover:border-emeraldDeep'}">
+            ${done ? '✅ ' : ''}${item.t}
+          </button>`;
+      }).join('');
+
+      document.getElementById('match-defs-col').innerHTML = matchState.shuffledDefs.map(item => {
+        const done = matchState.matchedIds.has(item.id);
+        return `
+          <button ${done ? 'disabled' : ''} onclick="pickMatchDef(${item.id})" class="w-full p-3 rounded-2xl border-2 text-xs font-bold leading-snug transition active:scale-95 ${done ? 'bg-emeraldLight border-emeraldDeep/30 text-emeraldDeep opacity-60' : 'bg-white border-gray-200 text-gray-700 hover:border-goldWarm'}">
+            ${done ? '✅ ' : ''}${item.d}
+          </button>`;
+      }).join('');
+    }
+
+    window.pickMatchTerm = function(id) {
+      matchState.selectedTermId = id;
+      renderMatchingBoard();
+    };
+
+    window.pickMatchDef = function(defId) {
+      if (matchState.selectedTermId === null) {
+        showToast('اختر المصطلح من العمود الأول أولاً 👆', 'info');
+        return;
+      }
+      matchState.moves++;
+      document.getElementById('match-moves').textContent = matchState.moves;
+
+      if (matchState.selectedTermId === defId) {
+        matchState.matchedIds.add(defId);
+        matchState.selectedTermId = null;
+        renderMatchingBoard();
+
+        if (matchState.matchedIds.size === matchState.pairs.length) {
+          clearInterval(matchTimerInt);
+          finishGame(matchState.dayNum, 'match', 6, `أكملت التوصيل في ${matchState.seconds} ثانية بـ ${matchState.moves} محاولات!`, matchState.isPractice, matchState.seconds);
+        }
+      } else {
+        showToast('حاول مرة أخرى! ليست المطابقة الصحيحة 💡', 'warning');
+        matchState.selectedTermId = null;
+        renderMatchingBoard();
+      }
+    };
+
+    function finishGame(dayNum, type, bonusPoints, summaryText, isPractice, bestTimeSec = null) {
+      document.getElementById('quiz-arena').classList.add('hidden');
+      document.getElementById('match-arena').classList.add('hidden');
+      document.getElementById('game-result-box').classList.remove('hidden');
+
+      const docId = `${currentStudentId}_${dayNum}`;
+      const alreadySaved = Boolean(games[docId]);
+
+      if (!isPractice && !alreadySaved) {
+        const rec = {
+          studentId: currentStudentId, dayNum, type, bonusPoints,
+          bestTimeSec, completedAt: new Date().toISOString()
+        };
+        games[docId] = rec;
+        localStorage.setItem(LS_GAMES, JSON.stringify(games));
+        renderHomeTab();
+        setSyncStatus('saving');
+        setDoc(doc(db, GAMES_COL, docId), rec).then(() => setSyncStatus('saved')).catch(() => setSyncStatus('offline'));
+        fireConfetti();
+        document.getElementById('game-result-pts').textContent = `+${bonusPoints} نقاط`;
+      } else {
+        document.getElementById('game-result-pts').textContent = 'وضع التدريب (بدون نقاط إضافية)';
+      }
+
+      document.getElementById('game-result-sub').textContent = summaryText;
+      quizState = null; matchState = null;
+    }
+
+    // =========================================================
+    // 11. LEADERBOARD (WORSHIP + GAME BONUS)
+    // =========================================================
+    function getGroupRankings() {
+      return GROUPS.map(g => {
+        const members = STUDENTS.filter(s => s.groupId === g.id);
+        let total = 0;
+        members.forEach(m => { total += getStudentStats(m.id).totalPoints; });
+        const avg = members.length ? Math.round((total / members.length) * 10) / 10 : 0;
+        return { ...g, memberCount: members.length, totalPoints: total, avgPoints: avg };
+      }).sort((a, b) => b.avgPoints - a.avgPoints);
+    }
+
+    window.renderLeaderboard = function() {
+      const rankings = getGroupRankings();
+      const maxAvg = Math.max(10, rankings[0]?.avgPoints || 10);
+      const medals = ['🥇', '🥈', '🥉', '4️⃣'];
+
+      document.getElementById('groups-race-container').innerHTML = rankings.map((g, idx) => {
+        const pct = Math.max(8, Math.round((g.avgPoints / maxAvg) * 100));
+        return `
+          <div class="p-3.5 rounded-2xl border ${idx === 0 ? 'bg-goldLight/70 border-goldWarm' : 'bg-creamBg border-gray-100'}">
+            <div class="flex items-center justify-between gap-2 mb-2.5">
+              <div class="flex items-center gap-2 min-w-0">
+                <span class="text-xl">${medals[idx]}</span>
+                <div class="min-w-0">
+                  <div class="font-black text-sm text-emeraldDeep truncate">${g.name}</div>
+                  <div class="text-[11px] text-gray-500 font-bold">الشيخ ${g.sheikh} • ${g.memberCount} طلاب</div>
+                </div>
+              </div>
+              <div class="text-left shrink-0">
+                <div class="text-base font-black text-emeraldDeep">${g.avgPoints} <span class="text-[10px] font-bold text-gray-500">معدل</span></div>
+                <div class="text-[10px] font-bold text-gray-400">الإجمالي: ${g.totalPoints}</div>
+              </div>
+            </div>
+            <div class="relative pt-5">
+              <div class="h-2.5 w-full bg-white rounded-full overflow-hidden border border-gray-200">
+                <div class="h-full bg-gradient-to-l ${g.gradient} rounded-full transition-all duration-700" style="width:${pct}%"></div>
+              </div>
+              <span class="absolute top-0 text-base transition-all duration-700 translate-x-1/2" style="right:${Math.min(94, pct)}%">🚌</span>
+            </div>
+          </div>`;
+      }).join('');
+
+      const filter = document.getElementById('lb-group-filter').value;
+      const list = STUDENTS
+        .filter(s => filter === 'all' || s.groupId === filter)
+        .map(s => ({ ...s, stats: getStudentStats(s.id) }))
+        .sort((a, b) => b.stats.totalPoints - a.stats.totalPoints);
+
+      document.getElementById('students-rank-container').innerHTML = list.map((s, idx) => {
+        const g = GROUPS.find(x => x.id === s.groupId);
+        const isMe = s.id === currentStudentId;
+        const rankBadge = idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `${idx + 1}`;
+        return `
+          <div class="p-3 rounded-2xl border flex items-center justify-between gap-2 ${isMe ? 'bg-emeraldLight border-emeraldDeep shadow-sm' : 'bg-white border-gray-100'}">
+            <div class="flex items-center gap-2.5 min-w-0">
+              <div class="w-7 text-center font-black ${idx < 3 ? 'text-lg' : 'text-xs text-gray-400'}">${rankBadge}</div>
+              <div class="w-9 h-9 rounded-xl bg-creamBg border border-gray-200 flex items-center justify-center text-lg shrink-0">${avatars[s.id] || '🕋'}</div>
+              <div class="min-w-0">
+                <div class="font-extrabold text-sm text-gray-800 truncate flex items-center gap-1.5">
+                  <span>${s.name}</span>
+                  ${s.isLeader ? '<span class="text-[10px] bg-goldLight text-goldDeep px-1.5 py-0.5 rounded-full">عريف الطليعة</span>' : ''}
+                  ${isMe ? '<span class="text-[10px] bg-emeraldDeep text-white px-1.5 py-0.5 rounded-full">أنت</span>' : ''}
+                </div>
+                <div class="text-[11px] text-gray-500 font-semibold truncate">${g.name}</div>
+              </div>
+            </div>
+            <div class="text-left shrink-0">
+              <div class="font-black text-sm text-emeraldDeep">${s.stats.totalPoints} <span class="text-[10px] text-gray-400">نقطة</span></div>
+              <div class="text-[10px] font-bold text-goldDeep">🔥 ${s.stats.streak} يوم</div>
+            </div>
+          </div>`;
+      }).join('');
+    };
+
+    // =========================================================
+    // 12. SUPERVISOR DASHBOARD (PIN: 2026) + DELETE + EXCEL CSV
+    // =========================================================
+    window.openSupervisorPinModal = () => {
+      document.getElementById('pin-input').value = '';
+      document.getElementById('pin-error').classList.add('hidden');
+      document.getElementById('modal-pin').classList.remove('hidden');
+      setTimeout(() => document.getElementById('pin-input').focus(), 100);
+    };
+    window.closePinModal = () => document.getElementById('modal-pin').classList.add('hidden');
+    window.verifyPin = () => {
+      if (document.getElementById('pin-input').value.trim() === SUPERVISOR_PIN) {
+        closePinModal();
+        document.getElementById('view-login').classList.add('hidden');
+        document.getElementById('view-student').classList.add('hidden');
+        document.getElementById('bottom-nav').classList.add('hidden');
+        document.getElementById('view-supervisor').classList.remove('hidden');
+        const di = document.getElementById('sup-date-input');
+        if (!di.value) di.value = getDateStr(0);
+        renderSupervisorDashboard();
+      } else {
+        document.getElementById('pin-error').classList.remove('hidden');
+      }
+    };
+    document.getElementById('pin-input').addEventListener('keydown', e => { if (e.key === 'Enter') verifyPin(); });
+
+    window.exitSupervisorView = () => {
+      document.getElementById('view-supervisor').classList.add('hidden');
+      if (currentStudentId) enterStudentApp(); else showLoginScreen();
+    };
+
+    window.renderSupervisorDashboard = function() {
+      const dateKey = document.getElementById('sup-date-input').value || getDateStr(0);
+      const dayNum = getJourneyDayNum(dateKey);
+      const groupFilter = document.getElementById('sup-group-filter').value;
+      const statusFilter = document.getElementById('sup-status-filter').value;
+
+      const scoped = STUDENTS.filter(s => groupFilter === 'all' || s.groupId === groupFilter);
+      let submittedCount = 0, fajrMosqueCount = 0, gamesTodayCount = 0;
+
+      scoped.forEach(s => {
+        const l = logs[`${s.id}_${dateKey}`];
+        if (l && (l.points || computeWorshipPoints(l.data)) > 0) submittedCount++;
+        if (l?.data?.prayers?.fajr === 'mosque') fajrMosqueCount++;
+        if (games[`${s.id}_${dayNum}`]) gamesTodayCount++;
+      });
+
+      const displayed = scoped.filter(s => {
+        const l = logs[`${s.id}_${dateKey}`];
+        const isSub = Boolean(l && (l.points || computeWorshipPoints(l.data)) > 0);
+        if (statusFilter === 'submitted') return isSub;
+        if (statusFilter === 'missing') return !isSub;
+        return true;
+      });
+
+      document.getElementById('sup-table-body').innerHTML = displayed.length === 0
+        ? `<tr><td colspan="7" class="py-8 text-center text-gray-400 font-bold">لا يوجد طلاب مطابقون.</td></tr>`
+        : displayed.map(s => {
+          const g = GROUPS.find(x => x.id === s.groupId);
+          const l = logs[`${s.id}_${dateKey}`];
+          const dayPts = l ? (l.points || computeWorshipPoints(l.data)) : 0;
+          const isSub = dayPts > 0;
+          const stats = getStudentStats(s.id);
+
+          return `
+            <tr class="hover:bg-emeraldLight/30 transition">
+              <td class="py-3 px-4 font-extrabold text-gray-800 whitespace-nowrap">
+                ${s.name} ${s.isLeader ? '<span class="mr-1 text-[10px] bg-goldLight text-goldDeep px-1.5 py-0.5 rounded-full">عريف</span>' : ''}
+              </td>
+              <td class="py-3 px-3 text-gray-600 font-semibold whitespace-nowrap">${g.name.replace('طليعة ', '')}</td>
+              <td class="py-3 px-3 text-center whitespace-nowrap">
+                ${isSub ? '<span class="bg-emerald-100 text-emerald-800 font-extrabold text-[11px] px-2.5 py-1 rounded-full">عبّى ✅</span>' : '<span class="bg-rose-100 text-rose-700 font-extrabold text-[11px] px-2.5 py-1 rounded-full">لم يعبّئ ❌</span>'}
+              </td>
+              <td class="py-3 px-3 text-center font-black text-emeraldDeep">${dayPts}</td>
+              <td class="py-3 px-3 text-center font-bold text-goldDeep">+${stats.gamePoints}</td>
+              <td class="py-3 px-3 text-center font-black text-gray-800">${stats.totalPoints}</td>
+              <td class="py-3 px-3 text-center whitespace-nowrap">
+                <div class="inline-flex items-center gap-1.5">
+                  <button onclick="openDetailsModal('${s.id}','${dateKey}')" class="text-xs font-bold bg-emeraldLight text-emeraldDeep px-2.5 py-1.5 rounded-xl">التفاصيل</button>
+                  ${isSub ? `<button onclick="requestDeleteRecord('${s.id}','${dateKey}')" class="text-xs font-extrabold bg-rose-50 text-rose-600 border border-rose-200 px-2.5 py-1.5 rounded-xl">حذف السجل</button>` : ''}
+                </div>
+              </td>
+            </tr>`;
+        }).join('');
+
+      document.getElementById('sup-count-badge').textContent = `${displayed.length} طالب`;
+      const denom = scoped.length || 1;
+      const topG = getGroupRankings()[0];
+      document.getElementById('kpi-submitted').textContent = `${submittedCount} / ${scoped.length}`;
+      document.getElementById('kpi-submitted-pct').textContent = `${Math.round((submittedCount / denom) * 100)}% التزام`;
+      document.getElementById('kpi-fajr').textContent = fajrMosqueCount;
+      document.getElementById('kpi-fajr-pct').textContent = `${Math.round((fajrMosqueCount / denom) * 100)}% من الطلاب`;
+      document.getElementById('kpi-games-today').textContent = gamesTodayCount;
+      document.getElementById('kpi-top-group').textContent = topG ? topG.name : '--';
+      document.getElementById('kpi-top-group-avg').textContent = topG ? `متوسط ${topG.avgPoints} نقطة` : '';
+    };
+
+    function openConfirmModal(title, msg, cb) {
+      document.getElementById('confirm-title').textContent = title;
+      document.getElementById('confirm-message').textContent = msg;
+      confirmCallback = cb;
+      document.getElementById('modal-confirm').classList.remove('hidden');
+    }
+    window.closeConfirmModal = () => { confirmCallback = null; document.getElementById('modal-confirm').classList.add('hidden'); };
+    window.executeConfirmedAction = () => { if (confirmCallback) confirmCallback(); closeConfirmModal(); };
+
+    window.requestDeleteRecord = function(studentId, dateKey) {
+      const s = STUDENTS.find(x => x.id === studentId);
+      openConfirmModal('حذف سجل اليوم', `هل أنت متأكد من حذف سجل الطالب "${s.name}" لتاريخ (${dateKey})؟`, () => {
+        const docId = `${studentId}_${dateKey}`;
+        delete logs[docId];
+        localStorage.setItem(LS_LOGS, JSON.stringify(logs));
+        renderSupervisorDashboard();
+        closeDetailsModal();
+        showToast(`تم حذف سجل ${s.name} بنجاح 🗑️`, 'success');
+        setSyncStatus('saving');
+        deleteDoc(doc(db, LOGS_COL, docId)).then(() => setSyncStatus('saved')).catch(() => setSyncStatus('offline'));
+      });
+    };
+
+    window.requestResetStudent = function(studentId) {
+      const s = STUDENTS.find(x => x.id === studentId);
+      const logIds = Object.keys(logs).filter(id => logs[id]?.studentId === studentId);
+      const gameIds = Object.keys(games).filter(id => games[id]?.studentId === studentId);
+      if (logIds.length === 0 && gameIds.length === 0) {
+        showToast(`لا توجد أي سجلات للطالب "${s.name}".`, 'info');
+        return;
+      }
+      openConfirmModal('حذف كل سجلات الطالب', `هل أنت متأكد من حذف جميع سجلات العبادة والتحدي للطالب "${s.name}" وتصفير نقاطه بالكامل؟`, () => {
+        logIds.forEach(id => delete logs[id]);
+        gameIds.forEach(id => delete games[id]);
+        localStorage.setItem(LS_LOGS, JSON.stringify(logs));
+        localStorage.setItem(LS_GAMES, JSON.stringify(games));
+        renderSupervisorDashboard();
+        closeDetailsModal();
+        showToast(`تم تصفير جميع سجلات ${s.name} بنجاح 🗑️`, 'success');
+        setSyncStatus('saving');
+        Promise.all([
+          ...logIds.map(id => deleteDoc(doc(db, LOGS_COL, id))),
+          ...gameIds.map(id => deleteDoc(doc(db, GAMES_COL, id)))
+        ]).then(() => setSyncStatus('saved')).catch(() => setSyncStatus('offline'));
+      });
+    };
+
+    window.openDetailsModal = function(studentId, dateKey) {
+      const s = STUDENTS.find(x => x.id === studentId);
+      const g = GROUPS.find(x => x.id === s.groupId);
+      const l = logs[`${studentId}_${dateKey}`];
+      const hasSub = Boolean(l && l.data && (l.points || computeWorshipPoints(l.data)) > 0);
+      const stats = getStudentStats(studentId);
+      const defaultDayNum = getJourneyDayNum(dateKey);
+
+      const studentGames = Object.values(games)
+        .filter(rec => rec && rec.studentId === studentId)
+        .sort((a, b) => (a.dayNum || 0) - (b.dayNum || 0));
+
+      document.getElementById('details-title').textContent = `${s.name} — ${g.name}`;
+      document.getElementById('details-subtitle').textContent = `تقرير ${dateKey} • الكلي: ${stats.totalPoints} (عبادة ${stats.worshipPoints} + تحدي ${stats.gamePoints})`;
+
+      const box = document.getElementById('details-content');
+      let worshipHtml = '';
+      if (!hasSub) {
+        worshipHtml = `<div class="text-center py-6 text-gray-500 bg-creamBg rounded-2xl"><div class="text-3xl mb-1.5">📭</div><p class="font-bold text-xs">لم يقم الطالب بتعبئة برنامج العبادة لهذا اليوم.</p></div>`;
+      } else {
+        const pTxt = (v) => v === 'mosque' ? 'مسجد ✅ (10)' : v === 'home' ? 'بالبيت 🏠 (7)' : v === 'late' ? 'متأخر ⏱️ (3)' : 'لم يُسجل ❌';
+        const bTxt = (v) => v ? '<span class="text-emerald-700 font-extrabold">تم ✅</span>' : '<span class="text-gray-400">لم يتم</span>';
+        const d = l.data;
+        worshipHtml = `
+          <div class="bg-creamBg rounded-2xl p-3.5 space-y-1.5 text-xs">
+            <div class="font-black text-emeraldDeep mb-1">1. الفرائض:</div>
+            ${PRAYERS_LIST.map(p => `<div class="flex justify-between"><span class="font-bold text-gray-700">${p.label}</span><span class="font-bold">${pTxt(d.prayers?.[p.key])}</span></div>`).join('')}
+          </div>
+          <div class="bg-creamBg rounded-2xl p-3.5 space-y-1.5 text-xs">
+            <div class="font-black text-emeraldDeep mb-1">2. السنن والنوافل:</div>
+            <div class="flex justify-between"><span>السنن الرواتب</span><span class="font-bold">${d.sunnah?.rawatib === 'full' ? 'كاملة ✅' : d.sunnah?.rawatib === 'partial' ? 'جزء منها' : 'لم يتم'}</span></div>
+            <div class="flex justify-between"><span>صلاة الضحى</span>${bTxt(d.sunnah?.duha)}</div>
+            <div class="flex justify-between"><span>صلاة الوتر</span>${bTxt(d.sunnah?.witr)}</div>
+            <div class="flex justify-between"><span>قيام الليل</span>${bTxt(d.sunnah?.qiyam)}</div>
+          </div>
+          <div class="bg-creamBg rounded-2xl p-3.5 space-y-1.5 text-xs">
+            <div class="font-black text-emeraldDeep mb-1">3. زاد القلب والأذكار:</div>
+            <div class="flex justify-between"><span>ورد القرآن</span>${bTxt(d.heart?.quran)}</div>
+            <div class="flex justify-between"><span>أذكار الصباح</span>${bTxt(d.heart?.morningAdhkar)}</div>
+            <div class="flex justify-between"><span>أذكار المساء</span>${bTxt(d.heart?.eveningAdhkar)}</div>
+            <div class="flex justify-between"><span>الدعاء</span>${bTxt(d.heart?.dua)}</div>
+            <div class="flex justify-between"><span>100 تسبيحة</span>${bTxt(d.heart?.tasbih100)}</div>
+            <div class="flex justify-between"><span>100 صلاة على النبي ﷺ</span>${bTxt(d.heart?.salawat100)}</div>
+            <div class="flex justify-between"><span>100 استغفار</span>${bTxt(d.heart?.istighfar100)}</div>
+          </div>`;
+      }
+
+      const dayOptionsHtml = Array.from({ length: 40 }, (_, i) => {
+        const dNum = i + 1;
+        return `<option value="${dNum}" ${dNum === defaultDayNum ? 'selected' : ''}>اليوم ${dNum}</option>`;
+      }).join('');
+
+      const gameRecordsHtml = studentGames.length === 0
+        ? `<div class="text-center py-3 text-gray-400 font-bold text-xs bg-white rounded-xl border border-dashed border-gray-200">لا توجد نقاط تحدي مسجلة لهذا الطالب بعد.</div>`
+        : `<div class="space-y-2">${studentGames.map(rec => `
+            <div class="bg-white rounded-xl p-2.5 border border-goldWarm/30 flex items-center justify-between gap-2 flex-wrap">
+              <div class="min-w-0">
+                <div class="font-extrabold text-xs text-emeraldDeep">تحدي اليوم ${rec.dayNum}</div>
+                <div class="text-[10px] font-bold text-gray-500">${rec.type === 'match' ? 'بطاقات' : 'أسئلة'}</div>
+              </div>
+              <div class="flex items-center gap-1.5 shrink-0">
+                <input type="number" id="sup-game-pts-${studentId}-${rec.dayNum}" value="${rec.bonusPoints ?? 0}" min="0" max="20"
+                       class="w-14 text-center text-xs font-black py-1.5 rounded-lg border border-gray-200 bg-creamBg text-emeraldDeep focus:outline-none focus:border-emeraldDeep" />
+                <button onclick="updateStudentGamePoints('${studentId}', ${rec.dayNum}, '${dateKey}')"
+                        class="text-[11px] font-extrabold bg-emeraldDeep text-white px-2.5 py-1.5 rounded-lg active:scale-95">حفظ</button>
+                <button onclick="requestDeleteGameRecord('${studentId}', ${rec.dayNum}, '${dateKey}')"
+                        class="text-[11px] font-extrabold bg-rose-50 text-rose-600 border border-rose-200 px-2.5 py-1.5 rounded-lg active:scale-95">حذف</button>
+              </div>
+            </div>`).join('')}</div>`;
+
+      const gamesControlHtml = `
+        <div class="bg-goldLight/60 rounded-2xl p-3.5 border border-goldWarm/40 space-y-3 text-xs">
+          <div class="flex items-center justify-between gap-2">
+            <div class="font-black text-emeraldDeep text-sm">🎮 إدارة نقاط ساحة التحدي</div>
+            <span class="bg-white text-goldDeep font-black px-2.5 py-1 rounded-xl border border-goldWarm/30">المجموع: +${stats.gamePoints}</span>
+          </div>
+
+          ${gameRecordsHtml}
+
+          <div class="pt-2 border-t border-goldWarm/25 space-y-2">
+            <div class="font-extrabold text-amber-900 text-[11px]">إضافة / تعديل يدوي ليوم محدد:</div>
+            <div class="flex items-center gap-1.5">
+              <select id="sup-manual-game-day-${studentId}" class="flex-1 text-xs font-bold bg-white border border-gray-200 rounded-xl px-2.5 py-2 text-emeraldDeep focus:outline-none">
+                ${dayOptionsHtml}
+              </select>
+              <input type="number" id="sup-manual-game-pts-${studentId}" value="6" min="0" max="20"
+                     class="w-16 text-center text-xs font-black py-2 rounded-xl border border-gray-200 bg-white text-emeraldDeep focus:outline-none" />
+              <button onclick="manualSetGamePoints('${studentId}', '${dateKey}')"
+                      class="shrink-0 text-xs font-black bg-goldWarm hover:bg-amber-500 text-emeraldDeep px-3 py-2 rounded-xl shadow-sm active:scale-95">إضافة/تحديث</button>
+            </div>
+          </div>
+
+          ${studentGames.length > 0 ? `
+            <div class="pt-1">
+              <button onclick="requestResetStudentGames('${studentId}', '${dateKey}')"
+                      class="w-full py-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 font-extrabold text-xs transition active:scale-95">
+                🗑️ تصفير جميع نقاط التحدي فقط
+              </button>
+            </div>` : ''}
+        </div>`;
+
+      box.innerHTML = worshipHtml + gamesControlHtml;
+
+      document.getElementById('details-footer').innerHTML = `
+        <button onclick="requestResetStudent('${studentId}')" class="text-xs font-extrabold bg-rose-600 text-white px-3 py-2 rounded-xl">حذف كل سجلات هذا الطالب</button>
+        ${hasSub ? `<button onclick="requestDeleteRecord('${studentId}','${dateKey}')" class="text-xs font-extrabold bg-rose-50 text-rose-600 border border-rose-200 px-3 py-2 rounded-xl">حذف سجل اليوم</button>` : `<button onclick="closeDetailsModal()" class="text-xs font-bold bg-gray-200 text-gray-700 px-4 py-2 rounded-xl">إغلاق</button>`}
+      `;
+      document.getElementById('modal-details').classList.remove('hidden');
+    };
+    window.closeDetailsModal = () => document.getElementById('modal-details').classList.add('hidden');
+
+    window.updateStudentGamePoints = function(studentId, dayNum, dateKey) {
+      const input = document.getElementById(`sup-game-pts-${studentId}-${dayNum}`);
+      const pts = Math.max(0, Math.min(20, parseInt(input?.value, 10) || 0));
+      const docId = `${studentId}_${dayNum}`;
+      const existing = games[docId];
+      if (!existing) return;
+
+      const updated = { ...existing, bonusPoints: pts, updatedAt: new Date().toISOString() };
+      games[docId] = updated;
+      localStorage.setItem(LS_GAMES, JSON.stringify(games));
+      renderSupervisorDashboard();
+      openDetailsModal(studentId, dateKey);
+      showToast(`تم تحديث نقاط تحدي اليوم ${dayNum} إلى ${pts} نقطة ✅`, 'success');
+
+      setSyncStatus('saving');
+      setDoc(doc(db, GAMES_COL, docId), updated).then(() => setSyncStatus('saved')).catch(() => setSyncStatus('offline'));
+    };
+
+    window.requestDeleteGameRecord = function(studentId, dayNum, dateKey) {
+      const s = STUDENTS.find(x => x.id === studentId);
+      openConfirmModal('حذف سجل التحدي', `هل أنت متأكد من حذف تحدي اليوم ${dayNum} للطالب "${s.name}"؟ سيتمكن الطالب من إعادة التحدي إذا أراد.`, () => {
+        const docId = `${studentId}_${dayNum}`;
+        delete games[docId];
+        localStorage.setItem(LS_GAMES, JSON.stringify(games));
+        renderSupervisorDashboard();
+        openDetailsModal(studentId, dateKey);
+        showToast(`تم حذف تحدي اليوم ${dayNum} للطالب ${s.name} بنجاح 🗑️`, 'success');
+
+        setSyncStatus('saving');
+        deleteDoc(doc(db, GAMES_COL, docId)).then(() => setSyncStatus('saved')).catch(() => setSyncStatus('offline'));
+      });
+    };
+
+    window.manualSetGamePoints = function(studentId, dateKey) {
+      const dayEl = document.getElementById(`sup-manual-game-day-${studentId}`);
+      const ptsEl = document.getElementById(`sup-manual-game-pts-${studentId}`);
+      const dayNum = Math.max(1, Math.min(40, parseInt(dayEl?.value, 10) || 1));
+      const pts = Math.max(0, Math.min(20, parseInt(ptsEl?.value, 10) || 0));
+      const docId = `${studentId}_${dayNum}`;
+      const existing = games[docId];
+      const cfg = GAMES_40[dayNum] || { type: 'quiz' };
+
+      const rec = {
+        ...(existing || {}),
+        studentId,
+        dayNum,
+        type: existing?.type || cfg.type || 'quiz',
+        bonusPoints: pts,
+        completedAt: existing?.completedAt || new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      };
+
+      games[docId] = rec;
+      localStorage.setItem(LS_GAMES, JSON.stringify(games));
+      renderSupervisorDashboard();
+      openDetailsModal(studentId, dateKey);
+      showToast(`تم حفظ ${pts} نقطة لتحدي اليوم ${dayNum} ✅`, 'success');
+
+      setSyncStatus('saving');
+      setDoc(doc(db, GAMES_COL, docId), rec).then(() => setSyncStatus('saved')).catch(() => setSyncStatus('offline'));
+    };
+
+    window.requestResetStudentGames = function(studentId, dateKey) {
+      const s = STUDENTS.find(x => x.id === studentId);
+      const gameIds = Object.keys(games).filter(id => games[id]?.studentId === studentId);
+      if (gameIds.length === 0) {
+        showToast(`لا توجد نقاط تحدي مسجلة للطالب "${s.name}".`, 'info');
+        return;
+      }
+      openConfirmModal('تصفير نقاط التحدي فقط', `هل أنت متأكد من حذف جميع نقاط التحدي للطالب "${s.name}"؟ (ستبقى سجلات العبادة اليومية كما هي دون تغيير)`, () => {
+        gameIds.forEach(id => delete games[id]);
+        localStorage.setItem(LS_GAMES, JSON.stringify(games));
+        renderSupervisorDashboard();
+        openDetailsModal(studentId, dateKey);
+        showToast(`تم تصفير جميع نقاط التحدي للطالب ${s.name} بنجاح 🗑️`, 'success');
+
+        setSyncStatus('saving');
+        Promise.all(gameIds.map(id => deleteDoc(doc(db, GAMES_COL, id))))
+          .then(() => setSyncStatus('saved'))
+          .catch(() => setSyncStatus('offline'));
+      });
+    };
+
+    window.exportExcelCSV = function() {
+      const dateKey = document.getElementById('sup-date-input').value || getDateStr(0);
+      const headers = ['الاسم', 'الصفة', 'الطليعة', 'الشيخ', `حالة (${dateKey})`, 'نقاط عبادة اليوم', 'مجموع العبادة', 'بونص ساحة التحدي', 'المجموع الكلي', 'أيام الالتزام', 'السلسلة'];
+      const rows = STUDENTS.map(s => {
+        const g = GROUPS.find(x => x.id === s.groupId);
+        const l = logs[`${s.id}_${dateKey}`];
+        const dayPts = l ? (l.points || computeWorshipPoints(l.data)) : 0;
+        const stats = getStudentStats(s.id);
+        return [s.name, s.isLeader ? 'عريف الطليعة' : 'طالب', g.name, `الشيخ ${g.sheikh}`, dayPts > 0 ? 'عبّى' : 'لم يعبّئ', dayPts, stats.worshipPoints, stats.gamePoints, stats.totalPoints, stats.daysCompleted, stats.streak];
+      });
+      const csv = '\uFEFF' + [headers, ...rows].map(r => r.map(c => `"${String(c).replace(/"/g, '""')}"`).join(',')).join('\n');
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = `متابعة_باص_الأنصار.csv`;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('تم تنزيل ملف الإكسل بنجاح 📥', 'success');
+    };
+
+    // =========================================================
+    // 13. MISBAHA, ARCHIVE, AVATAR, TOAST & CONFETTI
+    // =========================================================
+    window.openMisbaha = (k, title, phrase) => {
+      misbahaKey = k; misbahaCounter = draftData.heart[k] ? 100 : 0;
+      document.getElementById('misbaha-title').textContent = title;
+      document.getElementById('misbaha-phrase').textContent = phrase;
+      updateMisbahaUI();
+      document.getElementById('modal-misbaha').classList.remove('hidden');
+    };
+    window.closeMisbaha = () => document.getElementById('modal-misbaha').classList.add('hidden');
+    window.resetMisbaha = () => { misbahaCounter = 0; updateMisbahaUI(); };
+    window.tapMisbaha = () => {
+      if (misbahaCounter >= 100) return;
+      misbahaCounter++;
+      if (navigator.vibrate) navigator.vibrate(12);
+      updateMisbahaUI();
+      if (misbahaCounter === 100) {
+        draftData.heart[misbahaKey] = true;
+        renderTrackerUI();
+        fireConfetti();
+        showToast('أتممت الـ 100 بنجاح! تقبّل الله منك 🌟', 'success');
+        setTimeout(() => closeMisbaha(), 600);
+      }
+    };
+    function updateMisbahaUI() {
+      document.getElementById('misbaha-count').textContent = misbahaCounter;
+      document.getElementById('misbaha-ring').style.strokeDashoffset = 326.7 - (misbahaCounter / 100) * 326.7;
+    }
+
+    window.openTipsArchive = () => {
+      const curDay = getJourneyDayNum();
+      document.getElementById('archive-list').innerHTML = DAILY_TIPS_40.slice(0, curDay).reverse().map((item, i) => `
+        <div class="p-3.5 rounded-2xl bg-creamBg border border-gray-200">
+          <div class="flex items-center justify-between mb-1">
+            <span class="font-black text-xs text-emeraldDeep">${item.title}</span>
+            <span class="text-[10px] font-bold bg-goldLight text-goldDeep px-2 py-0.5 rounded-full">اليوم ${curDay - i}</span>
+          </div>
+          <p class="text-xs text-gray-700 leading-relaxed mb-2">${item.tip}</p>
+          <p class="text-xs font-bold text-emeraldDeep bg-emeraldLight p-2 rounded-xl">🤲 ${item.dua}</p>
+        </div>`).join('');
+      document.getElementById('modal-archive').classList.remove('hidden');
+    };
+    window.closeTipsArchive = () => document.getElementById('modal-archive').classList.add('hidden');
+
+    window.openAvatarModal = () => {
+      const cur = avatars[currentStudentId] || '🕋';
+      document.getElementById('modal-avatar-grid').innerHTML = AVATARS.map(av => `
+        <button onclick="updateAvatar('${av}')" class="py-3 rounded-2xl text-3xl border-2 transition ${av === cur ? 'border-emeraldDeep bg-emeraldLight' : 'border-gray-100 bg-creamBg'}">${av}</button>
+      `).join('');
+      document.getElementById('modal-avatar').classList.remove('hidden');
+    };
+    window.closeAvatarModal = () => document.getElementById('modal-avatar').classList.add('hidden');
+    window.updateAvatar = (av) => {
+      avatars[currentStudentId] = av;
+      localStorage.setItem(LS_AVATARS, JSON.stringify(avatars));
+      renderHomeTab(); closeAvatarModal();
+      showToast('تم تحديث رمزك الشخصي ✨', 'success');
+    };
+
+    function showToast(msg, type = 'info') {
+      const box = document.getElementById('toast-container');
+      const cls = { success: 'bg-emeraldDeep text-white border-goldWarm', warning: 'bg-amber-500 text-white border-amber-300', error: 'bg-rose-600 text-white border-rose-300', info: 'bg-gray-800 text-white border-gray-600' };
+      const el = document.createElement('div');
+      el.className = `pointer-events-auto px-4 py-3 rounded-2xl shadow-lg border text-xs sm:text-sm font-extrabold text-center animate-pop ${cls[type] || cls.info}`;
+      el.textContent = msg;
+      box.appendChild(el);
+      setTimeout(() => { el.style.opacity = '0'; el.style.transition = 'opacity 0.3s'; setTimeout(() => el.remove(), 300); }, 2800);
+    }
+
+    function fireConfetti() {
+      const canvas = document.getElementById('confetti-canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+      const colors = ['#065f46', '#f59e0b', '#047857', '#d97706', '#10b981'];
+      const pieces = Array.from({ length: 70 }, () => ({ x: Math.random() * canvas.width, y: -20 - Math.random() * 100, r: 4 + Math.random() * 6, vy: 2.5 + Math.random() * 4, color: colors[Math.floor(Math.random() * colors.length)], a: Math.random() * 6.28 }));
+      let f = 0;
+      (function loop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        pieces.forEach(p => { p.y += p.vy; p.a += 0.12; p.x += Math.sin(p.a) * 1.5; ctx.fillStyle = p.color; ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.28); ctx.fill(); });
+        if (++f < 95) requestAnimationFrame(loop); else ctx.clearRect(0, 0, canvas.width, canvas.height);
+      })();
+    }
+
+    function populateDropdowns() {
+      const opts = '<option value="all">جميع الطلائع (26 طالباً)</option>' + GROUPS.map(g => `<option value="${g.id}">${g.name} (الشيخ ${g.sheikh})</option>`).join('');
+      document.getElementById('lb-group-filter').innerHTML = opts;
+      document.getElementById('sup-group-filter').innerHTML = opts;
+    }
+
+    // BOOTSTRAP
+    window.addEventListener('DOMContentLoaded', () => {
+      populateDropdowns();
+      renderLoginGroups();
+      renderHeaderDates();
+      renderDailyTip();
+      startCountdown();
+      initRealtimeSync();
+      if (currentStudentId) enterStudentApp(); else showLoginScreen();
+    });
+  </script>
+</body>
+</html>
