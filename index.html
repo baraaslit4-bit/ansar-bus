@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>باص الأنصار — رحلة الـ 40 يوماً إلى الحرم</title>
+  <title>باص الأنصار — شهر إلى الحرم</title>
 
   <!-- Google Font: Cairo -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -78,12 +78,12 @@
         <div class="min-w-0">
           <div class="flex items-center gap-2">
             <h1 class="font-black text-sm sm:text-base leading-tight text-white truncate">باص الأنصار</h1>
-            <span id="sync-pill" class="inline-flex items-center gap-1 text-[10px] font-bold bg-white/10 px-2 py-0.5 rounded-full border border-white/15 shrink-0">
+            <button type="button" onclick="showSyncDetails()" id="sync-pill" class="inline-flex items-center gap-1 text-[10px] font-bold bg-white/10 px-2 py-0.5 rounded-full border border-white/15 shrink-0">
               <span id="sync-dot" class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
               <span id="sync-text">جاري المزامنة</span>
-            </span>
+            </button>
           </div>
-          <p class="text-[11px] text-amber-100 font-semibold truncate">رحلة الـ 40 يوماً إلى الحرم</p>
+          <p class="text-[11px] text-amber-100 font-semibold truncate">شهر إلى الحرم (28 نوفمبر — 31 ديسمبر)</p>
         </div>
       </div>
 
@@ -107,9 +107,9 @@
     <div class="islamic-hero rounded-3xl p-6 text-white text-center shadow-lg border border-goldWarm/35 mb-6">
       <div class="inline-flex items-center gap-1.5 bg-white/15 border border-goldWarm/40 px-3.5 py-1 rounded-full text-xs font-bold text-amber-100 mb-3">
         <span>🚌</span>
-        <span>من 22 نوفمبر حتى 31 ديسمبر 2026</span>
+        <span>من 28 نوفمبر حتى 31 ديسمبر 2026</span>
       </div>
-      <h2 class="text-xl sm:text-2xl font-black mb-2">باص الأنصار — رحلة الـ 40 يوماً إلى الحرم</h2>
+      <h2 class="text-xl sm:text-2xl font-black mb-2">باص الأنصار — شهر إلى الحرم</h2>
       <p class="text-xs sm:text-sm text-emerald-100 leading-relaxed max-w-md mx-auto">
         أهلاً بك يا بطل! اختر طليعتك ثم اسمك لتبدأ تسجيل عباداتك اليومية وتفتح تحديات العمرة الممتعة.
       </p>
@@ -158,12 +158,11 @@
 
     <!-- ==================== TAB 1: الرئيسية ==================== -->
     <section id="tab-home" class="space-y-4">
-      <!-- Date & Countdown Card (Hijri + Gregorian + Live Umrah Countdown) -->
       <div class="islamic-hero rounded-3xl p-5 text-white shadow-lg border border-goldWarm/40 space-y-4">
         <!-- Student Profile Row -->
         <div class="flex items-center justify-between gap-3">
           <div class="flex items-center gap-3 min-w-0">
-            <button onclick="openAvatarModal()" title="تغيير الرمز" class="w-13 h-13 w-12 h-12 rounded-2xl bg-white/15 border-2 border-goldWarm flex items-center justify-center text-2xl shadow-md hover:scale-105 transition shrink-0">
+            <button onclick="openAvatarModal()" title="تغيير الرمز" class="w-12 h-12 rounded-2xl bg-white/15 border-2 border-goldWarm flex items-center justify-center text-2xl shadow-md hover:scale-105 transition shrink-0">
               <span id="hero-avatar">🕋</span>
             </button>
             <div class="min-w-0">
@@ -203,7 +202,7 @@
           <span id="live-countdown" class="font-black text-goldWarm tracking-wide">--</span>
         </div>
 
-        <!-- Student Stats (Total Points, Streak, Rank) -->
+        <!-- Student Stats -->
         <div class="grid grid-cols-3 gap-2">
           <div class="bg-white/10 rounded-2xl p-2.5 text-center border border-white/15">
             <div class="text-[10px] text-emerald-100 font-semibold">مجموع النقاط</div>
@@ -218,12 +217,12 @@
           <div class="bg-white/10 rounded-2xl p-2.5 text-center border border-white/15">
             <div class="text-[10px] text-emerald-100 font-semibold">ترتيبك</div>
             <div id="stat-rank" class="text-xl font-black text-white mt-0.5">#--</div>
-            <div class="text-[9px] text-emerald-200 font-bold">بين 26 طالباً</div>
+            <div id="stat-rank-total" class="text-[9px] text-emerald-200 font-bold">بين 27 طالباً</div>
           </div>
         </div>
       </div>
 
-      <!-- Quick Game Status Banner (Locked / Unlocked) -->
+      <!-- Quick Game Status Banner -->
       <div id="home-game-banner" class="rounded-2xl p-4 shadow-sm border flex items-center justify-between gap-3">
         <div class="flex items-center gap-3">
           <div id="home-game-icon" class="w-11 h-11 rounded-2xl flex items-center justify-center text-2xl shrink-0">🔒</div>
@@ -237,15 +236,15 @@
         </button>
       </div>
 
-      <!-- 40-Day Visual Journey Map (Bus Al-Ansar -> Kaaba) -->
+      <!-- Visual Journey Map (34 Days - شهر إلى الحرم) -->
       <div class="bg-white rounded-3xl p-5 shadow-sm border border-gray-100">
         <div class="flex items-center justify-between mb-3 gap-2">
           <h3 class="font-black text-emeraldDeep text-sm sm:text-base flex items-center gap-2">
             <span>🗺️</span>
-            <span>خريطة رحلة باص الأنصار</span>
+            <span>خريطة شهر إلى الحرم</span>
           </h3>
           <span id="map-days-badge" class="text-xs font-extrabold bg-emeraldLight text-emeraldDeep px-2.5 py-1 rounded-full">
-            0 / 40 يوم التزام
+            0 / 34 يوم التزام
           </span>
         </div>
 
@@ -265,22 +264,22 @@
           <div id="stage-box-1" class="rounded-2xl p-2.5 border text-center transition">
             <div class="text-lg">🚩</div>
             <div class="text-xs font-extrabold mt-0.5">محطة الانطلاق</div>
-            <div class="text-[10px] text-gray-500">أيام 1 - 10</div>
+            <div class="text-[10px] text-gray-500">أيام 1 - 8</div>
           </div>
           <div id="stage-box-2" class="rounded-2xl p-2.5 border text-center transition">
             <div class="text-lg">⛰️</div>
             <div class="text-xs font-extrabold mt-0.5">محطة الثبات</div>
-            <div class="text-[10px] text-gray-500">أيام 11 - 20</div>
+            <div class="text-[10px] text-gray-500">أيام 9 - 17</div>
           </div>
           <div id="stage-box-3" class="rounded-2xl p-2.5 border text-center transition">
             <div class="text-lg">🎒</div>
             <div class="text-xs font-extrabold mt-0.5">محطة الزاد</div>
-            <div class="text-[10px] text-gray-500">أيام 21 - 30</div>
+            <div class="text-[10px] text-gray-500">أيام 18 - 26</div>
           </div>
           <div id="stage-box-4" class="rounded-2xl p-2.5 border text-center transition">
             <div class="text-lg">🕌</div>
             <div class="text-xs font-extrabold mt-0.5">محطة الشوق</div>
-            <div class="text-[10px] text-gray-500">أيام 31 - 40</div>
+            <div class="text-[10px] text-gray-500">أيام 27 - 34</div>
           </div>
         </div>
       </div>
@@ -292,7 +291,7 @@
             <span class="w-9 h-9 rounded-xl bg-goldWarm/20 text-xl flex items-center justify-center shrink-0">💡</span>
             <div>
               <h3 class="font-black text-emeraldDeep text-sm">معلومة ودعاء اليوم</h3>
-              <p id="daily-tip-day-badge" class="text-[11px] text-goldDeep font-bold">اليوم 1 من 40</p>
+              <p id="daily-tip-day-badge" class="text-[11px] text-goldDeep font-bold">اليوم 1 من 34</p>
             </div>
           </div>
           <button onclick="openTipsArchive()" class="text-xs font-extrabold text-emeraldDeep bg-white border border-goldWarm/50 px-3 py-1.5 rounded-xl hover:bg-goldLight transition active:scale-95 shrink-0">
@@ -332,7 +331,7 @@
             <div class="text-sm font-black text-emeraldDeep flex items-center gap-1 justify-end">
               <span>نقاط اليوم:</span>
               <span id="tracker-live-points" class="text-lg text-goldDeep">0</span>
-              <span class="text-xs text-gray-400">/ 135</span>
+              <span id="tracker-max-points" class="text-xs text-gray-400">/ 137</span>
             </div>
           </div>
         </div>
@@ -350,31 +349,34 @@
             <span class="w-8 h-8 rounded-xl bg-emeraldLight flex items-center justify-center text-lg">🕌</span>
             <span>1. الفرائض (الأساس)</span>
           </h3>
-          <span class="text-[11px] font-bold text-gray-500">حتى 50 نقطة</span>
+          <span id="sec1-max-label" class="text-[11px] font-bold text-gray-500">حتى 50 نقطة</span>
         </div>
         <div id="prayers-container" class="space-y-3"></div>
       </div>
 
-      <!-- Section 2: السنن والنوافل -->
+      <!-- Section 2: السنن والنوافل (12 ركعة = 6 صلوات × ركعتين) -->
       <div class="bg-white rounded-3xl p-4 sm:p-5 shadow-sm border border-gray-100">
         <div class="flex items-center justify-between mb-3.5">
           <h3 class="font-black text-emeraldDeep text-base flex items-center gap-2">
             <span class="w-8 h-8 rounded-xl bg-goldLight flex items-center justify-center text-lg">✨</span>
             <span>2. السنن والنوافل</span>
           </h3>
-          <span class="text-[11px] font-bold text-gray-500">حتى 45 نقطة</span>
+          <span id="sec2-max-label" class="text-[11px] font-bold text-gray-500">حتى 47 نقطة</span>
         </div>
 
         <div class="space-y-3">
+          <!-- Detailed 6 Rawatib Prayers (12 Rak'at) -->
           <div class="p-3.5 rounded-2xl bg-creamBg border border-gray-100">
-            <div class="flex items-center justify-between mb-2.5">
-              <span class="font-extrabold text-sm text-gray-800">السنن الرواتب</span>
-              <span class="text-[11px] font-bold text-emeraldDeep">10 أو 5 نقاط</span>
+            <div class="flex items-center justify-between gap-2 mb-2.5 flex-wrap">
+              <div>
+                <span class="font-extrabold text-sm text-gray-800">السنن الرواتب (12 ركعة — 6 صلوات)</span>
+                <div class="text-[10px] text-gray-500 font-bold">كل ركعتين بصلاة مستقلة (<span id="rawatib-per-pts">2</span> نقطة لكل صلاة)</div>
+              </div>
+              <button type="button" onclick="toggleAllRawatib()" id="btn-rawatib-all" class="text-[11px] font-extrabold bg-emeraldLight text-emeraldDeep border border-emeraldDeep/20 px-2.5 py-1 rounded-xl active:scale-95">
+                تحديد الكل ✓
+              </button>
             </div>
-            <div class="grid grid-cols-2 gap-2">
-              <button type="button" id="btn-rawatib-full" onclick="setRawatib('full')" class="py-3 px-3 rounded-xl text-xs font-extrabold border transition active:scale-95">كاملة (10 نقاط)</button>
-              <button type="button" id="btn-rawatib-partial" onclick="setRawatib('partial')" class="py-3 px-3 rounded-xl text-xs font-extrabold border transition active:scale-95">جزء منها (5 نقاط)</button>
-            </div>
+            <div id="rawatib-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2"></div>
           </div>
 
           <button type="button" id="toggle-duha" onclick="toggleSunnah('duha')" class="w-full p-4 rounded-2xl border flex items-center justify-between transition active:scale-[0.99]">
@@ -385,7 +387,7 @@
                 <div class="text-[11px] text-gray-500">ركعتان فأكثر بعد شروق الشمس</div>
               </div>
             </div>
-            <span class="pts-pill text-xs font-black px-3 py-1.5 rounded-xl">+10 نقاط</span>
+            <span id="pts-label-duha" class="pts-pill text-xs font-black px-3 py-1.5 rounded-xl">+10 نقاط</span>
           </button>
 
           <button type="button" id="toggle-witr" onclick="toggleSunnah('witr')" class="w-full p-4 rounded-2xl border flex items-center justify-between transition active:scale-[0.99]">
@@ -396,7 +398,7 @@
                 <div class="text-[11px] text-gray-500">ختام صلاة الليل ولو بركعة</div>
               </div>
             </div>
-            <span class="pts-pill text-xs font-black px-3 py-1.5 rounded-xl">+10 نقاط</span>
+            <span id="pts-label-witr" class="pts-pill text-xs font-black px-3 py-1.5 rounded-xl">+10 نقاط</span>
           </button>
 
           <button type="button" id="toggle-qiyam" onclick="toggleSunnah('qiyam')" class="w-full p-4 rounded-2xl border flex items-center justify-between transition active:scale-[0.99]">
@@ -410,7 +412,7 @@
                 <div class="text-[11px] text-gray-500">ولو ركعتين قبل النوم</div>
               </div>
             </div>
-            <span class="pts-pill text-xs font-black px-3 py-1.5 rounded-xl">+15 نقطة</span>
+            <span id="pts-label-qiyam" class="pts-pill text-xs font-black px-3 py-1.5 rounded-xl">+15 نقطة</span>
           </button>
         </div>
       </div>
@@ -422,29 +424,33 @@
             <span class="w-8 h-8 rounded-xl bg-emeraldLight flex items-center justify-center text-lg">💚</span>
             <span>3. زاد القلب</span>
           </h3>
-          <span class="text-[11px] font-bold text-gray-500">حتى 40 نقطة</span>
+          <span id="sec3-max-label" class="text-[11px] font-bold text-gray-500">حتى 40 نقطة</span>
         </div>
 
         <div class="space-y-3">
-          <button type="button" id="toggle-quran" onclick="toggleHeart('quran')" class="w-full p-4 rounded-2xl border flex items-center justify-between transition active:scale-[0.99]">
-            <div class="flex items-center gap-3 text-right">
-              <span class="text-2xl">📖</span>
-              <div>
-                <div class="font-extrabold text-sm">ورد القرآن</div>
-                <div class="text-[11px] text-gray-500">قراءة وردك اليومي بتدبر</div>
+          <!-- Quran 5 Pages Selector -->
+          <div class="p-3.5 rounded-2xl bg-creamBg border border-gray-100">
+            <div class="flex items-center justify-between mb-2.5 gap-2">
+              <div class="flex items-center gap-2.5">
+                <span class="text-2xl">📖</span>
+                <div>
+                  <div class="font-extrabold text-sm text-gray-800">ورد القرآن (5 صفحات يومياً)</div>
+                  <div class="text-[11px] text-gray-500">اختر عدد الصفحات التي قرأتها اليوم (<span id="quran-per-page-label">2</span> نقطة/صفحة)</div>
+                </div>
               </div>
+              <span id="quran-pts-badge" class="text-xs font-black text-emeraldDeep bg-white border border-gray-200 px-2.5 py-1 rounded-xl shrink-0">0 نقطة</span>
             </div>
-            <span class="pts-pill text-xs font-black px-3 py-1.5 rounded-xl">+10 نقاط</span>
-          </button>
+            <div id="quran-pages-row" class="grid grid-cols-5 gap-1.5"></div>
+          </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
             <button type="button" id="toggle-morningAdhkar" onclick="toggleHeart('morningAdhkar')" class="w-full p-4 rounded-2xl border flex items-center justify-between transition active:scale-[0.99]">
               <div class="flex items-center gap-2.5 text-right"><span class="text-xl">🌅</span><span class="font-extrabold text-sm">أذكار الصباح</span></div>
-              <span class="pts-pill text-xs font-black px-2.5 py-1 rounded-xl">+5</span>
+              <span id="pts-label-morningAdhkar" class="pts-pill text-xs font-black px-2.5 py-1 rounded-xl">+5</span>
             </button>
             <button type="button" id="toggle-eveningAdhkar" onclick="toggleHeart('eveningAdhkar')" class="w-full p-4 rounded-2xl border flex items-center justify-between transition active:scale-[0.99]">
               <div class="flex items-center gap-2.5 text-right"><span class="text-xl">🌇</span><span class="font-extrabold text-sm">أذكار المساء</span></div>
-              <span class="pts-pill text-xs font-black px-2.5 py-1 rounded-xl">+5</span>
+              <span id="pts-label-eveningAdhkar" class="pts-pill text-xs font-black px-2.5 py-1 rounded-xl">+5</span>
             </button>
           </div>
 
@@ -456,14 +462,14 @@
                 <div class="text-[11px] text-gray-500">الدعاء لنفسك ولوالديك وللمسلمين</div>
               </div>
             </div>
-            <span class="pts-pill text-xs font-black px-3 py-1.5 rounded-xl">+5 نقاط</span>
+            <span id="pts-label-dua" class="pts-pill text-xs font-black px-3 py-1.5 rounded-xl">+5 نقاط</span>
           </button>
 
           <div class="pt-2">
             <div class="text-xs font-black text-emeraldDeep mb-2.5">📿 الذكر اليومي (اضغط "تم" أو استخدم المسبحة الإلكترونية):</div>
             <div class="space-y-2.5">
               <div id="dhikr-row-tasbih100" class="p-3.5 rounded-2xl border flex items-center justify-between gap-2 transition">
-                <div class="flex items-center gap-2.5"><span class="text-xl">✨</span><div><div class="font-extrabold text-sm">100 تسبيحة</div><div class="text-[11px] text-gray-500">سبحان الله وبحمده (+5 نقاط)</div></div></div>
+                <div class="flex items-center gap-2.5"><span class="text-xl">✨</span><div><div class="font-extrabold text-sm">100 تسبيحة</div><div class="text-[11px] text-gray-500">سبحان الله وبحمده (<span id="pts-label-tasbih100">+5</span> نقاط)</div></div></div>
                 <div class="flex items-center gap-1.5 shrink-0">
                   <button type="button" onclick="openMisbaha('tasbih100', '100 تسبيحة', 'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ')" class="bg-goldLight text-goldDeep border border-goldWarm/40 text-xs font-extrabold px-3 py-2.5 rounded-xl active:scale-95">📿 مسبحة</button>
                   <button type="button" id="dhikr-btn-tasbih100" onclick="toggleHeart('tasbih100')" class="text-xs font-extrabold px-3.5 py-2.5 rounded-xl border active:scale-95">تم</button>
@@ -471,7 +477,7 @@
               </div>
 
               <div id="dhikr-row-salawat100" class="p-3.5 rounded-2xl border flex items-center justify-between gap-2 transition">
-                <div class="flex items-center gap-2.5"><span class="text-xl">💚</span><div><div class="font-extrabold text-sm">100 صلاة على النبي ﷺ</div><div class="text-[11px] text-gray-500">اللهم صلّ على محمد (+5 نقاط)</div></div></div>
+                <div class="flex items-center gap-2.5"><span class="text-xl">💚</span><div><div class="font-extrabold text-sm">100 صلاة على النبي ﷺ</div><div class="text-[11px] text-gray-500">اللهم صلّ على محمد (<span id="pts-label-salawat100">+5</span> نقاط)</div></div></div>
                 <div class="flex items-center gap-1.5 shrink-0">
                   <button type="button" onclick="openMisbaha('salawat100', '100 صلاة على النبي ﷺ', 'اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى نَبِيِّنَا مُحَمَّدٍ ﷺ')" class="bg-goldLight text-goldDeep border border-goldWarm/40 text-xs font-extrabold px-3 py-2.5 rounded-xl active:scale-95">📿 مسبحة</button>
                   <button type="button" id="dhikr-btn-salawat100" onclick="toggleHeart('salawat100')" class="text-xs font-extrabold px-3.5 py-2.5 rounded-xl border active:scale-95">تم</button>
@@ -479,7 +485,7 @@
               </div>
 
               <div id="dhikr-row-istighfar100" class="p-3.5 rounded-2xl border flex items-center justify-between gap-2 transition">
-                <div class="flex items-center gap-2.5"><span class="text-xl">🌿</span><div><div class="font-extrabold text-sm">100 استغفار</div><div class="text-[11px] text-gray-500">أستغفر الله العظيم (+5 نقاط)</div></div></div>
+                <div class="flex items-center gap-2.5"><span class="text-xl">🌿</span><div><div class="font-extrabold text-sm">100 استغفار</div><div class="text-[11px] text-gray-500">أستغفر الله العظيم (<span id="pts-label-istighfar100">+5</span> نقاط)</div></div></div>
                 <div class="flex items-center gap-1.5 shrink-0">
                   <button type="button" onclick="openMisbaha('istighfar100', '100 استغفار', 'أَسْتَغْفِرُ اللَّهَ الْعَظِيمَ وَأَتُوبُ إِلَيْهِ')" class="bg-goldLight text-goldDeep border border-goldWarm/40 text-xs font-extrabold px-3 py-2.5 rounded-xl active:scale-95">📿 مسبحة</button>
                   <button type="button" id="dhikr-btn-istighfar100" onclick="toggleHeart('istighfar100')" class="text-xs font-extrabold px-3.5 py-2.5 rounded-xl border active:scale-95">تم</button>
@@ -488,6 +494,18 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <!-- Section 4: Custom Tasks Added by Supervisor (Hidden if none active) -->
+      <div id="custom-tasks-section" class="hidden bg-white rounded-3xl p-4 sm:p-5 shadow-sm border border-goldWarm/40">
+        <div class="flex items-center justify-between mb-3.5">
+          <h3 class="font-black text-emeraldDeep text-base flex items-center gap-2">
+            <span class="w-8 h-8 rounded-xl bg-goldLight flex items-center justify-center text-lg">⭐</span>
+            <span>4. مهام إضافية من المشرف</span>
+          </h3>
+          <span id="sec4-max-label" class="text-[11px] font-bold text-goldDeep">بونص</span>
+        </div>
+        <div id="custom-tasks-tracker-list" class="space-y-2.5"></div>
       </div>
 
       <!-- Oath & Save -->
@@ -506,9 +524,8 @@
       </div>
     </section>
 
-    <!-- ==================== TAB 3: ساحة التحدي (40-DAY GAME) ==================== -->
+    <!-- ==================== TAB 3: ساحة التحدي ==================== -->
     <section id="tab-games" class="hidden space-y-4">
-      <!-- Locked Screen -->
       <div id="game-locked-box" class="hidden bg-white rounded-3xl p-7 text-center shadow-sm border-2 border-amber-200 animate-pop">
         <div class="w-20 h-20 rounded-3xl bg-amber-100 text-4xl flex items-center justify-center mx-auto mb-4">🔒</div>
         <h3 class="text-xl font-black text-emeraldDeep mb-2">ساحة التحدي مقفلة حالياً!</h3>
@@ -520,21 +537,17 @@
         </button>
       </div>
 
-      <!-- Unlocked Hub -->
       <div id="game-unlocked-box" class="hidden space-y-4">
-        <!-- Today's Challenge Header Card -->
         <div class="islamic-hero rounded-3xl p-5 text-white shadow-lg border border-goldWarm/40">
           <div class="flex items-center justify-between gap-2 mb-2">
             <span id="game-day-pill" class="bg-goldWarm text-emeraldDeep text-xs font-black px-3 py-1 rounded-full">تحدي اليوم 1</span>
-            <span id="game-type-pill" class="bg-white/15 text-amber-100 text-xs font-bold px-3 py-1 rounded-full border border-white/20">تحدي الأربعين</span>
+            <span id="game-type-pill" class="bg-white/15 text-amber-100 text-xs font-bold px-3 py-1 rounded-full border border-white/20">تحدي الشهر</span>
           </div>
           <h3 id="game-topic-title" class="text-lg sm:text-xl font-black mb-1">موضوع اليوم</h3>
           <p id="game-topic-desc" class="text-xs text-emerald-100 mb-4 leading-relaxed"></p>
-
           <div id="game-hub-action-area"></div>
         </div>
 
-        <!-- Active Quiz Container -->
         <div id="quiz-arena" class="hidden bg-white rounded-3xl p-5 shadow-sm border border-gray-100 animate-pop">
           <div class="flex items-center justify-between mb-3">
             <span id="quiz-progress-text" class="text-xs font-black text-emeraldDeep bg-emeraldLight px-3 py-1 rounded-full">السؤال 1 من 3</span>
@@ -544,15 +557,11 @@
               <span class="text-xs">ث</span>
             </div>
           </div>
-
           <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden mb-4">
             <div id="quiz-timer-bar" class="h-full bg-goldWarm transition-all duration-1000 linear" style="width: 100%;"></div>
           </div>
-
           <h4 id="quiz-question-text" class="text-base sm:text-lg font-black text-gray-800 leading-relaxed mb-4"></h4>
           <div id="quiz-options-list" class="space-y-2.5"></div>
-
-          <!-- Immediate 1-line educational explanation -->
           <div id="quiz-explanation-box" class="hidden mt-4 p-3.5 rounded-2xl border text-xs sm:text-sm font-bold leading-relaxed animate-pop">
             <div id="quiz-exp-status" class="font-black mb-1"></div>
             <div id="quiz-exp-text" class="text-gray-700"></div>
@@ -562,7 +571,6 @@
           </div>
         </div>
 
-        <!-- Active Matching Game Container (Every 5th Day) -->
         <div id="match-arena" class="hidden bg-white rounded-3xl p-5 shadow-sm border border-gray-100 animate-pop">
           <div class="flex items-center justify-between gap-2 mb-3 flex-wrap">
             <div>
@@ -574,7 +582,6 @@
               <span class="bg-creamBg border border-gray-200 px-2.5 py-1 rounded-xl text-goldDeep">🔄 <span id="match-moves">0</span> محاولة</span>
             </div>
           </div>
-
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
             <div>
               <div class="text-xs font-extrabold text-emeraldDeep mb-2 text-center bg-emeraldLight py-1 rounded-xl">المصطلح / المعلم</div>
@@ -587,7 +594,6 @@
           </div>
         </div>
 
-        <!-- Game Result Box -->
         <div id="game-result-box" class="hidden bg-white rounded-3xl p-6 text-center shadow-sm border-2 border-goldWarm animate-pop">
           <div class="text-5xl mb-2">🏆</div>
           <h4 id="game-result-title" class="text-xl font-black text-emeraldDeep mb-1">أحسنت يا بطل!</h4>
@@ -603,7 +609,6 @@
           </div>
         </div>
 
-        <!-- Practice Past Unlocked Days -->
         <div class="bg-white rounded-3xl p-4 sm:p-5 shadow-sm border border-gray-100">
           <div class="flex items-center justify-between mb-3">
             <h4 class="font-black text-emeraldDeep text-sm">📚 تحديات الأيام السابقة (للتدريب والمراجعة)</h4>
@@ -635,7 +640,7 @@
             <span>فرسان باص الأنصار</span>
           </h3>
           <select id="lb-group-filter" onchange="renderLeaderboard()" class="text-xs font-bold bg-creamBg border border-gray-200 rounded-xl px-3 py-2 text-emeraldDeep focus:outline-none">
-            <option value="all">جميع الطلائع (26 طالباً)</option>
+            <option value="all">جميع الطلائع</option>
           </select>
         </div>
         <div id="students-rank-container" class="space-y-2"></div>
@@ -643,7 +648,7 @@
     </section>
   </main>
 
-  <!-- Fixed Bottom Mobile Nav (4 Tabs) -->
+  <!-- Fixed Bottom Mobile Nav -->
   <nav id="bottom-nav" class="hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-[0_-4px_20px_rgba(0,0,0,0.06)]">
     <div class="max-w-2xl mx-auto grid grid-cols-4 p-1.5 gap-1">
       <button id="nav-home" onclick="switchTab('home')" class="flex flex-col items-center justify-center py-2 rounded-2xl transition">
@@ -674,15 +679,15 @@
       <div>
         <div class="inline-flex items-center gap-1.5 bg-goldWarm/20 text-amber-100 text-xs font-bold px-2.5 py-0.5 rounded-full mb-1">
           <span>🚌</span>
-          <span>باص الأنصار • لوحة المشرفين</span>
+          <span>باص الأنصار — شهر إلى الحرم</span>
         </div>
         <h2 class="text-xl font-black">لوحة تحكم المشرفين والمشايخ</h2>
-        <p class="text-xs text-emerald-100 mt-0.5">متابعة العبادة + نقاط ساحة التحدي + حذف السجلات التجريبية + تصدير إكسل</p>
+        <p class="text-xs text-emerald-100 mt-0.5">متابعة العبادة + إدارة الطلاب والمجموعات + إضافة المهام + تعديل النقاط</p>
       </div>
       <div class="flex items-center gap-2 flex-wrap">
         <button onclick="exportExcelCSV()" class="bg-goldWarm hover:bg-amber-500 text-emeraldDeep font-black text-xs px-4 py-2.5 rounded-xl shadow transition active:scale-95 flex items-center gap-1.5">
           <span>📥</span>
-          <span>تصدير إلى إكسل (CSV)</span>
+          <span>تصدير إكسل</span>
         </button>
         <button onclick="exitSupervisorView()" class="bg-white/15 hover:bg-white/25 text-white font-bold text-xs px-4 py-2.5 rounded-xl border border-white/20 transition active:scale-95">
           العودة للتطبيق
@@ -690,73 +695,164 @@
       </div>
     </div>
 
-    <!-- Filters Bar -->
-    <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 grid grid-cols-1 sm:grid-cols-3 gap-3">
-      <div class="flex flex-col gap-1">
-        <label class="text-xs font-extrabold text-gray-600">تاريخ المتابعة:</label>
-        <input type="date" id="sup-date-input" onchange="renderSupervisorDashboard()" class="text-xs font-bold bg-creamBg border border-gray-200 rounded-xl px-3 py-2.5 text-emeraldDeep focus:outline-none" />
+    <!-- Supervisor Sub-Navigation Icons -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+      <button id="sup-nav-tracking" onclick="switchSupTab('tracking')" class="p-3 rounded-2xl border-2 font-black text-xs flex items-center justify-center gap-2 transition active:scale-95">
+        <span class="text-lg">📊</span>
+        <span>المتابعة اليومية</span>
+      </button>
+      <button id="sup-nav-students" onclick="switchSupTab('students')" class="p-3 rounded-2xl border-2 font-black text-xs flex items-center justify-center gap-2 transition active:scale-95">
+        <span class="text-lg">👥</span>
+        <span>إدارة الطلاب</span>
+      </button>
+      <button id="sup-nav-tasks" onclick="switchSupTab('tasks')" class="p-3 rounded-2xl border-2 font-black text-xs flex items-center justify-center gap-2 transition active:scale-95">
+        <span class="text-lg">➕</span>
+        <span>إضافة مهام</span>
+      </button>
+      <button id="sup-nav-points" onclick="switchSupTab('points')" class="p-3 rounded-2xl border-2 font-black text-xs flex items-center justify-center gap-2 transition active:scale-95">
+        <span class="text-lg">⚖️</span>
+        <span>تعديل النقاط</span>
+      </button>
+    </div>
+
+    <!-- SUP TAB 1: DAILY TRACKING -->
+    <div id="sup-panel-tracking" class="space-y-4">
+      <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div class="flex flex-col gap-1">
+          <label class="text-xs font-extrabold text-gray-600">تاريخ المتابعة:</label>
+          <input type="date" id="sup-date-input" onchange="renderSupervisorDashboard()" class="text-xs font-bold bg-creamBg border border-gray-200 rounded-xl px-3 py-2.5 text-emeraldDeep focus:outline-none" />
+        </div>
+        <div class="flex flex-col gap-1">
+          <label class="text-xs font-extrabold text-gray-600">تصفية حسب الطليعة:</label>
+          <select id="sup-group-filter" onchange="renderSupervisorDashboard()" class="text-xs font-bold bg-creamBg border border-gray-200 rounded-xl px-3 py-2.5 text-emeraldDeep focus:outline-none">
+            <option value="all">الكل (جميع الطلائع)</option>
+          </select>
+        </div>
+        <div class="flex flex-col gap-1">
+          <label class="text-xs font-extrabold text-gray-600">حالة التعبئة:</label>
+          <select id="sup-status-filter" onchange="renderSupervisorDashboard()" class="text-xs font-bold bg-creamBg border border-gray-200 rounded-xl px-3 py-2.5 text-emeraldDeep focus:outline-none">
+            <option value="all">الكل</option>
+            <option value="submitted">عبّى اليوم ✅</option>
+            <option value="missing">لم يعبّئ اليوم ❌</option>
+          </select>
+        </div>
       </div>
-      <div class="flex flex-col gap-1">
-        <label class="text-xs font-extrabold text-gray-600">تصفية حسب الطليعة:</label>
-        <select id="sup-group-filter" onchange="renderSupervisorDashboard()" class="text-xs font-bold bg-creamBg border border-gray-200 rounded-xl px-3 py-2.5 text-emeraldDeep focus:outline-none">
-          <option value="all">الكل (جميع الطلائع)</option>
-        </select>
+
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+          <div class="text-xs font-bold text-gray-500">عبّأوا في هذا التاريخ</div>
+          <div id="kpi-submitted" class="text-2xl font-black text-emeraldDeep mt-1">0 / 27</div>
+          <div id="kpi-submitted-pct" class="text-[11px] font-bold text-emeraldMid mt-0.5">0% التزام</div>
+        </div>
+        <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+          <div class="text-xs font-bold text-gray-500">الفجر بالمسجد اليوم</div>
+          <div id="kpi-fajr" class="text-2xl font-black text-goldDeep mt-1">0</div>
+          <div id="kpi-fajr-pct" class="text-[11px] font-bold text-gray-500 mt-0.5">0% من الطلاب</div>
+        </div>
+        <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+          <div class="text-xs font-bold text-gray-500">أتموا تحدي اليوم</div>
+          <div id="kpi-games-today" class="text-2xl font-black text-emeraldDeep mt-1">0</div>
+          <div class="text-[11px] font-bold text-gray-500 mt-0.5">في ساحة التحدي</div>
+        </div>
+        <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+          <div class="text-xs font-bold text-gray-500">أعلى طليعة (بالمعدل)</div>
+          <div id="kpi-top-group" class="text-sm font-black text-emeraldDeep mt-1.5 leading-snug">--</div>
+          <div id="kpi-top-group-avg" class="text-[11px] font-bold text-goldDeep mt-0.5">متوسط 0 نقطة</div>
+        </div>
       </div>
-      <div class="flex flex-col gap-1">
-        <label class="text-xs font-extrabold text-gray-600">حالة التعبئة:</label>
-        <select id="sup-status-filter" onchange="renderSupervisorDashboard()" class="text-xs font-bold bg-creamBg border border-gray-200 rounded-xl px-3 py-2.5 text-emeraldDeep focus:outline-none">
-          <option value="all">الكل</option>
-          <option value="submitted">عبّى اليوم ✅</option>
-          <option value="missing">لم يعبّئ اليوم ❌</option>
-        </select>
+
+      <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+        <div class="p-4 border-b border-gray-100 flex items-center justify-between flex-wrap gap-2">
+          <h3 class="font-black text-emeraldDeep text-sm">جدول متابعة الطلاب التفصيلي</h3>
+          <span id="sup-count-badge" class="text-xs font-bold bg-emeraldLight text-emeraldDeep px-2.5 py-1 rounded-full">27 طالباً</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-right border-collapse">
+            <thead>
+              <tr class="bg-creamBg text-gray-600 text-xs font-extrabold border-b border-gray-100">
+                <th class="py-3 px-4">الطالب</th>
+                <th class="py-3 px-3">الطليعة</th>
+                <th class="py-3 px-3 text-center">الحالة</th>
+                <th class="py-3 px-3 text-center">عبادة اليوم</th>
+                <th class="py-3 px-3 text-center">بونص التحدي</th>
+                <th class="py-3 px-3 text-center">المجموع الكلي</th>
+                <th class="py-3 px-3 text-center">إجراءات</th>
+              </tr>
+            </thead>
+            <tbody id="sup-table-body" class="divide-y divide-gray-100 text-xs sm:text-sm"></tbody>
+          </table>
+        </div>
       </div>
     </div>
 
-    <!-- KPI Cards -->
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
-      <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
-        <div class="text-xs font-bold text-gray-500">عبّأوا في هذا التاريخ</div>
-        <div id="kpi-submitted" class="text-2xl font-black text-emeraldDeep mt-1">0 / 26</div>
-        <div id="kpi-submitted-pct" class="text-[11px] font-bold text-emeraldMid mt-0.5">0% التزام</div>
+    <!-- SUP TAB 2: MANAGE STUDENTS & GROUPS -->
+    <div id="sup-panel-students" class="hidden space-y-4">
+      <div class="bg-white rounded-3xl p-5 shadow-sm border border-gray-100">
+        <h3 class="font-black text-emeraldDeep text-base mb-3 flex items-center gap-2">
+          <span>➕</span>
+          <span>إضافة طالب جديد إلى طليعة</span>
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <input type="text" id="new-student-name" placeholder="اسم الطالب الكامل..." class="text-xs font-bold bg-creamBg border border-gray-200 rounded-xl px-3.5 py-3 focus:outline-none focus:border-emeraldDeep" />
+          <select id="new-student-group" class="text-xs font-bold bg-creamBg border border-gray-200 rounded-xl px-3 py-3 text-emeraldDeep focus:outline-none"></select>
+          <button onclick="addNewStudent()" class="bg-emeraldDeep hover:bg-emeraldMid text-white font-black text-xs px-4 py-3 rounded-xl shadow transition active:scale-95">
+            + إضافة الطالب
+          </button>
+        </div>
       </div>
-      <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
-        <div class="text-xs font-bold text-gray-500">الفجر بالمسجد اليوم</div>
-        <div id="kpi-fajr" class="text-2xl font-black text-goldDeep mt-1">0</div>
-        <div id="kpi-fajr-pct" class="text-[11px] font-bold text-gray-500 mt-0.5">0% من الطلاب</div>
-      </div>
-      <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
-        <div class="text-xs font-bold text-gray-500">أتموا تحدي اليوم</div>
-        <div id="kpi-games-today" class="text-2xl font-black text-emeraldDeep mt-1">0</div>
-        <div class="text-[11px] font-bold text-gray-500 mt-0.5">في ساحة التحدي</div>
-      </div>
-      <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
-        <div class="text-xs font-bold text-gray-500">أعلى طليعة (بالمعدل)</div>
-        <div id="kpi-top-group" class="text-sm font-black text-emeraldDeep mt-1.5 leading-snug">--</div>
-        <div id="kpi-top-group-avg" class="text-[11px] font-bold text-goldDeep mt-0.5">متوسط 0 نقطة</div>
+
+      <div class="bg-white rounded-3xl p-5 shadow-sm border border-gray-100">
+        <div class="flex items-center justify-between mb-3 flex-wrap gap-2">
+          <h3 class="font-black text-emeraldDeep text-base">👥 تعديل الطلاب والطلائع والعرفاء</h3>
+          <select id="manage-students-filter" onchange="renderManageStudents()" class="text-xs font-bold bg-creamBg border border-gray-200 rounded-xl px-3 py-2 text-emeraldDeep focus:outline-none">
+            <option value="all">جميع الطلائع</option>
+          </select>
+        </div>
+        <div id="manage-students-list" class="space-y-2.5"></div>
       </div>
     </div>
 
-    <!-- Tracking Table -->
-    <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
-      <div class="p-4 border-b border-gray-100 flex items-center justify-between flex-wrap gap-2">
-        <h3 class="font-black text-emeraldDeep text-sm">جدول متابعة الطلاب التفصيلي</h3>
-        <span id="sup-count-badge" class="text-xs font-bold bg-emeraldLight text-emeraldDeep px-2.5 py-1 rounded-full">26 طالباً</span>
+    <!-- SUP TAB 3: CUSTOM TASKS -->
+    <div id="sup-panel-tasks" class="hidden space-y-4">
+      <div class="bg-white rounded-3xl p-5 shadow-sm border border-gray-100">
+        <h3 class="font-black text-emeraldDeep text-base mb-1 flex items-center gap-2">
+          <span>➕</span>
+          <span>إضافة مهمة يومية جديدة للطلاب</span>
+        </h3>
+        <p class="text-xs text-gray-500 mb-3">ستظهر المهمة فوراً في صفحة "برنامجي اليومي" لجميع الطلاب وتُضاف نقاطها لرصيدهم.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
+          <input type="text" id="new-task-title" placeholder="اسم المهمة (مثلاً: بر الوالدين)" class="sm:col-span-2 text-xs font-bold bg-creamBg border border-gray-200 rounded-xl px-3.5 py-3 focus:outline-none focus:border-emeraldDeep" />
+          <input type="number" id="new-task-points" value="5" min="1" max="50" placeholder="النقاط" class="text-xs font-bold bg-creamBg border border-gray-200 rounded-xl px-3.5 py-3 text-center focus:outline-none focus:border-emeraldDeep" />
+          <button onclick="addCustomTask()" class="bg-emeraldDeep hover:bg-emeraldMid text-white font-black text-xs px-4 py-3 rounded-xl shadow transition active:scale-95">
+            + إضافة المهمة
+          </button>
+        </div>
       </div>
-      <div class="overflow-x-auto">
-        <table class="w-full text-right border-collapse">
-          <thead>
-            <tr class="bg-creamBg text-gray-600 text-xs font-extrabold border-b border-gray-100">
-              <th class="py-3 px-4">الطالب</th>
-              <th class="py-3 px-3">الطليعة</th>
-              <th class="py-3 px-3 text-center">الحالة</th>
-              <th class="py-3 px-3 text-center">عبادة اليوم</th>
-              <th class="py-3 px-3 text-center">بونص التحدي</th>
-              <th class="py-3 px-3 text-center">المجموع الكلي</th>
-              <th class="py-3 px-3 text-center">إجراءات</th>
-            </tr>
-          </thead>
-          <tbody id="sup-table-body" class="divide-y divide-gray-100 text-xs sm:text-sm"></tbody>
-        </table>
+
+      <div class="bg-white rounded-3xl p-5 shadow-sm border border-gray-100">
+        <h3 class="font-black text-emeraldDeep text-base mb-3">📋 المهام الإضافية الحالية</h3>
+        <div id="manage-tasks-list" class="space-y-2.5"></div>
+      </div>
+    </div>
+
+    <!-- SUP TAB 4: EDIT POINTS CONFIG -->
+    <div id="sup-panel-points" class="hidden space-y-4">
+      <div class="bg-white rounded-3xl p-5 shadow-sm border border-gray-100">
+        <div class="flex items-center justify-between flex-wrap gap-2 mb-4">
+          <div>
+            <h3 class="font-black text-emeraldDeep text-base">⚖️ تعديل نقاط المتطلبات</h3>
+            <p class="text-xs text-gray-500">عدّل قيمة النقاط لأي عبادة وسيتم اعتمادها فوراً في حساب النقاط.</p>
+          </div>
+          <button onclick="resetPointsDefaults()" class="text-xs font-bold bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-2 rounded-xl">
+            استعادة الافتراضي
+          </button>
+        </div>
+        <div id="points-config-form" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"></div>
+        <div class="mt-5">
+          <button onclick="savePointsConfig()" class="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-emeraldDeep hover:bg-emeraldMid text-white font-black text-sm shadow transition active:scale-95">
+            💾 حفظ جدول النقاط الجديد
+          </button>
+        </div>
       </div>
     </div>
   </main>
@@ -807,7 +903,7 @@
     </div>
   </div>
 
-  <!-- 3. Student Details Modal -->
+  <!-- 3. Student Details Modal (Includes Game Points Management) -->
   <div id="modal-details" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl w-full max-w-md max-h-[88vh] flex flex-col shadow-2xl animate-pop overflow-hidden">
       <div class="p-4 bg-emeraldDeep text-white flex items-center justify-between">
@@ -818,7 +914,7 @@
         <button onclick="closeDetailsModal()" class="w-8 h-8 rounded-full bg-white/15 font-bold">✕</button>
       </div>
       <div id="details-content" class="p-4 overflow-y-auto space-y-3 text-sm"></div>
-      <div id="details-footer" class="p-3.5 bg-gray-50 border-t border-gray-100 flex items-center justify-between gap-2"></div>
+      <div id="details-footer" class="p-3.5 bg-gray-50 border-t border-gray-100 flex items-center justify-between gap-2 flex-wrap"></div>
     </div>
   </div>
 
@@ -840,8 +936,8 @@
     <div class="bg-white rounded-3xl w-full max-w-lg max-h-[85vh] flex flex-col shadow-2xl animate-pop overflow-hidden">
       <div class="p-4 bg-emeraldDeep text-white flex items-center justify-between">
         <div>
-          <h3 class="font-black text-base">أرشيف الأيام — باص الأنصار</h3>
-          <p class="text-xs text-amber-200">معلومات وأدعية رحلة الـ 40 يوماً</p>
+          <h3 class="font-black text-base">أرشيف الأيام — شهر إلى الحرم</h3>
+          <p class="text-xs text-amber-200">معلومات وأدعية رحلة باص الأنصار</p>
         </div>
         <button onclick="closeTipsArchive()" class="w-8 h-8 rounded-full bg-white/15 font-bold">✕</button>
       </div>
@@ -858,7 +954,7 @@
     </div>
   </div>
 
-  <!-- 7. Celebration Modal (Unlocks Game!) -->
+  <!-- 7. Celebration Modal -->
   <div id="modal-celebration" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl w-full max-w-sm p-6 text-center shadow-2xl animate-pop border-2 border-goldWarm">
       <div class="text-5xl mb-3 animate-bounce">🎉</div>
@@ -880,13 +976,13 @@
   </div>
 
   <!-- =========================================================
-       APPLICATION SCRIPT (FIREBASE v10.12.2 + 40-DAY GAME ENGINE)
+       APPLICATION SCRIPT (FIREBASE v10.12.2 + ROCK-SOLID SYNC)
   ========================================================== -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import { getFirestore, collection, doc, setDoc, deleteDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-    // 1. EXACT FIREBASE CONFIG
+    // 1. FIREBASE CONFIG
     const firebaseConfig = {
       apiKey: "AIzaSyDCuJcG2ANw3e3cCzwwaiUDki8sHL0LFK0",
       authDomain: "ansar-bus.firebaseapp.com",
@@ -899,19 +995,25 @@
 
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
-    const LOGS_COL = 'ansar_bus_logs';
-    const GAMES_COL = 'ansar_bus_games';
 
-    // 2. CONSTANTS & ROSTER
-    const START_DATE = '2026-11-22';
+    // Fresh collections for the new "شهر إلى الحرم" campaign starting 2026-11-28
+    const LOGS_COL = 'ansar_month_logs';
+    const GAMES_COL = 'ansar_month_games';
+    const CONFIG_COL = 'ansar_month_config';
+
+    // 2. CAMPAIGN DATES & CONSTANTS
+    const START_DATE = '2026-11-28';
     const END_DATE = '2026-12-31';
+    const TOTAL_DAYS = 34;
     const TARGET_UMRAH_ISO = '2026-12-31T00:00:00';
     const SUPERVISOR_PIN = '2026';
 
-    const LS_STUDENT = 'ansar_bus_cur_student_v3';
-    const LS_LOGS = 'ansar_bus_logs_cache_v3';
-    const LS_GAMES = 'ansar_bus_games_cache_v3';
-    const LS_AVATARS = 'ansar_bus_avatars_v3';
+    const LS_STUDENT = 'ansar_month_cur_student_v4';
+    const LS_LOGS = 'ansar_month_logs_v4';
+    const LS_GAMES = 'ansar_month_games_v4';
+    const LS_CONFIG = 'ansar_month_config_v4';
+    const LS_PENDING = 'ansar_month_pending_v4';
+    const LS_AVATARS = 'ansar_month_avatars_v4';
 
     const AVATARS = ['🕋', '🕌', '🚌', '🌙', '⭐', '🦁', '🦅', '📖'];
 
@@ -922,13 +1024,13 @@
       { id: 'g4', name: 'طليعة أبو أيوب الأنصاري', sheikh: 'خالد خاطر', gradient: 'from-green-700 to-green-900', pill: 'bg-green-100 text-green-800', icon: '🚩' }
     ];
 
-    const STUDENTS = [
-      { id: 'st_01', name: 'ثابت سلامة', groupId: 'g1', isLeader: true },
+    const DEFAULT_STUDENTS = [
+      { id: 'st_01', name: 'ثابت سلامة', groupId: 'g1', isLeader: false },
       { id: 'st_02', name: 'يوسف ابو عافية', groupId: 'g1', isLeader: false },
       { id: 'st_03', name: 'ابراهيم ابوشما', groupId: 'g1', isLeader: false },
       { id: 'st_04', name: 'مصطفى العابد', groupId: 'g1', isLeader: false },
       { id: 'st_05', name: 'أسعد أبو حسن', groupId: 'g1', isLeader: false },
-      { id: 'st_06', name: 'محمد حرب', groupId: 'g1', isLeader: false },
+      { id: 'st_06', name: 'محمد حرب', groupId: 'g1', isLeader: true },
       { id: 'st_07', name: 'سيف زيدان', groupId: 'g1', isLeader: false },
       { id: 'st_08', name: 'يوسف صمادي', groupId: 'g2', isLeader: true },
       { id: 'st_09', name: 'مثنى الكسواني', groupId: 'g2', isLeader: false },
@@ -937,6 +1039,7 @@
       { id: 'st_12', name: 'شادي اللحام', groupId: 'g2', isLeader: false },
       { id: 'st_13', name: 'صلاح العابد', groupId: 'g2', isLeader: false },
       { id: 'st_14', name: 'حمزة عصفور', groupId: 'g2', isLeader: false },
+      { id: 'st_27', name: 'كرم المدني', groupId: 'g2', isLeader: false },
       { id: 'st_15', name: 'براء الهروط', groupId: 'g3', isLeader: true },
       { id: 'st_16', name: 'يعقوب سامرائي', groupId: 'g3', isLeader: false },
       { id: 'st_17', name: 'محمد ياسر', groupId: 'g3', isLeader: false },
@@ -951,6 +1054,23 @@
       { id: 'st_26', name: 'يوسف البدوي', groupId: 'g4', isLeader: false }
     ];
 
+    const DEFAULT_POINTS = {
+      prayerMosque: 10,
+      prayerHome: 7,
+      prayerLate: 3,
+      rawatibPerPrayer: 2, // 6 prayers * 2 = 12 pts
+      duha: 10,
+      witr: 10,
+      qiyam: 15,
+      quranPerPage: 2, // 5 pages * 2 = 10 pts
+      morningAdhkar: 5,
+      eveningAdhkar: 5,
+      dua: 5,
+      tasbih100: 5,
+      salawat100: 5,
+      istighfar100: 5
+    };
+
     const PRAYERS_LIST = [
       { key: 'fajr', label: 'صلاة الفجر', icon: '🌌' },
       { key: 'dhuhr', label: 'صلاة الظهر', icon: '☀️' },
@@ -959,7 +1079,16 @@
       { key: 'isha', label: 'صلاة العشاء', icon: '🌙' }
     ];
 
-    // 40 Daily Tips & Duas
+    // 12 Rak'at Rawatib = 6 prayers of 2 rak'at each
+    const RAWATIB_LIST = [
+      { key: 'fajrBefore', label: 'ركعتان قبل الفجر', icon: '🌌' },
+      { key: 'dhuhrBefore1', label: 'ركعتان قبل الظهر (الأولى)', icon: '☀️' },
+      { key: 'dhuhrBefore2', label: 'ركعتان قبل الظهر (الثانية)', icon: '☀️' },
+      { key: 'dhuhrAfter', label: 'ركعتان بعد الظهر', icon: '🌤️' },
+      { key: 'maghribAfter', label: 'ركعتان بعد المغرب', icon: '🌅' },
+      { key: 'ishaAfter', label: 'ركعتان بعد العشاء', icon: '🌙' }
+    ];
+
     const DAILY_TIPS_40 = [
       { title: 'الإخلاص مفتاح القبول', tip: 'أول خطوة قبل السفر للعمرة هي تجديد النية: أن تكون رحلتنا في باص الأنصار خالصة لوجه الله تعالى.', dua: 'اللهم إني نويت العمرة فيسرها لي وتقبلها مني.' },
       { title: 'فضل العمرة العظيم', tip: 'قال النبي ﷺ: "العمرة إلى العمرة كفارة لما بينهما"، فهي تغسل القلوب وتجدد الإيمان.', dua: 'اللهم اغفر لي ذنوبي وطهّر قلبي وبارك لي في أيامي.' },
@@ -970,7 +1099,6 @@
       { title: 'ما هو الميقات؟', tip: 'الميقات هو المكان الذي نبدأ منه الإحرام قبل دخول مكة، وميقات أهل الأردن والشام هو الجحفة (رابغ).', dua: 'لبيك اللهم عمرة، لبيك اللهم لبيك.' },
       { title: 'معنى التلبية', tip: 'عندما نقول "لبيك اللهم لبيك" فنحن نجيب نداء الله بكل حب وطاعة.', dua: 'لبيك اللهم لبيك، لبيك لا شريك لك لبيك.' },
       { title: 'لباس الإحرام للفتيان', tip: 'لباس الإحرام (الإزار والرداء) أبيض بسيط يجعل الجميع متساوين أمام الله.', dua: 'اللهم جمّل قلبي بالتقوى والتواضع.' },
-      { title: 'انتهاء محطة الانطلاق!', tip: 'أكملت 10 أيام! أحب الأعمال إلى الله أدومها وإن قلّ.', dua: 'اللهم يا مقلب القلوب ثبت قلبي على دينك.' },
       { title: 'آداب السفر في باص الأنصار', tip: 'نلتزم بالنظام، نحترم المشايخ، نساعد إخواننا، ونشغل وقتنا بالذكر.', dua: 'سبحان الذي سخر لنا هذا وما كنا له مقرنين.' },
       { title: 'دعاء السفر', tip: 'ترديد دعاء السفر عند انطلاق الباص يحفظ المسافرين ويملأ الرحلة بالبركة.', dua: 'اللهم إنا نسألك في سفرنا هذا البر والتقوى.' },
       { title: 'محظورات الإحرام باختصار', tip: 'بعد الإحرام لا نقص الشعر أو الأظافر، ولا نضع الطيب، ولا نغطي الرأس.', dua: 'اللهم ارزقني تعظيم شعائرك وحفظ حدودك.' },
@@ -980,7 +1108,6 @@
       { title: 'الإشارة للحجر الأسود', tip: 'عند الزحام لا تزاحم أحداً، يكفي أن تشير للحجر الأسود بيدك اليمنى وتقول: الله أكبر.', dua: 'بسم الله والله أكبر.' },
       { title: 'الركن اليماني', tip: 'بين الركن اليماني والحجر الأسود نكثر من دعاء: ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة.', dua: 'ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة وقنا عذاب النار.' },
       { title: 'مقام إبراهيم عليه السلام', tip: 'بعد الطواف نصلي ركعتين خفيفتين خلف مقام إبراهيم أو في أي مكان بالمسجد.', dua: 'رب اجعلني مقيم الصلاة ومن ذريتي.' },
-      { title: 'انتهاء محطة الثبات!', tip: 'وصلت لمنتصف الرحلة (20 يوماً)! الثبات على الطاعة صفة الطالب القوي.', dua: 'اللهم زدني إيماناً ويقيناً وعلماً نافعاً.' },
       { title: 'بركة ماء زمزم', tip: 'ماء زمزم لما شُرب له! اشرب منه وادعُ الله بالعلم النافع والشفاء.', dua: 'اللهم إني أسألك علماً نافعاً ورزقاً واسعاً وشفاءً من كل داء.' },
       { title: 'قصة الصفا والمروة', tip: 'نتذكر في السعي السيدة هاجر وتوكلها العظيم على الله حتى فجّر لها زمزم.', dua: 'إن الصفا والمروة من شعائر الله.' },
       { title: 'العلمان الأخضران', tip: 'أثناء السعي يسرع الشباب قليلاً (هرولة خفيفة) بين العلامتين الخضراوين.', dua: 'رب اغفر وارحم إنك أنت الأعز الأكرم.' },
@@ -990,25 +1117,16 @@
       { title: 'الرفق بالناس', tip: 'افسح الطريق لكبار السن وكن قدوة بأخلاقك الإسلامية في الحرم.', dua: 'اللهم اهدني لأحسن الأخلاق.' },
       { title: 'الصلاة على النبي ﷺ', tip: 'من صلى على النبي ﷺ مرة صلى الله عليه بها عشراً.', dua: 'اللهم صلّ وسلم وبارك على نبينا محمد.' },
       { title: 'فضل المسجد النبوي', tip: 'الصلاة في المسجد النبوي خير من 1000 صلاة فيما سواه إلا المسجد الحرام.', dua: 'اللهم ارزقني زيارة مسجد نبيك ﷺ.' },
-      { title: 'انتهاء محطة الزاد!', tip: 'بقي 10 أيام فقط! أنت الآن في محطة الشوق.', dua: 'اللهم بلغنا الحرم سالمين غانمين.' },
       { title: 'الروضة الشريفة', tip: 'ما بين بيت النبي ﷺ ومنبره روضة من رياض الجنة.', dua: 'اللهم اجعلني من أهل جنتك.' },
       { title: 'السلام على النبي ﷺ', tip: 'نخفض أصواتنا أدباً واحتراماً ونسلم على النبي ﷺ وصاحبيه.', dua: 'السلام عليك يا رسول الله ورحمة الله وبركاته.' },
       { title: 'مسجد قباء', tip: 'من توضأ في بيته ثم صلى في مسجد قباء ركعتين كان له كأجر عمرة.', dua: 'اللهم تقبل صلاتي واكتب لي أجر العمرة.' },
       { title: 'جبل أُحد', tip: 'قال النبي ﷺ: "أُحد جبل يحبنا ونحبه".', dua: 'اللهم ارضَ عن أصحاب نبيك أجمعين.' },
-      { title: 'القرآن رفيق الرحلة', tip: 'اجعل لك وقتاً يومياً لتلاوة القرآن في صحن الحرم.', dua: 'اللهم اجعل القرآن ربيع قلبي.' },
-      { title: 'أخوّة الطليعة', tip: 'تعاونوا في حمل الأغراض وتذكير بعضكم بالصلاة.', dua: 'اللهم ألف بين قلوبنا واجمعنا على طاعتك.' },
       { title: 'قائمة الدعوات', tip: 'جهّز قائمة بأسماء من تحب أن تدعو لهم أمام الكعبة.', dua: 'اللهم اغفر للمؤمنين والمؤمنات.' },
       { title: 'تجهيز الحقيبة بنظام', tip: 'جهّز حقيبتك بنفسك: الإحرام، حذاء مريح، ومصحف جيب.', dua: 'اللهم يسر لي أمري واشرح لي صدري.' },
-      { title: 'شكر الله على النعمة', tip: 'اشكر الله أنه اختارك ويسّر لك هذه الرحلة المباركة.', dua: 'الحمد لله حمداً كثيراً طيباً مباركاً فيه.' },
-      { title: 'يوم انطلاق باص الأنصار!', tip: 'أتممت الـ 40 يوماً بنجاح يا بطل! عمرة مقبولة بإذن الله.', dua: 'اللهم تقبل عمرتنا وردّنا سالمين غانمين.' }
+      { title: 'يوم انطلاق باص الأنصار!', tip: 'أتممت رحلة الشهر إلى الحرم بنجاح يا بطل! عمرة مقبولة بإذن الله.', dua: 'اللهم تقبل عمرتنا وردّنا سالمين غانمين.' }
     ];
 
-    // =========================================================
-    // 3. 40-DAY EDUCATIONAL GAME CURRICULUM
-    // Regular days = 3 Timed MCQs | Every 5th day = Matching Game
-    // =========================================================
     const GAMES_40 = {
-      // STAGE 1 (1-10)
       1: { type: 'quiz', topic: 'فضل العمرة وأركانها الأساسية', qs: [
         { q: 'كم عدد أركان العمرة الأساسية؟', opts: ['ركنان', '3 أركان', '5 أركان', '7 أركان'], a: 1, exp: 'أركان العمرة 3: الإحرام، الطواف، والسعي بين الصفا والمروة.' },
         { q: 'قال النبي ﷺ: "العمرة إلى العمرة..."', opts: ['كفارة لما بينهما', 'أجرها عشر حسنات', 'تعدل صيام يوم', 'لا شيء مما سبق'], a: 0, exp: 'العمرة إلى العمرة كفارة لما بينهما من الذنوب الصغائر.' },
@@ -1042,7 +1160,7 @@
       ]},
       7: { type: 'quiz', topic: 'التلبية: صيغتها ووقتها', qs: [
         { q: 'ما هي بداية صيغة التلبية الصحيحة؟', opts: ['لبيك اللهم لبيك...', 'سبحان الله وبحمده', 'الله أكبر كبيراً', 'الحمد لله رب العالمين'], a: 0, exp: 'لبيك اللهم لبيك، لبيك لا شريك لك لبيك، إن الحمد والنعمة لك والملك لا شريك لك.' },
-        { q: 'متى يتوقف المعتمر عن التلبية؟', opts: ['عند دخول مكة', 'عند بدء الطواف بالكعبة', 'عند النوم', 'بعد السعي'], a: 1, exp: 'يُقطع المعتمر التلبية عندما يبدأ بالطواف عند الحجر الأسود.' },
+        { q: 'متى يتوقف المعتمر عن التلبية؟', opts: ['عند دخول مكة', 'عند بدء الطواف بالكعبة', 'عند النوم', 'بعد السعي'], a: 1, exp: 'يقطع المعتمر التلبية عندما يبدأ بالطواف عند الحجر الأسود.' },
         { q: 'هل يُسن للذكور رفع الصوت بالتلبية؟', opts: ['نعم يُسن رفع الصوت بها', 'لا، تُقال سراً فقط', 'فقط في الباص', 'لا تُقال أصلاً'], a: 0, exp: 'أمر النبي ﷺ الرجال برفع أصواتهم بالتلبية إظهاراً للشعيرة.' }
       ]},
       8: { type: 'quiz', topic: 'قصة الصحابي البراء بن مالك (طليعة 2)', qs: [
@@ -1061,8 +1179,6 @@
         { t: 'وضع العطر بعد النية', d: 'محظور يجب تجنبه ❌' },
         { t: 'الاستظلال بالمظلة', d: 'مسموح لأنها لا تلامس الرأس ✅' }
       ]},
-
-      // STAGE 2 (11-20)
       11: { type: 'quiz', topic: 'آداب دخول المسجد الحرام ورؤية الكعبة', qs: [
         { q: 'بأي قدم ندخل المسجد الحرام؟', opts: ['القدم اليمنى', 'القدم اليسرى', 'لا فرق', 'القفز'], a: 0, exp: 'السنة دخول جميع المساجد بالقدم اليمنى وقول: اللهم افتح لي أبواب رحمتك.' },
         { q: 'ما الدعاء المأثور عند دخول المسجد؟', opts: ['اللهم افتح لي أبواب رحمتك', 'اللهم إني أسألك من فضلك', 'سبحان الذي سخر لنا هذا', 'باسمك اللهم أموت وأحيا'], a: 0, exp: 'عند الدخول نقول: اللهم افتح لي أبواب رحمتك، وعند الخروج: اللهم إني أسألك من فضلك.' },
@@ -1115,8 +1231,6 @@
         { t: 'الرَّمَل', d: 'الإسراع الخفيف في الأشواط الثلاثة الأولى' },
         { t: 'ركعتا الطواف', d: 'ركعتان تُصليان بعد إتمام الأشواط السبعة' }
       ]},
-
-      // STAGE 3 (21-30)
       21: { type: 'quiz', topic: 'قصة السيدة هاجر والصفا والمروة', qs: [
         { q: 'لماذا كانت السيدة هاجر تسعى بين الصفا والمروة؟', opts: ['بحثاً عن الماء لطفلها إسماعيل', 'للتنزه', 'للصيد', 'لرؤية القمر'], a: 0, exp: 'كانت تصعد الصفا ثم المروة 7 مرات بحثاً عن ماء أو قافلة تنقذ طفلها.' },
         { q: 'من الملك الذي ضرب الأرض فخرج ماء زمزم؟', opts: ['جبريل عليه السلام', 'ميكائيل', 'إسرافيل', 'رضوان'], a: 0, exp: 'أرسل الله جبريل عليه السلام فضرب الأرض بجناحه أو عقبه فنبع ماء زمزم.' },
@@ -1132,10 +1246,10 @@
         { q: 'أيهما أفضل للرجال والفتيان: الحلق أم التقصير؟', opts: ['الحلق أفضل لأن النبي ﷺ دعا للمحلقين ثلاثاً', 'التقصير أفضل', 'لا يُسن أي منهما', 'قص شعرة واحدة'], a: 0, exp: 'دعا النبي ﷺ للمحلقين ثلاث مرات وللمقصرين مرة واحدة، وكلاهما جائز.' },
         { q: 'ما الخطأ الذي يقع فيه بعض الناس عند التقصير؟', opts: ['قص بضع شعرات فقط من جهة واحدة', 'تقصير جميع الرأس', 'الحلق بالموسى', 'الذهاب للحلاق'], a: 0, exp: 'يجب أن يشمل التقصير جميع أنحاء الرأس وليس جانباً واحداً فقط.' }
       ]},
-      24: { type: 'quiz', topic: 'مواقف بطولية للصحابة الأربعة (1)', qs: [
-        { q: 'أي صحابي من أصحاب الطلائع دعا له النبي ﷺ في بيته بالبركة؟', opts: ['أبو أيوب الأنصاري', 'خالد بن الوليد', 'عمرو بن العاص', 'سلمان الفارسي'], a: 0, exp: 'كان أبو أيوب يتتبع موضع أصابع النبي ﷺ في الطعام تبركاً ومحبة.' },
-        { q: 'أي صحابي من أصحاب الطلائع كان يُلقب بشاعر الرسول ﷺ مع حسان بن ثابت؟', opts: ['عبد الله بن رواحة', 'أبو هريرة', 'معاذ بن جبل', 'أبو ذر'], a: 0, exp: 'كان عبد الله بن رواحة شاعراً مبدعاً ينصر الإسلام بشعره وسيفه.' },
-        { q: 'ما الصفة المشتركة بين الصحابة الأربعة (أصحاب طلائعنا)؟', opts: ['جميعهم من الأنصار الأبطال', 'جميعهم من قريش', 'جميعهم من اليمن', 'جميعهم من الشام'], a: 0, exp: 'كلهم من الأنصار الأوفياء، ولذلك سُمّي باصنا: باص الأنصار!' }
+      24: { type: 'quiz', topic: 'فضل المدينة المنورة والمسجد النبوي', qs: [
+        { q: 'كم تعدل الصلاة الواحدة في المسجد النبوي الشريف؟', opts: ['خير من 1000 صلاة فيما سواه إلا المسجد الحرام', '100 صلاة', '10 صلوات', '500 صلاة'], a: 0, exp: 'الصلاة في المسجد النبوي خير من ألف صلاة فيما سواه إلا المسجد الحرام.' },
+        { q: 'ما الاسم القديم للمدينة المنورة قبل هجرة النبي ﷺ؟', opts: ['يثرب', 'الطائف', 'خيبر', 'تبوك'], a: 0, exp: 'كان اسمها يثرب فغيّرها النبي ﷺ إلى طيبة والمدينة المنورة.' },
+        { q: 'بماذا دعا النبي ﷺ للمدينة المنورة؟', opts: ['بالبركة وأن يحببها الله للمسلمين', 'بالثلج الدائم', 'بالبحر', 'بالذهب'], a: 0, exp: 'دعا النبي ﷺ: "اللهم حبب إلينا المدينة كحبنا مكة أو أشد".' }
       ]},
       25: { type: 'match', topic: 'ترتيب مناسك العمرة الصحيح', pairs: [
         { t: '1. الإحرام', d: 'النية والتلبية من الميقات' },
@@ -1143,25 +1257,25 @@
         { t: '3. السعي', d: '7 أشواط تبدأ بالصفا وتنتهي بالمروة' },
         { t: '4. التحلل', d: 'الحلق أو التقصير من جميع الرأس' }
       ]},
-      26: { type: 'quiz', topic: 'فضل المدينة المنورة والمسجد النبوي', qs: [
-        { q: 'كم تعدل الصلاة الواحدة في المسجد النبوي الشريف؟', opts: ['خير من 1000 صلاة فيما سواه إلا المسجد الحرام', '100 صلاة', '10 صلوات', '500 صلاة'], a: 0, exp: 'الصلاة في المسجد النبوي خير من ألف صلاة فيما سواه إلا المسجد الحرام.' },
-        { q: 'ما الاسم القديم للمدينة المنورة قبل هجرة النبي ﷺ؟', opts: ['يثرب', 'الطائف', 'خيبر', 'تبوك'], a: 0, exp: 'كان اسمها يثرب فغيّرها النبي ﷺ إلى طيبة والمدينة المنورة.' },
-        { q: 'بماذا دعا النبي ﷺ للمدينة المنورة؟', opts: ['بالبركة وأن يحببها الله للمسلمين', 'بالثلج الدائم', 'بالبحر', 'بالذهب'], a: 0, exp: 'دعا النبي ﷺ: "اللهم حبب إلينا المدينة كحبنا مكة أو أشد".' }
-      ]},
-      27: { type: 'quiz', topic: 'الروضة الشريفة والسلام على النبي ﷺ', qs: [
+      26: { type: 'quiz', topic: 'الروضة الشريفة والسلام على النبي ﷺ', qs: [
         { q: 'قال النبي ﷺ: "ما بين بيتي ومنبري..."', opts: ['روضة من رياض الجنة', 'باب من أبواب السماء', 'أجمل حديقة', 'طريق النجاح'], a: 0, exp: 'الروضة الشريفة بقعة مباركة في المسجد النبوي تُميّز بسجادها الأخضر.' },
         { q: 'من هما الصحابيان المدفونان بجانب النبي ﷺ؟', opts: ['أبو بكر الصديق وعمر بن الخطاب', 'عثمان وعلي', 'بلال وزيد', 'سعد والبراء'], a: 0, exp: 'دُفن بجانبه ﷺ رفيقاه أبو بكر الصديق وعمر بن الخطاب رضي الله عنهما.' },
         { q: 'كيف نسلم على النبي ﷺ عند قبره الشريف؟', opts: ['بصوت خافت وأدب وخشوع', 'بصوت مرتفع جداً', 'بالتدافع', 'بالتلويح'], a: 0, exp: 'يُسن خفض الصوت والأدب التام في المسجد النبوي.' }
       ]},
-      28: { type: 'quiz', topic: 'مسجد قباء وفضل الصلاة فيه', qs: [
+      27: { type: 'quiz', topic: 'مسجد قباء وفضل الصلاة فيه', qs: [
         { q: 'ما أجر من توضأ في بيته ثم أتى مسجد قباء فصلى فيه ركعتين؟', opts: ['كأجر عمرة', 'أجر صيام يوم', 'أجر صدقة', 'أجر 10 صلوات'], a: 0, exp: 'أخبر النبي ﷺ أن الصلاة فيه بعد الوضوء من البيت تعدل أجر عمرة.' },
         { q: 'ما ميزة مسجد قباء التاريخية؟', opts: ['أول مسجد بُني في الإسلام', 'أكبر مسجد في العالم', 'مسجد في مكة', 'بُني في عهد عمر'], a: 0, exp: 'مسجد قباء هو أول مسجد أسسه النبي ﷺ عند وصوله للمدينة.' },
         { q: 'في أي يوم كان النبي ﷺ يزور مسجد قباء غالباً؟', opts: ['يوم السبت', 'يوم الاثنين', 'يوم الخميس', 'يوم الأحد'], a: 0, exp: 'كان النبي ﷺ يأتي مسجد قباء كل سبت ماشياً وراكباً.' }
       ]},
-      29: { type: 'quiz', topic: 'جبل أُحد ودروس غزوة أُحد', qs: [
+      28: { type: 'quiz', topic: 'جبل أُحد ودروس غزوة أُحد', qs: [
         { q: 'ماذا قال النبي ﷺ عن جبل أُحد؟', opts: ['أُحد جبل يحبنا ونحبه', 'أُحد أعلى جبل', 'أُحد جبل في مكة', 'أُحد جبل بعيد'], a: 0, exp: 'كان النبي ﷺ يحب جبل أحد ويقول: هذا جبل يحبنا ونحبه.' },
         { q: 'ما الدرس الأهم الذي نتعلمه من الرماة في غزوة أحد؟', opts: ['أهمية طاعة القائد والالتزام بالتعليمات', 'جمع الغنائم بسرعة', 'ترك الموقع', 'النوم'], a: 0, exp: 'مخالفة أوامر النبي ﷺ من بعض الرماة تسببت في تحول المعركة.' },
         { q: 'من هو سيد الشهداء المدفون عند جبل أحد؟', opts: ['حمزة بن عبد المطلب عم النبي ﷺ', 'خالد بن الوليد', 'أبو عبيدة', 'سعد بن أبي وقاص'], a: 0, exp: 'استُشهد حمزة رضي الله عنه في أحد وسماه النبي ﷺ سيد الشهداء.' }
+      ]},
+      29: { type: 'quiz', topic: 'أحكام صلاة المسافر (الجمع والقصر)', qs: [
+        { q: 'كيف يصلي المسافر صلاة الظهر والعصر والعشاء؟', opts: ['يقصرها إلى ركعتين', 'يصليها 4 ركعات دائماً', 'يصليها 3 ركعات', 'لا يصليها'], a: 0, exp: 'يُسن للمسافر قصر الصلاة الرباعية (الظهر، العصر، العشاء) إلى ركعتين.' },
+        { q: 'هل تُقصر صلاة الفجر والمغرب في السفر؟', opts: ['لا، تبقيان كما هما (2 و 3)', 'نعم تُقصران', 'المغرب فقط', 'الفجر فقط'], a: 0, exp: 'الفجر ركعتان والمغرب ثلاث ركعات لا قصر فيهما.' },
+        { q: 'ما هي الصلوات التي يجوز الجمع بينها في السفر؟', opts: ['الظهر مع العصر، والمغرب مع العشاء', 'الفجر مع الظهر', 'العصر مع المغرب', 'العشاء مع الفجر'], a: 0, exp: 'يُجمع بين الظهر والعصر، وبين المغرب والعشاء، أما الفجر فلا تُجمع مع غيرها.' }
       ]},
       30: { type: 'match', topic: 'أبرز معالم المدينة المنورة', pairs: [
         { t: 'المسجد النبوي', d: 'الصلاة فيه خير من 1000 صلاة' },
@@ -1169,55 +1283,22 @@
         { t: 'مسجد قباء', d: 'أول مسجد في الإسلام والصلاة فيه كعمرة' },
         { t: 'جبل أُحد', d: 'جبل يحبنا ونحبه وعنده شهداء أحد' }
       ]},
-
-      // STAGE 4 (31-40)
-      31: { type: 'quiz', topic: 'آداب السفر ودعاء الركوب', qs: [
+      31: { type: 'quiz', topic: 'آداب السفر والرفقة في باص الأنصار', qs: [
         { q: 'ماذا نقول عند ركوب الباص قبل الانطلاق؟', opts: ['بسم الله، الحمد لله، سبحان الذي سخر لنا هذا...', 'أهلاً وسهلاً', 'تصبحون على خير', 'لا نقول شيئاً'], a: 0, exp: 'نبدأ بالتسمية والحمد ثم دعاء السفر والتكبير ثلاثاً.' },
-        { q: 'هل دعوة المسافر مستجابة بإذن الله؟', opts: ['نعم، من الدعوات التي لا تُرد', 'لا', 'فقط في الطائرة', 'فقط ليلاً'], a: 0, exp: 'ثلاث دعوات مستجابات، ومنها دعوة المسافر.' },
-        { q: 'من آداب السفر الجماعي في الباص:', opts: ['تعيين أمير (الشيخ) وطاعته', 'مخالفة المواعيد', 'رمي القمامة في الباص', 'إزعاج النائمين'], a: 0, exp: 'السنة في السفر الجماعي تعيين أمير والالتزام بتوجيهاته.' }
-      ]},
-      32: { type: 'quiz', topic: 'أحكام صلاة المسافر (الجمع والقصر)', qs: [
-        { q: 'كيف يصلي المسافر صلاة الظهر والعصر والعشاء؟', opts: ['يقصرها إلى ركعتين', 'يصليها 4 ركعات دائماً', 'يصليها 3 ركعات', 'لا يصليها'], a: 0, exp: 'يُسن للمسافر قصر الصلاة الرباعية (الظهر، العصر، العشاء) إلى ركعتين.' },
-        { q: 'هل تُقصر صلاة الفجر والمغرب في السفر؟', opts: ['لا، تبقيان كما هما (2 و 3)', 'نعم تُقصران', 'المغرب فقط', 'الفجر فقط'], a: 0, exp: 'الفجر ركعتان والمغرب ثلاث ركعات لا قصر فيهما.' },
-        { q: 'ما هي الصلوات التي يجوز الجمع بينها في السفر؟', opts: ['الظهر مع العصر، والمغرب مع العشاء', 'الفجر مع الظهر', 'العصر مع المغرب', 'العشاء مع الفجر'], a: 0, exp: 'يُجمع بين الظهر والعصر، وبين المغرب والعشاء، أما الفجر فلا تُجمع مع غيرها.' }
-      ]},
-      33: { type: 'quiz', topic: 'آداب الرفقة في باص الأنصار', qs: [
-        { q: 'إذا رأيت زميلك في الطليعة يحمل حقيبة ثقيلة، ماذا تفعل؟', opts: ['أساعده في حملها بابتسامة', 'أضحك عليه', 'أسبقه للباص', 'أتجاهله'], a: 0, exp: 'التعاون ومساعدة الإخوان من أعظم أخلاق المسلم في السفر.' },
         { q: 'إذا نادى الشيخ للتجمع عند الباص الساعة 5:00، متى تكون جاهزاً؟', opts: ['قبل الموعد بـ 5 دقائق', 'الساعة 5:20', 'عندما يتصل بي', 'آخر واحد'], a: 0, exp: 'احترام المواعيد يريح جميع ركاب باص الأنصار ويكسبك احترام الجميع.' },
-        { q: 'كيف نحافظ على نظافة باص الأنصار طوال الرحلة؟', opts: ['نضع النفايات في الكيس المخصص', 'نرميها تحت المقعد', 'نرميها من النافذة', 'نتركها للسائق'], a: 0, exp: 'النظافة من الإيمان وتعكس صورة رائعة عن طلابنا.' }
+        { q: 'هل دعوة المسافر مستجابة بإذن الله؟', opts: ['نعم، من الدعوات التي لا تُرد', 'لا', 'فقط في الطائرة', 'فقط ليلاً'], a: 0, exp: 'ثلاث دعوات مستجابات، ومنها دعوة المسافر.' }
       ]},
-      34: { type: 'quiz', topic: 'مواقف بطولية للصحابة الأربعة (2)', qs: [
-        { q: 'لماذا سُمّي الصحابة الذين ناصروا النبي ﷺ في المدينة بـ "الأنصار"؟', opts: ['لأنهم نصروا الله ورسوله وآووا المهاجرين', 'لأنهم من مكة', 'لأنهم تجار', 'لأنهم شعراء'], a: 0, exp: 'نصروا الإسلام بأموالهم وأنفسهم فمدحهم الله في القرآن الكريم.' },
-        { q: 'قال النبي ﷺ: "آية الإيمان حب..."', opts: ['الأنصار', 'المال', 'الشهرة', 'السفر'], a: 0, exp: 'محبة الأنصار رضي الله عنهم علامة من علامات الإيمان.' },
-        { q: 'كيف نقتدي بأصحاب طلائعنا الأربعة في هذه الرحلة؟', opts: ['بالشجاعة، الأدب، الكرم، وحب النبي ﷺ', 'بالكسل', 'بالتنافس بالخصام', 'بالصمت فقط'], a: 0, exp: 'طلائعنا تحمل أسماء عظماء الأنصار لنقتدي بأخلاقهم العالية.' }
-      ]},
-      35: { type: 'match', topic: 'أحكام المسافر وآداب السفر', pairs: [
-        { t: 'قصر الصلاة', d: 'صلاة الرباعية ركعتين في السفر' },
-        { t: 'جمع الصلاة', d: 'الظهر مع العصر، والمغرب مع العشاء' },
-        { t: 'المسح على الخفين', d: 'رخصة للمسافر لمدة 3 أيام بلياليها' },
-        { t: 'دعاء السفر', d: 'سبحان الذي سخر لنا هذا وما كنا له مقرنين' }
-      ]},
-      36: { type: 'quiz', topic: 'أخطاء شائعة في العمرة (1)', qs: [
+      32: { type: 'quiz', topic: 'أخطاء شائعة في العمرة', qs: [
         { q: 'هل يجب على المعتمر قراءة دعاء محدد لكل شوط من كتاب؟', opts: ['لا، يدعو بما يشاء من خيري الدنيا والآخرة', 'نعم وإلا بطل طوافه', 'يجب حفظ 7 صفحات', 'لا يجوز الدعاء'], a: 0, exp: 'ليس لكل شوط دعاء خاص، بل تدعو الله بخشوع بما يفتح الله به عليك.' },
         { q: 'هل يجوز إيذاء الناس ومزاحمتهم لتقبيل الحجر الأسود؟', opts: ['لا يجوز أبداً، الإشارة تكفي عند الزحام', 'نعم يجب تقبيله ولو بالزحام', 'عادي', 'مطلوب'], a: 0, exp: 'تقبيل الحجر سنة، وأذى المسلمين حرام، فلا نرتكب حراماً لأجل سنة.' },
-        { q: 'لو انتقض وضوؤك أثناء الطواف، ماذا تفعل؟', opts: ['تذهب وتتوضأ ثم تعيد الطواف', 'تكمل بدون وضوء', 'تترك العمرة', 'تصلي فقط'], a: 0, exp: 'الطهارة شرط لصحة الطواف، فإذا انتقض الوضوء يتوضأ ويستأنف.' }
+        { q: 'هل يُشترط الوضوء لصحة السعي بين الصفا والمروة؟', opts: ['يُستحب الوضوء لكن السعي يصح بدونه', 'يبطل السعي بدونه', 'ممنوع الوضوء', 'لا أدري'], a: 0, exp: 'الوضوء شرط في الطواف، أما في السعي فهو مستحب فقط ويصح السعي بدونه.' }
       ]},
-      37: { type: 'quiz', topic: 'أخطاء شائعة في العمرة (2)', qs: [
-        { q: 'هل يُشترط الوضوء لصحة السعي بين الصفا والمروة؟', opts: ['يُستحب الوضوء لكن السعي يصح بدونه', 'يبطل السعي بدونه', 'ممنوع الوضوء', 'لا أدري'], a: 0, exp: 'الوضوء شرط في الطواف، أما في السعي فهو مستحب فقط ويصح السعي بدونه.' },
-        { q: 'ما حكم الانشغال بالتصوير طوال الطواف والسعي؟', opts: ['يُذهب الخشوع ويُفوّت الأجر العظيم', 'أفضل من الدعاء', 'سنة مؤكدة', 'واجب'], a: 0, exp: 'صورة سريعة للذكرى لا بأس بها، لكن الانشغال بالهاتف يُضيّع لذة العبادة.' },
-        { q: 'هل يجوز للرجل أن يتحلل قبل أن يحلق أو يقصر شعره؟', opts: ['لا، لا يتم التحلل إلا بالحلق أو التقصير', 'نعم بمجرد انتهاء السعي', 'نعم بعد شرب زمزم', 'نعم في الفندق'], a: 0, exp: 'يبقى محرماً حتى يحلق أو يقصر من جميع رأسه.' }
-      ]},
-      38: { type: 'quiz', topic: 'اختبر جاهزيتك: مواقف عملية في الحرم', qs: [
-        { q: 'إذا ضعتَ عن طليعتك في الحرم لا قدر الله، ما التصرف الأصح؟', opts: ['أبقى هادئاً وأتجه لنقطة التجمع المتفق عليها مع الشيخ', 'أركض في كل مكان', 'أبكي وأجلس', 'أخرج من الحرم وحدي'], a: 0, exp: 'الهدوء والالتزام بنقطة التجمع وبطاقة التعريف يحل الموقف فوراً.' },
-        { q: 'أثناء الطواف أُقيمت صلاة الفريضة (مثلاً المغرب)، ماذا تفعل؟', opts: ['تتوقف وتصلي الجماعة ثم تكمل من حيث توقفت', 'تكمل الطواف وتترك الصلاة', 'تعيد من الشوط الأول', 'تخرج من المسجد'], a: 0, exp: 'تُصلي الفريضة مع الإمام ثم تكمل باقي أشواطك.' },
-        { q: 'أردت أن تشرب ماء زمزم وأنت في السعي، هل يجوز؟', opts: ['نعم يجوز الشرب والراحة قليلاً أثناء السعي', 'لا يجوز', 'يبطل السعي', 'فقط بعد الشوط السابع'], a: 0, exp: 'يجوز شرب الماء والاستراحة اليسيرة أثناء السعي.' }
-      ]},
-      39: { type: 'quiz', topic: 'التحدي الكبير: مراجعة شاملة', qs: [
+      33: { type: 'quiz', topic: 'اختبر جاهزيتك: مراجعة شاملة', qs: [
         { q: 'كم تعدل الصلاة الواحدة في المسجد الحرام؟', opts: ['100,000 صلاة فيما سواه', '1,000 صلاة', '500 صلاة', '100 صلاة'], a: 0, exp: 'الصلاة في المسجد الحرام بمائة ألف صلاة فيما سواه!' },
-        { q: 'ما هي أركان العمرة الثلاثة بالترتيب؟', opts: ['الإحرام، الطواف، السعي', 'الطواف، السعي، الإحرام', 'السعي، الحلق، الطواف', 'الإحرام، زمزم، الدعاء'], a: 0, exp: 'تبدأ بالإحرام، ثم الطواف، ثم السعي (ثم الحلق أو التقصير).' },
-        { q: 'من هو الصحابي الذي اهتز لموته عرش الرحمن؟', opts: ['سعد بن معاذ رضي الله عنه', 'أبو أيوب الأنصاري', 'عبد الله بن رواحة', 'البراء بن مالك'], a: 0, exp: 'سعد بن معاذ سيد الأوس رضي الله عنه.' }
+        { q: 'أثناء الطواف أُقيمت صلاة الفريضة (مثلاً المغرب)، ماذا تفعل؟', opts: ['تتوقف وتصلي الجماعة ثم تكمل من حيث توقفت', 'تكمل الطواف وتترك الصلاة', 'تعيد من الشوط الأول', 'تخرج من المسجد'], a: 0, exp: 'تُصلي الفريضة مع الإمام ثم تكمل باقي أشواطك.' },
+        { q: 'ما هي أركان العمرة الثلاثة بالترتيب؟', opts: ['الإحرام، الطواف، السعي', 'الطواف، السعي، الإحرام', 'السعي، الحلق، الطواف', 'الإحرام، زمزم، الدعاء'], a: 0, exp: 'تبدأ بالإحرام، ثم الطواف، ثم السعي (ثم الحلق أو التقصير).' }
       ]},
-      40: { type: 'match', topic: 'البطاقة الذهبية الختامية لباص الأنصار', pairs: [
+      34: { type: 'match', topic: 'البطاقة الذهبية الختامية لباص الأنصار', pairs: [
         { t: 'المسجد الحرام', d: 'الصلاة فيه بـ 100,000 صلاة' },
         { t: 'المسجد النبوي', d: 'الصلاة فيه بأكثر من 1,000 صلاة' },
         { t: 'الأنصار الأربعة', d: 'عبد الله، البراء، سعد، وأبو أيوب' },
@@ -1226,43 +1307,58 @@
     };
 
     // =========================================================
-    // 4. STATE & CACHE (OPTIMISTIC UI)
+    // 3. STATE, DYNAMIC CONFIG & PENDING SYNC QUEUE
     // =========================================================
     const safeJson = (s, fb) => { try { return s ? JSON.parse(s) : fb; } catch { return fb; } };
 
+    let appConfig = safeJson(localStorage.getItem(LS_CONFIG), null) || {
+      students: JSON.parse(JSON.stringify(DEFAULT_STUDENTS)),
+      points: { ...DEFAULT_POINTS },
+      customTasks: []
+    };
+    // Ensure config structure integrity
+    if (!Array.isArray(appConfig.students) || appConfig.students.length === 0) appConfig.students = JSON.parse(JSON.stringify(DEFAULT_STUDENTS));
+    appConfig.points = { ...DEFAULT_POINTS, ...(appConfig.points || {}) };
+    if (!Array.isArray(appConfig.customTasks)) appConfig.customTasks = [];
+
+    let logs = safeJson(localStorage.getItem(LS_LOGS), {});
+    let games = safeJson(localStorage.getItem(LS_GAMES), {});
+    let avatars = safeJson(localStorage.getItem(LS_AVATARS), {});
+    let pending = safeJson(localStorage.getItem(LS_PENDING), { logs: {}, games: {}, deletedLogs: {}, deletedGames: {}, config: false });
+    if (!pending.logs) pending.logs = {};
+    if (!pending.games) pending.games = {};
+    if (!pending.deletedLogs) pending.deletedLogs = {};
+    if (!pending.deletedGames) pending.deletedGames = {};
+
     let currentStudentId = localStorage.getItem(LS_STUDENT) || null;
-    if (currentStudentId && !STUDENTS.some(s => s.id === currentStudentId)) {
+    if (currentStudentId && !appConfig.students.some(s => s.id === currentStudentId)) {
       currentStudentId = null;
       localStorage.removeItem(LS_STUDENT);
     }
 
-    let logs = safeJson(localStorage.getItem(LS_LOGS), {});       // `${studentId}_${dateStr}`
-    let games = safeJson(localStorage.getItem(LS_GAMES), {});     // `${studentId}_${dayNum}`
-    let avatars = safeJson(localStorage.getItem(LS_AVATARS), {}); // `${studentId}` -> emoji
-
     let chosenLoginAvatar = AVATARS[0];
     let activeTab = 'home';
+    let activeSupTab = 'tracking';
     let selectedTrackerDate = getDateStr(0);
     let draftData = createEmptyData();
+    let lastSyncError = null;
 
-    // Misbaha state
     let misbahaKey = null;
     let misbahaCounter = 0;
-
-    // Confirm modal callback
     let confirmCallback = null;
+    let quizState = null, quizTimerInt = null;
+    let matchState = null, matchTimerInt = null;
 
-    // Active Game runtime state
-    let quizState = null;
-    let quizTimerInt = null;
-    let matchState = null;
-    let matchTimerInt = null;
+    function savePending() { localStorage.setItem(LS_PENDING, JSON.stringify(pending)); }
+    function saveLocalConfig() { localStorage.setItem(LS_CONFIG, JSON.stringify(appConfig)); }
 
     function createEmptyData() {
       return {
         prayers: { fajr: null, dhuhr: null, asr: null, maghrib: null, isha: null },
-        sunnah: { rawatib: null, duha: false, witr: false, qiyam: false },
-        heart: { quran: false, morningAdhkar: false, eveningAdhkar: false, dua: false, tasbih100: false, salawat100: false, istighfar100: false }
+        rawatib: { fajrBefore: false, dhuhrBefore1: false, dhuhrBefore2: false, dhuhrAfter: false, maghribAfter: false, ishaAfter: false },
+        sunnah: { duha: false, witr: false, qiyam: false },
+        heart: { quranPages: 0, morningAdhkar: false, eveningAdhkar: false, dua: false, tasbih100: false, salawat100: false, istighfar100: false },
+        custom: {}
       };
     }
 
@@ -1276,7 +1372,7 @@
       const start = new Date(START_DATE + 'T00:00:00').getTime();
       const cur = new Date(dateStr + 'T00:00:00').getTime();
       const diff = Math.floor((cur - start) / (1000 * 60 * 60 * 24)) + 1;
-      return Math.max(1, Math.min(40, diff));
+      return Math.max(1, Math.min(TOTAL_DAYS, diff));
     }
 
     function formatShortArabicDate(dateStr) {
@@ -1287,28 +1383,50 @@
 
     function computeWorshipPoints(data) {
       if (!data) return 0;
+      const P = appConfig.points;
       let pts = 0;
-      const p = data.prayers || {};
+      const pr = data.prayers || {};
       ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'].forEach(k => {
-        if (p[k] === 'mosque') pts += 10;
-        else if (p[k] === 'home') pts += 7;
-        else if (p[k] === 'late') pts += 3;
+        if (pr[k] === 'mosque') pts += Number(P.prayerMosque || 0);
+        else if (pr[k] === 'home') pts += Number(P.prayerHome || 0);
+        else if (pr[k] === 'late') pts += Number(P.prayerLate || 0);
       });
+
+      const rw = data.rawatib || {};
+      RAWATIB_LIST.forEach(r => {
+        if (rw[r.key]) pts += Number(P.rawatibPerPrayer || 0);
+      });
+
       const s = data.sunnah || {};
-      if (s.rawatib === 'full') pts += 10;
-      else if (s.rawatib === 'partial') pts += 5;
-      if (s.duha) pts += 10;
-      if (s.witr) pts += 10;
-      if (s.qiyam) pts += 15;
+      if (s.duha) pts += Number(P.duha || 0);
+      if (s.witr) pts += Number(P.witr || 0);
+      if (s.qiyam) pts += Number(P.qiyam || 0);
+
       const h = data.heart || {};
-      if (h.quran) pts += 10;
-      if (h.morningAdhkar) pts += 5;
-      if (h.eveningAdhkar) pts += 5;
-      if (h.dua) pts += 5;
-      if (h.tasbih100) pts += 5;
-      if (h.salawat100) pts += 5;
-      if (h.istighfar100) pts += 5;
+      const qPages = Number(h.quranPages || 0);
+      pts += Math.min(5, Math.max(0, qPages)) * Number(P.quranPerPage || 0);
+      if (h.morningAdhkar) pts += Number(P.morningAdhkar || 0);
+      if (h.eveningAdhkar) pts += Number(P.eveningAdhkar || 0);
+      if (h.dua) pts += Number(P.dua || 0);
+      if (h.tasbih100) pts += Number(P.tasbih100 || 0);
+      if (h.salawat100) pts += Number(P.salawat100 || 0);
+      if (h.istighfar100) pts += Number(P.istighfar100 || 0);
+
+      const c = data.custom || {};
+      appConfig.customTasks.forEach(task => {
+        if (c[task.id]) pts += Number(task.points || 0);
+      });
       return pts;
+    }
+
+    function computeMaxPossibleDailyPoints() {
+      const P = appConfig.points;
+      let max = (5 * Number(P.prayerMosque)) + (6 * Number(P.rawatibPerPrayer)) +
+        Number(P.duha) + Number(P.witr) + Number(P.qiyam) +
+        (5 * Number(P.quranPerPage)) + Number(P.morningAdhkar) + Number(P.eveningAdhkar) +
+        Number(P.dua) + Number(P.tasbih100) + Number(P.salawat100) + Number(P.istighfar100);
+      appConfig.customTasks.filter(t => t.active !== false).forEach(t => { max += Number(t.points || 0); });
+      return max;
     }
 
     function getStudentStats(studentId) {
@@ -1338,13 +1456,7 @@
         offset--;
       }
 
-      return {
-        worshipPoints,
-        gamePoints,
-        totalPoints: worshipPoints + gamePoints,
-        daysCompleted: completedDates.size,
-        streak
-      };
+      return { worshipPoints, gamePoints, totalPoints: worshipPoints + gamePoints, daysCompleted: completedDates.size, streak };
     }
 
     function hasSubmittedToday(studentId) {
@@ -1353,71 +1465,142 @@
     }
 
     // =========================================================
-    // 5. FIREBASE REALTIME SYNC & SYNC INDICATOR
+    // 4. ROCK-SOLID FIREBASE SYNC (NEVER WIPES LOCAL DATA)
     // =========================================================
-    function setSyncStatus(mode) {
+    function setSyncStatus(mode, errMsg = null) {
+      if (errMsg) lastSyncError = errMsg;
+      else if (mode === 'connected' || mode === 'saved') lastSyncError = null;
       const dot = document.getElementById('sync-dot');
       const txt = document.getElementById('sync-text');
       if (mode === 'saving') { dot.className = 'w-2 h-2 rounded-full bg-amber-400 animate-pulse'; txt.textContent = 'جاري الحفظ...'; }
       else if (mode === 'saved') { dot.className = 'w-2 h-2 rounded-full bg-emerald-400'; txt.textContent = 'تم الحفظ ✓'; }
       else if (mode === 'connected') { dot.className = 'w-2 h-2 rounded-full bg-emerald-400'; txt.textContent = 'متصل بالسحابة'; }
-      else { dot.className = 'w-2 h-2 rounded-full bg-rose-400'; txt.textContent = 'وضع محلي'; }
+      else { dot.className = 'w-2 h-2 rounded-full bg-rose-400'; txt.textContent = 'محفوظ محلياً'; }
+    }
+
+    window.showSyncDetails = function() {
+      if (lastSyncError) {
+        showToast('تنبيه المزامنة: البيانات محفوظة على جهازك. تحقق من قواعد Firestore (Rules) إذا استمرت الحالة.', 'warning');
+      } else {
+        showToast('الاتصال بقاعدة البيانات السحابية يعمل بشكل سليم ✅', 'success');
+      }
+    };
+
+    async function flushPendingSync() {
+      try {
+        for (const [id, rec] of Object.entries(pending.logs)) {
+          await setDoc(doc(db, LOGS_COL, id), rec);
+          delete pending.logs[id];
+        }
+        for (const [id, rec] of Object.entries(pending.games)) {
+          await setDoc(doc(db, GAMES_COL, id), rec);
+          delete pending.games[id];
+        }
+        for (const id of Object.keys(pending.deletedLogs)) {
+          await deleteDoc(doc(db, LOGS_COL, id));
+          delete pending.deletedLogs[id];
+        }
+        for (const id of Object.keys(pending.deletedGames)) {
+          await deleteDoc(doc(db, GAMES_COL, id));
+          delete pending.deletedGames[id];
+        }
+        if (pending.config) {
+          await setDoc(doc(db, CONFIG_COL, 'main'), appConfig);
+          pending.config = false;
+        }
+        savePending();
+      } catch (e) {
+        setSyncStatus('offline', e?.message || 'sync error');
+      }
     }
 
     function initRealtimeSync() {
       try {
+        // 1. Logs Listener (Protected against wiping unsynced local records)
         onSnapshot(collection(db, LOGS_COL), (snap) => {
-          const map = {};
-          snap.forEach(d => { map[d.id] = d.data(); });
-          logs = map;
+          if (snap.empty && snap.metadata.fromCache && Object.keys(logs).length > 0) return;
+          const merged = {};
+          snap.forEach(d => {
+            if (!pending.deletedLogs[d.id]) merged[d.id] = d.data();
+          });
+          // Always preserve any local pending writes
+          Object.entries(pending.logs).forEach(([id, rec]) => { merged[id] = rec; });
+          logs = merged;
           localStorage.setItem(LS_LOGS, JSON.stringify(logs));
           setSyncStatus('connected');
           refreshActiveUI();
-        }, () => setSyncStatus('offline'));
+        }, (err) => setSyncStatus('offline', err?.message));
 
+        // 2. Games Listener
         onSnapshot(collection(db, GAMES_COL), (snap) => {
-          const map = {};
-          snap.forEach(d => { map[d.id] = d.data(); });
-          games = map;
+          if (snap.empty && snap.metadata.fromCache && Object.keys(games).length > 0) return;
+          const merged = {};
+          snap.forEach(d => {
+            if (!pending.deletedGames[d.id]) merged[d.id] = d.data();
+          });
+          Object.entries(pending.games).forEach(([id, rec]) => { merged[id] = rec; });
+          games = merged;
           localStorage.setItem(LS_GAMES, JSON.stringify(games));
           refreshActiveUI();
         }, () => {});
-      } catch {
-        setSyncStatus('offline');
+
+        // 3. Dynamic Supervisor Config Listener
+        onSnapshot(doc(db, CONFIG_COL, 'main'), (snap) => {
+          if (snap.exists() && !pending.config) {
+            const data = snap.data();
+            if (Array.isArray(data.students) && data.students.length > 0) appConfig.students = data.students;
+            if (data.points) appConfig.points = { ...DEFAULT_POINTS, ...data.points };
+            if (Array.isArray(data.customTasks)) appConfig.customTasks = data.customTasks;
+            saveLocalConfig();
+            populateDropdowns();
+            renderLoginGroups();
+            refreshActiveUI();
+          }
+        }, () => {});
+
+        flushPendingSync();
+      } catch (e) {
+        setSyncStatus('offline', e?.message);
       }
+    }
+
+    function pushConfigToCloud() {
+      saveLocalConfig();
+      pending.config = true;
+      savePending();
+      populateDropdowns();
+      renderLoginGroups();
+      setSyncStatus('saving');
+      setDoc(doc(db, CONFIG_COL, 'main'), appConfig)
+        .then(() => { pending.config = false; savePending(); setSyncStatus('saved'); })
+        .catch((e) => setSyncStatus('offline', e?.message));
     }
 
     function refreshActiveUI() {
       if (currentStudentId && !document.getElementById('view-student').classList.contains('hidden')) {
         renderHomeTab();
-        if (activeTab === 'tracker') populateTrackerDaySelect();
+        if (activeTab === 'tracker') { populateTrackerDaySelect(); renderTrackerUI(); }
         if (activeTab === 'games' && !quizState && !matchState) renderGamesTab();
         if (activeTab === 'leaderboard') renderLeaderboard();
       }
       if (!document.getElementById('view-supervisor').classList.contains('hidden')) {
-        renderSupervisorDashboard();
+        if (activeSupTab === 'tracking') renderSupervisorDashboard();
+        if (activeSupTab === 'students') renderManageStudents();
+        if (activeSupTab === 'tasks') renderManageTasks();
       }
     }
 
     // =========================================================
-    // 6. HIJRI + GREGORIAN DATES & LIVE COUNTDOWN
+    // 5. DATES & COUNTDOWN
     // =========================================================
     function renderHeaderDates() {
       const now = new Date();
       try {
-        document.getElementById('date-hijri').textContent = new Intl.DateTimeFormat('ar-SA-u-ca-islamic', {
-          day: 'numeric', month: 'long', year: 'numeric'
-        }).format(now);
-      } catch {
-        document.getElementById('date-hijri').textContent = 'التاريخ الهجري';
-      }
+        document.getElementById('date-hijri').textContent = new Intl.DateTimeFormat('ar-SA-u-ca-islamic', { day: 'numeric', month: 'long', year: 'numeric' }).format(now);
+      } catch { document.getElementById('date-hijri').textContent = 'التاريخ الهجري'; }
       try {
-        document.getElementById('date-gregorian').textContent = new Intl.DateTimeFormat('ar-JO', {
-          weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
-        }).format(now);
-      } catch {
-        document.getElementById('date-gregorian').textContent = getDateStr(0);
-      }
+        document.getElementById('date-gregorian').textContent = new Intl.DateTimeFormat('ar-JO', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(now);
+      } catch { document.getElementById('date-gregorian').textContent = getDateStr(0); }
     }
 
     function startCountdown() {
@@ -1433,11 +1616,11 @@
         if (clock) clock.textContent = diff > 0 ? `${days} يوم • ${hours} ساعة • ${mins} دقيقة` : 'انطلق باص الأنصار! 🚌🕋';
       }
       tick();
-      setInterval(tick, 1000 * 30);
+      setInterval(tick, 30000);
     }
 
     // =========================================================
-    // 7. LOGIN FLOW (2 STEPS)
+    // 6. LOGIN FLOW
     // =========================================================
     function showLoginScreen() {
       document.getElementById('view-login').classList.remove('hidden');
@@ -1445,17 +1628,18 @@
       document.getElementById('view-supervisor').classList.add('hidden');
       document.getElementById('bottom-nav').classList.add('hidden');
       document.getElementById('btn-switch-student').classList.add('hidden');
+      renderLoginGroups();
       showLoginStep(1);
     }
 
-    window.showLoginStep = function(step) {
+    window.showLoginStep = (step) => {
       document.getElementById('login-step-1').classList.toggle('hidden', step !== 1);
       document.getElementById('login-step-2').classList.toggle('hidden', step !== 2);
     };
 
     function renderLoginGroups() {
       document.getElementById('login-groups-grid').innerHTML = GROUPS.map(g => {
-        const count = STUDENTS.filter(s => s.groupId === g.id).length;
+        const count = appConfig.students.filter(s => s.groupId === g.id).length;
         return `
           <button onclick="pickLoginGroup('${g.id}')" class="bg-white hover:bg-emeraldLight/60 rounded-3xl p-4 shadow-sm border-2 border-gray-100 hover:border-emeraldDeep text-right transition active:scale-[0.98] flex items-center gap-3.5">
             <div class="w-12 h-12 rounded-2xl bg-gradient-to-br ${g.gradient} text-white text-2xl flex items-center justify-center shadow shrink-0">${g.icon}</div>
@@ -1465,8 +1649,7 @@
               <span class="inline-block mt-1.5 text-[10px] font-extrabold ${g.pill} px-2 py-0.5 rounded-full">${count} طلاب</span>
             </div>
             <span class="text-gray-300 font-bold text-lg">←</span>
-          </button>
-        `;
+          </button>`;
       }).join('');
     }
 
@@ -1474,7 +1657,7 @@
       const g = GROUPS.find(x => x.id === groupId);
       document.getElementById('login-step2-title').innerHTML = `<span class="w-6 h-6 rounded-full bg-emeraldDeep text-white text-xs flex items-center justify-center">2</span><span>اختر اسمك (${g.name}):</span>`;
       renderLoginAvatarsRow();
-      document.getElementById('login-students-grid').innerHTML = STUDENTS.filter(s => s.groupId === groupId).map(s => `
+      document.getElementById('login-students-grid').innerHTML = appConfig.students.filter(s => s.groupId === groupId).map(s => `
         <button onclick="loginAs('${s.id}')" class="bg-white hover:bg-emeraldLight rounded-2xl p-3.5 shadow-sm border border-gray-200 hover:border-emeraldDeep text-right transition active:scale-[0.98] flex items-center justify-between gap-2">
           <div class="flex items-center gap-2.5">
             <span class="w-9 h-9 rounded-xl bg-creamBg border border-gray-200 flex items-center justify-center text-lg">${avatars[s.id] || '👤'}</span>
@@ -1484,18 +1667,15 @@
             </div>
           </div>
           <span class="text-xs font-extrabold text-emeraldDeep bg-emeraldLight px-3 py-1.5 rounded-xl">دخول</span>
-        </button>
-      `).join('');
+        </button>`).join('');
       showLoginStep(2);
     };
 
     function renderLoginAvatarsRow() {
       document.getElementById('login-avatars-row').innerHTML = AVATARS.map(av => `
-        <button type="button" onclick="setLoginAvatar('${av}')" class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl text-xl flex items-center justify-center border-2 transition ${av === chosenLoginAvatar ? 'border-emeraldDeep bg-emeraldLight scale-110' : 'border-gray-100 bg-creamBg'}">${av}</button>
-      `).join('');
+        <button type="button" onclick="setLoginAvatar('${av}')" class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl text-xl flex items-center justify-center border-2 transition ${av === chosenLoginAvatar ? 'border-emeraldDeep bg-emeraldLight scale-110' : 'border-gray-100 bg-creamBg'}">${av}</button>`).join('');
     }
-
-    window.setLoginAvatar = function(av) { chosenLoginAvatar = av; renderLoginAvatarsRow(); };
+    window.setLoginAvatar = (av) => { chosenLoginAvatar = av; renderLoginAvatarsRow(); };
 
     window.loginAs = function(studentId) {
       currentStudentId = studentId;
@@ -1505,8 +1685,8 @@
         localStorage.setItem(LS_AVATARS, JSON.stringify(avatars));
       }
       enterStudentApp();
-      const s = STUDENTS.find(x => x.id === studentId);
-      showToast(`أهلاً بك يا بطل ${s.name} في باص الأنصار! 🚌`, 'success');
+      const s = appConfig.students.find(x => x.id === studentId);
+      if (s) showToast(`أهلاً بك يا بطل ${s.name} في باص الأنصار! 🚌`, 'success');
     };
 
     window.openSwitchStudent = function() {
@@ -1525,7 +1705,7 @@
     }
 
     // =========================================================
-    // 8. TAB NAVIGATION & HOME DASHBOARD
+    // 7. TABS & HOME DASHBOARD
     // =========================================================
     window.switchTab = function(tab) {
       if (quizTimerInt) { clearInterval(quizTimerInt); quizTimerInt = null; }
@@ -1535,8 +1715,7 @@
       activeTab = tab;
       ['home', 'tracker', 'games', 'leaderboard'].forEach(t => {
         document.getElementById(`tab-${t}`).classList.toggle('hidden', t !== tab);
-        const btn = document.getElementById(`nav-${t}`);
-        btn.className = t === tab
+        document.getElementById(`nav-${t}`).className = t === tab
           ? 'flex flex-col items-center justify-center py-2 rounded-2xl bg-emeraldLight text-emeraldDeep transition relative'
           : 'flex flex-col items-center justify-center py-2 rounded-2xl text-gray-500 hover:bg-gray-50 transition relative';
       });
@@ -1549,13 +1728,12 @@
     };
 
     function renderHomeTab() {
-      const s = STUDENTS.find(x => x.id === currentStudentId);
-      if (!s) return;
-      const g = GROUPS.find(x => x.id === s.groupId);
+      const s = appConfig.students.find(x => x.id === currentStudentId);
+      if (!s) { showLoginScreen(); return; }
+      const g = GROUPS.find(x => x.id === s.groupId) || GROUPS[0];
       const stats = getStudentStats(s.id);
 
-      // Compute rank
-      const sorted = STUDENTS.map(st => ({ id: st.id, pts: getStudentStats(st.id).totalPoints })).sort((a, b) => b.pts - a.pts);
+      const sorted = appConfig.students.map(st => ({ id: st.id, pts: getStudentStats(st.id).totalPoints })).sort((a, b) => b.pts - a.pts);
       const myRank = sorted.findIndex(x => x.id === s.id) + 1;
 
       document.getElementById('hero-avatar').textContent = avatars[s.id] || '🕋';
@@ -1567,8 +1745,8 @@
       document.getElementById('stat-points-breakdown').textContent = `عبادة ${stats.worshipPoints} + تحدي ${stats.gamePoints}`;
       document.getElementById('stat-streak').textContent = stats.streak;
       document.getElementById('stat-rank').textContent = `#${myRank}`;
+      document.getElementById('stat-rank-total').textContent = `بين ${appConfig.students.length} طالباً`;
 
-      // Game Locked/Unlocked Banner
       const unlocked = hasSubmittedToday(s.id);
       const dayNum = getJourneyDayNum();
       const playedToday = Boolean(games[`${s.id}_${dayNum}`]);
@@ -1614,18 +1792,17 @@
         dot.classList.add('hidden');
       }
 
-      // 40-Day Map
-      const days = Math.min(40, stats.daysCompleted);
-      const pct = Math.max(6, Math.round((days / 40) * 100));
-      document.getElementById('map-days-badge').textContent = `${days} / 40 يوم التزام`;
+      const days = Math.min(TOTAL_DAYS, stats.daysCompleted);
+      const pct = Math.max(6, Math.round((days / TOTAL_DAYS) * 100));
+      document.getElementById('map-days-badge').textContent = `${days} / ${TOTAL_DAYS} يوم التزام`;
       document.getElementById('map-progress-bar').style.width = `${pct}%`;
       document.getElementById('map-bus-marker').style.right = `${Math.min(92, pct)}%`;
 
       [
-        { id: 'stage-box-1', min: 1, max: 10 },
-        { id: 'stage-box-2', min: 11, max: 20 },
-        { id: 'stage-box-3', min: 21, max: 30 },
-        { id: 'stage-box-4', min: 31, max: 40 }
+        { id: 'stage-box-1', min: 1, max: 8 },
+        { id: 'stage-box-2', min: 9, max: 17 },
+        { id: 'stage-box-3', min: 18, max: 26 },
+        { id: 'stage-box-4', min: 27, max: 34 }
       ].forEach(st => {
         const el = document.getElementById(st.id);
         if (days >= st.max) el.className = 'rounded-2xl p-2.5 border-2 border-emeraldDeep bg-emeraldLight text-emeraldDeep text-center shadow-sm';
@@ -1637,19 +1814,19 @@
     function renderDailyTip() {
       const dayNum = getJourneyDayNum();
       const item = DAILY_TIPS_40[dayNum - 1] || DAILY_TIPS_40[0];
-      document.getElementById('daily-tip-day-badge').textContent = `اليوم ${dayNum} من 40`;
+      document.getElementById('daily-tip-day-badge').textContent = `اليوم ${dayNum} من ${TOTAL_DAYS}`;
       document.getElementById('daily-tip-title').textContent = item.title;
       document.getElementById('daily-tip-body').textContent = item.tip;
       document.getElementById('daily-dua-body').textContent = `«${item.dua}»`;
     }
 
     // =========================================================
-    // 9. DAILY TRACKER (OPTIMISTIC + EDIT PREVIOUS DAYS)
+    // 8. DAILY TRACKER (6 RAWATIB + 5 PAGES QURAN + CUSTOM TASKS)
     // =========================================================
     function populateTrackerDaySelect() {
       const sel = document.getElementById('tracker-day-select');
       const todayStr = getDateStr(0);
-      const set = new Set([todayStr, getDateStr(-1)]);
+      const set = new Set([todayStr]);
 
       const start = new Date(START_DATE + 'T12:00:00');
       const today = new Date(todayStr + 'T12:00:00');
@@ -1674,17 +1851,8 @@
         : 'px-3 py-2 rounded-xl text-xs font-extrabold bg-emeraldLight text-emeraldDeep border border-emeraldDeep/20 shrink-0';
     }
 
-    window.selectTrackerToday = function() {
-      selectedTrackerDate = getDateStr(0);
-      populateTrackerDaySelect();
-      loadTrackerForDate(selectedTrackerDate);
-    };
-
-    window.onTrackerDayChange = function(val) {
-      selectedTrackerDate = val;
-      populateTrackerDaySelect();
-      loadTrackerForDate(val);
-    };
+    window.selectTrackerToday = () => { selectedTrackerDate = getDateStr(0); populateTrackerDaySelect(); loadTrackerForDate(selectedTrackerDate); };
+    window.onTrackerDayChange = (val) => { selectedTrackerDate = val; populateTrackerDaySelect(); loadTrackerForDate(val); };
 
     function loadTrackerForDate(dateKey) {
       const existing = logs[`${currentStudentId}_${dateKey}`];
@@ -1692,10 +1860,13 @@
       const btnText = document.getElementById('btn-save-log-text');
 
       if (existing && existing.data) {
+        const empty = createEmptyData();
         draftData = {
-          prayers: { ...createEmptyData().prayers, ...(existing.data.prayers || {}) },
-          sunnah: { ...createEmptyData().sunnah, ...(existing.data.sunnah || {}) },
-          heart: { ...createEmptyData().heart, ...(existing.data.heart || {}) }
+          prayers: { ...empty.prayers, ...(existing.data.prayers || {}) },
+          rawatib: { ...empty.rawatib, ...(existing.data.rawatib || {}) },
+          sunnah: { ...empty.sunnah, ...(existing.data.sunnah || {}) },
+          heart: { ...empty.heart, ...(existing.data.heart || {}) },
+          custom: { ...(existing.data.custom || {}) }
         };
         document.getElementById('pledge-checkbox').checked = true;
         banner.classList.remove('hidden');
@@ -1711,6 +1882,24 @@
     }
 
     function renderTrackerUI() {
+      const P = appConfig.points;
+      document.getElementById('sec1-max-label').textContent = `حتى ${5 * P.prayerMosque} نقطة`;
+      document.getElementById('sec2-max-label').textContent = `حتى ${(6 * P.rawatibPerPrayer) + Number(P.duha) + Number(P.witr) + Number(P.qiyam)} نقطة`;
+      document.getElementById('sec3-max-label').textContent = `حتى ${(5 * P.quranPerPage) + Number(P.morningAdhkar) + Number(P.eveningAdhkar) + Number(P.dua) + Number(P.tasbih100) + Number(P.salawat100) + Number(P.istighfar100)} نقطة`;
+      document.getElementById('rawatib-per-pts').textContent = P.rawatibPerPrayer;
+      document.getElementById('quran-per-page-label').textContent = P.quranPerPage;
+
+      document.getElementById('pts-label-duha').textContent = `+${P.duha} نقاط`;
+      document.getElementById('pts-label-witr').textContent = `+${P.witr} نقاط`;
+      document.getElementById('pts-label-qiyam').textContent = `+${P.qiyam} نقطة`;
+      document.getElementById('pts-label-morningAdhkar').textContent = `+${P.morningAdhkar}`;
+      document.getElementById('pts-label-eveningAdhkar').textContent = `+${P.eveningAdhkar}`;
+      document.getElementById('pts-label-dua').textContent = `+${P.dua} نقاط`;
+      document.getElementById('pts-label-tasbih100').textContent = `+${P.tasbih100}`;
+      document.getElementById('pts-label-salawat100').textContent = `+${P.salawat100}`;
+      document.getElementById('pts-label-istighfar100').textContent = `+${P.istighfar100}`;
+
+      // 1. Fard Prayers
       document.getElementById('prayers-container').innerHTML = PRAYERS_LIST.map(p => {
         const val = draftData.prayers[p.key];
         const cls = (t) => val === t
@@ -1720,21 +1909,43 @@
           <div class="p-3.5 rounded-2xl bg-creamBg border border-gray-100">
             <div class="flex items-center justify-between mb-2">
               <span class="font-extrabold text-sm text-gray-800">${p.icon} ${p.label}</span>
-              <span class="text-[11px] font-bold ${val ? 'text-emeraldDeep' : 'text-gray-400'}">${val === 'mosque' ? '+10' : val === 'home' ? '+7' : val === 'late' ? '+3' : 'اختر'}</span>
+              <span class="text-[11px] font-bold ${val ? 'text-emeraldDeep' : 'text-gray-400'}">${val === 'mosque' ? '+' + P.prayerMosque : val === 'home' ? '+' + P.prayerHome : val === 'late' ? '+' + P.prayerLate : 'اختر'}</span>
             </div>
             <div class="grid grid-cols-3 gap-1.5">
-              <button type="button" onclick="setPrayer('${p.key}','mosque')" class="py-2.5 rounded-xl text-xs font-extrabold border transition active:scale-95 ${cls('mosque')}">مسجد (10)</button>
-              <button type="button" onclick="setPrayer('${p.key}','home')" class="py-2.5 rounded-xl text-xs font-extrabold border transition active:scale-95 ${cls('home')}">بالبيت (7)</button>
-              <button type="button" onclick="setPrayer('${p.key}','late')" class="py-2.5 rounded-xl text-xs font-extrabold border transition active:scale-95 ${cls('late')}">متأخر (3)</button>
+              <button type="button" onclick="setPrayer('${p.key}','mosque')" class="py-2.5 rounded-xl text-xs font-extrabold border transition active:scale-95 ${cls('mosque')}">مسجد (${P.prayerMosque})</button>
+              <button type="button" onclick="setPrayer('${p.key}','home')" class="py-2.5 rounded-xl text-xs font-extrabold border transition active:scale-95 ${cls('home')}">بالبيت (${P.prayerHome})</button>
+              <button type="button" onclick="setPrayer('${p.key}','late')" class="py-2.5 rounded-xl text-xs font-extrabold border transition active:scale-95 ${cls('late')}">متأخر (${P.prayerLate})</button>
             </div>
           </div>`;
       }).join('');
 
-      document.getElementById('btn-rawatib-full').className = `py-3 px-3 rounded-xl text-xs font-extrabold border transition active:scale-95 ${draftData.sunnah.rawatib === 'full' ? 'bg-emeraldDeep text-white border-emeraldDeep' : 'bg-white text-gray-600 border-gray-200'}`;
-      document.getElementById('btn-rawatib-partial').className = `py-3 px-3 rounded-xl text-xs font-extrabold border transition active:scale-95 ${draftData.sunnah.rawatib === 'partial' ? 'bg-teal-600 text-white border-teal-600' : 'bg-white text-gray-600 border-gray-200'}`;
+      // 2. Detailed 6 Rawatib Prayers (12 Rak'at)
+      const allRawatibDone = RAWATIB_LIST.every(r => draftData.rawatib[r.key]);
+      document.getElementById('btn-rawatib-all').textContent = allRawatibDone ? 'إلغاء الكل ✕' : 'تحديد الكل (12 ركعة) ✓';
+      document.getElementById('rawatib-grid').innerHTML = RAWATIB_LIST.map(r => {
+        const done = draftData.rawatib[r.key];
+        return `
+          <button type="button" onclick="toggleRawatib('${r.key}')" class="p-3 rounded-xl border text-right flex items-center justify-between gap-2 transition active:scale-[0.98] ${done ? 'bg-emeraldDeep text-white border-emeraldDeep shadow-sm' : 'bg-white text-gray-700 border-gray-200'}">
+            <span class="text-xs font-extrabold flex items-center gap-1.5"><span>${r.icon}</span><span>${r.label}</span></span>
+            <span class="text-[11px] font-black shrink-0 ${done ? 'text-goldWarm' : 'text-gray-400'}">${done ? '✓' : '+' + P.rawatibPerPrayer}</span>
+          </button>`;
+      }).join('');
 
       ['duha', 'witr', 'qiyam'].forEach(k => styleToggle(`toggle-${k}`, draftData.sunnah[k]));
-      ['quran', 'morningAdhkar', 'eveningAdhkar', 'dua'].forEach(k => styleToggle(`toggle-${k}`, draftData.heart[k]));
+
+      // 3. Quran 5 Pages Selector
+      const qPages = Number(draftData.heart.quranPages || 0);
+      document.getElementById('quran-pts-badge').textContent = `${qPages * P.quranPerPage} نقطة`;
+      document.getElementById('quran-pages-row').innerHTML = [1, 2, 3, 4, 5].map(num => {
+        const active = qPages >= num;
+        const exact = qPages === num;
+        return `
+          <button type="button" onclick="setQuranPages(${num})" class="py-2.5 rounded-xl border text-xs font-black transition active:scale-95 ${exact ? 'bg-emeraldDeep text-white border-emeraldDeep shadow' : active ? 'bg-emeraldLight text-emeraldDeep border-emeraldDeep/40' : 'bg-white text-gray-500 border-gray-200'}">
+            ${num} ${num === 1 ? 'صفحة' : 'صفحات'}
+          </button>`;
+      }).join('');
+
+      ['morningAdhkar', 'eveningAdhkar', 'dua'].forEach(k => styleToggle(`toggle-${k}`, draftData.heart[k]));
 
       ['tasbih100', 'salawat100', 'istighfar100'].forEach(k => {
         const done = draftData.heart[k];
@@ -1744,7 +1955,26 @@
         btn.textContent = done ? 'تم ✅' : 'تم';
       });
 
+      // 4. Custom Tasks
+      const activeTasks = appConfig.customTasks.filter(t => t.active !== false);
+      const sec4 = document.getElementById('custom-tasks-section');
+      sec4.classList.toggle('hidden', activeTasks.length === 0);
+      if (activeTasks.length > 0) {
+        document.getElementById('custom-tasks-tracker-list').innerHTML = activeTasks.map(task => {
+          const done = Boolean(draftData.custom[task.id]);
+          return `
+            <button type="button" onclick="toggleCustomTask('${task.id}')" class="w-full p-4 rounded-2xl border-2 flex items-center justify-between transition active:scale-[0.99] ${done ? 'border-emeraldDeep bg-emeraldLight text-emeraldDeep shadow-sm' : 'border-gray-200 bg-creamBg text-gray-700'}">
+              <div class="flex items-center gap-2.5 text-right">
+                <span class="text-xl">${done ? '✅' : '⭐'}</span>
+                <span class="font-extrabold text-sm">${task.title}</span>
+              </div>
+              <span class="text-xs font-black px-3 py-1.5 rounded-xl ${done ? 'bg-emeraldDeep text-white' : 'bg-white text-goldDeep border border-goldWarm/40'}">+${task.points} نقاط</span>
+            </button>`;
+        }).join('');
+      }
+
       document.getElementById('tracker-live-points').textContent = computeWorshipPoints(draftData);
+      document.getElementById('tracker-max-points').textContent = `/ ${computeMaxPossibleDailyPoints()}`;
     }
 
     function styleToggle(id, active) {
@@ -1757,9 +1987,16 @@
     }
 
     window.setPrayer = (k, v) => { draftData.prayers[k] = draftData.prayers[k] === v ? null : v; renderTrackerUI(); };
-    window.setRawatib = (v) => { draftData.sunnah.rawatib = draftData.sunnah.rawatib === v ? null : v; renderTrackerUI(); };
+    window.toggleRawatib = (k) => { draftData.rawatib[k] = !draftData.rawatib[k]; renderTrackerUI(); };
+    window.toggleAllRawatib = () => {
+      const allDone = RAWATIB_LIST.every(r => draftData.rawatib[r.key]);
+      RAWATIB_LIST.forEach(r => { draftData.rawatib[r.key] = !allDone; });
+      renderTrackerUI();
+    };
+    window.setQuranPages = (num) => { draftData.heart.quranPages = draftData.heart.quranPages === num ? 0 : num; renderTrackerUI(); };
     window.toggleSunnah = (k) => { draftData.sunnah[k] = !draftData.sunnah[k]; renderTrackerUI(); };
     window.toggleHeart = (k) => { draftData.heart[k] = !draftData.heart[k]; renderTrackerUI(); };
+    window.toggleCustomTask = (id) => { draftData.custom[id] = !draftData.custom[id]; renderTrackerUI(); };
 
     window.saveDailyLog = function() {
       if (!document.getElementById('pledge-checkbox').checked) {
@@ -1772,7 +2009,7 @@
         return;
       }
 
-      const s = STUDENTS.find(x => x.id === currentStudentId);
+      const s = appConfig.students.find(x => x.id === currentStudentId);
       const docId = `${s.id}_${selectedTrackerDate}`;
       const isToday = selectedTrackerDate === getDateStr(0);
       const record = {
@@ -1781,9 +2018,13 @@
         updatedAt: new Date().toISOString()
       };
 
-      // Optimistic immediate update
+      // Save locally + mark pending so onSnapshot NEVER deletes it
       logs[docId] = record;
+      delete pending.deletedLogs[docId];
+      pending.logs[docId] = record;
       localStorage.setItem(LS_LOGS, JSON.stringify(logs));
+      savePending();
+
       populateTrackerDaySelect();
       loadTrackerForDate(selectedTrackerDate);
       renderHomeTab();
@@ -1799,15 +2040,19 @@
 
       setSyncStatus('saving');
       setDoc(doc(db, LOGS_COL, docId), record)
-        .then(() => setSyncStatus('saved'))
-        .catch(() => setSyncStatus('offline'));
+        .then(() => {
+          delete pending.logs[docId];
+          savePending();
+          setSyncStatus('saved');
+        })
+        .catch((e) => setSyncStatus('offline', e?.message));
     };
 
     window.closeCelebration = () => { document.getElementById('modal-celebration').classList.add('hidden'); switchTab('home'); };
     window.goToGameFromCelebration = () => { document.getElementById('modal-celebration').classList.add('hidden'); switchTab('games'); };
 
     // =========================================================
-    // 10. GAMES TAB (40-DAY CURRICULUM: QUIZ + MATCHING)
+    // 9. GAMES TAB
     // =========================================================
     window.renderGamesTab = function() {
       const unlocked = hasSubmittedToday(currentStudentId);
@@ -1823,8 +2068,8 @@
       const cfg = GAMES_40[todayDay] || GAMES_40[1];
       const saved = games[`${currentStudentId}_${todayDay}`];
 
-      document.getElementById('game-day-pill').textContent = `تحدي اليوم ${todayDay} من 40`;
-      document.getElementById('game-type-pill').textContent = cfg.type === 'match' ? '🃏 بطاقات المصطلحات' : '⏱️ تحدي الأربعين (3 أسئلة)';
+      document.getElementById('game-day-pill').textContent = `تحدي اليوم ${todayDay} من ${TOTAL_DAYS}`;
+      document.getElementById('game-type-pill').textContent = cfg.type === 'match' ? '🃏 بطاقات المصطلحات' : '⏱️ تحدي اليوم (3 أسئلة)';
       document.getElementById('game-topic-title').textContent = cfg.topic;
       document.getElementById('game-topic-desc').textContent = cfg.type === 'match'
         ? 'وصّل كل مصطلح بمعناه الصحيح بأسرع وقت لتكسب +6 نقاط إضافية!'
@@ -1844,12 +2089,11 @@
           </button>`;
       }
 
-      // Past days grid
       const grid = document.getElementById('past-games-grid');
       let html = '';
       for (let d = 1; d <= todayDay; d++) {
         const done = Boolean(games[`${currentStudentId}_${d}`]);
-        const isMatch = d % 5 === 0;
+        const isMatch = (GAMES_40[d]?.type === 'match');
         html += `
           <button onclick="startDayGame(${d}, ${d !== todayDay || done})" class="py-2 rounded-xl text-xs font-black border transition active:scale-95 flex flex-col items-center justify-center ${done ? 'bg-emeraldLight border-emeraldDeep text-emeraldDeep' : d === todayDay ? 'bg-goldLight border-goldWarm text-goldDeep' : 'bg-creamBg border-gray-200 text-gray-600'}">
             <span>${d}</span>
@@ -1866,7 +2110,6 @@
       else startMatchingGame(dayNum, cfg, isPractice);
     };
 
-    // --- QUIZ ENGINE ---
     function startQuiz(dayNum, cfg, isPractice) {
       quizState = { dayNum, cfg, isPractice, idx: 0, correct: 0, answered: false, timeLeft: 20 };
       document.getElementById('match-arena').classList.add('hidden');
@@ -1885,19 +2128,13 @@
       document.getElementById('quiz-explanation-box').classList.add('hidden');
 
       document.getElementById('quiz-options-list').innerHTML = qObj.opts.map((opt, i) => `
-        <button id="qopt-${i}" onclick="answerQuiz(${i})" class="w-full text-right p-3.5 rounded-2xl border-2 border-gray-200 bg-creamBg hover:border-emeraldDeep font-extrabold text-sm text-gray-800 transition active:scale-[0.99]">
-          ${opt}
-        </button>
-      `).join('');
+        <button id="qopt-${i}" onclick="answerQuiz(${i})" class="w-full text-right p-3.5 rounded-2xl border-2 border-gray-200 bg-creamBg hover:border-emeraldDeep font-extrabold text-sm text-gray-800 transition active:scale-[0.99]">${opt}</button>`).join('');
 
       updateQuizTimerUI();
       quizTimerInt = setInterval(() => {
         quizState.timeLeft--;
         updateQuizTimerUI();
-        if (quizState.timeLeft <= 0) {
-          clearInterval(quizTimerInt);
-          answerQuiz(-1);
-        }
+        if (quizState.timeLeft <= 0) { clearInterval(quizTimerInt); answerQuiz(-1); }
       }, 1000);
     }
 
@@ -1934,37 +2171,24 @@
     };
 
     window.nextQuizQuestion = function() {
-      if (quizState.idx < quizState.cfg.qs.length - 1) {
-        quizState.idx++;
-        renderQuizQuestion();
-      } else {
-        const bonus = quizState.correct * 2;
-        finishGame(quizState.dayNum, 'quiz', bonus, `أجبت إجابة صحيحة على ${quizState.correct} من ${quizState.cfg.qs.length} أسئلة`, quizState.isPractice);
-      }
+      if (quizState.idx < quizState.cfg.qs.length - 1) { quizState.idx++; renderQuizQuestion(); }
+      else finishGame(quizState.dayNum, 'quiz', quizState.correct * 2, `أجبت إجابة صحيحة على ${quizState.correct} من ${quizState.cfg.qs.length} أسئلة`, quizState.isPractice);
     };
 
-    // --- MATCHING GAME ENGINE (DAYS 5, 10, 15, 20, 25, 30, 35, 40) ---
     function startMatchingGame(dayNum, cfg, isPractice) {
       const pairs = cfg.pairs.map((p, idx) => ({ ...p, id: idx }));
-      const shuffledTerms = [...pairs].sort(() => Math.random() - 0.5);
-      const shuffledDefs = [...pairs].sort(() => Math.random() - 0.5);
-
       matchState = {
-        dayNum, isPractice, pairs, shuffledTerms, shuffledDefs,
+        dayNum, isPractice, pairs,
+        shuffledTerms: [...pairs].sort(() => Math.random() - 0.5),
+        shuffledDefs: [...pairs].sort(() => Math.random() - 0.5),
         selectedTermId: null, matchedIds: new Set(), moves: 0, seconds: 0
       };
-
       document.getElementById('quiz-arena').classList.add('hidden');
       document.getElementById('match-arena').classList.remove('hidden');
       document.getElementById('match-moves').textContent = '0';
       document.getElementById('match-timer').textContent = '0';
-
       if (matchTimerInt) clearInterval(matchTimerInt);
-      matchTimerInt = setInterval(() => {
-        matchState.seconds++;
-        document.getElementById('match-timer').textContent = matchState.seconds;
-      }, 1000);
-
+      matchTimerInt = setInterval(() => { matchState.seconds++; document.getElementById('match-timer').textContent = matchState.seconds; }, 1000);
       renderMatchingBoard();
     }
 
@@ -1972,39 +2196,23 @@
       document.getElementById('match-terms-col').innerHTML = matchState.shuffledTerms.map(item => {
         const done = matchState.matchedIds.has(item.id);
         const sel = matchState.selectedTermId === item.id;
-        return `
-          <button ${done ? 'disabled' : ''} onclick="pickMatchTerm(${item.id})" class="w-full p-3 rounded-2xl border-2 text-xs sm:text-sm font-black transition active:scale-95 ${done ? 'bg-emeraldLight border-emeraldDeep/30 text-emeraldDeep opacity-60' : sel ? 'bg-emeraldDeep text-white border-emeraldDeep shadow-md' : 'bg-creamBg border-gray-200 text-gray-800 hover:border-emeraldDeep'}">
-            ${done ? '✅ ' : ''}${item.t}
-          </button>`;
+        return `<button ${done ? 'disabled' : ''} onclick="pickMatchTerm(${item.id})" class="w-full p-3 rounded-2xl border-2 text-xs sm:text-sm font-black transition active:scale-95 ${done ? 'bg-emeraldLight border-emeraldDeep/30 text-emeraldDeep opacity-60' : sel ? 'bg-emeraldDeep text-white border-emeraldDeep shadow-md' : 'bg-creamBg border-gray-200 text-gray-800 hover:border-emeraldDeep'}">${done ? '✅ ' : ''}${item.t}</button>`;
       }).join('');
-
       document.getElementById('match-defs-col').innerHTML = matchState.shuffledDefs.map(item => {
         const done = matchState.matchedIds.has(item.id);
-        return `
-          <button ${done ? 'disabled' : ''} onclick="pickMatchDef(${item.id})" class="w-full p-3 rounded-2xl border-2 text-xs font-bold leading-snug transition active:scale-95 ${done ? 'bg-emeraldLight border-emeraldDeep/30 text-emeraldDeep opacity-60' : 'bg-white border-gray-200 text-gray-700 hover:border-goldWarm'}">
-            ${done ? '✅ ' : ''}${item.d}
-          </button>`;
+        return `<button ${done ? 'disabled' : ''} onclick="pickMatchDef(${item.id})" class="w-full p-3 rounded-2xl border-2 text-xs font-bold leading-snug transition active:scale-95 ${done ? 'bg-emeraldLight border-emeraldDeep/30 text-emeraldDeep opacity-60' : 'bg-white border-gray-200 text-gray-700 hover:border-goldWarm'}">${done ? '✅ ' : ''}${item.d}</button>`;
       }).join('');
     }
 
-    window.pickMatchTerm = function(id) {
-      matchState.selectedTermId = id;
-      renderMatchingBoard();
-    };
-
-    window.pickMatchDef = function(defId) {
-      if (matchState.selectedTermId === null) {
-        showToast('اختر المصطلح من العمود الأول أولاً 👆', 'info');
-        return;
-      }
+    window.pickMatchTerm = (id) => { matchState.selectedTermId = id; renderMatchingBoard(); };
+    window.pickMatchDef = (defId) => {
+      if (matchState.selectedTermId === null) { showToast('اختر المصطلح من العمود الأول أولاً 👆', 'info'); return; }
       matchState.moves++;
       document.getElementById('match-moves').textContent = matchState.moves;
-
       if (matchState.selectedTermId === defId) {
         matchState.matchedIds.add(defId);
         matchState.selectedTermId = null;
         renderMatchingBoard();
-
         if (matchState.matchedIds.size === matchState.pairs.length) {
           clearInterval(matchTimerInt);
           finishGame(matchState.dayNum, 'match', 6, `أكملت التوصيل في ${matchState.seconds} ثانية بـ ${matchState.moves} محاولات!`, matchState.isPractice, matchState.seconds);
@@ -2025,15 +2233,17 @@
       const alreadySaved = Boolean(games[docId]);
 
       if (!isPractice && !alreadySaved) {
-        const rec = {
-          studentId: currentStudentId, dayNum, type, bonusPoints,
-          bestTimeSec, completedAt: new Date().toISOString()
-        };
+        const rec = { studentId: currentStudentId, dayNum, type, bonusPoints, bestTimeSec, completedAt: new Date().toISOString() };
         games[docId] = rec;
+        delete pending.deletedGames[docId];
+        pending.games[docId] = rec;
         localStorage.setItem(LS_GAMES, JSON.stringify(games));
+        savePending();
         renderHomeTab();
         setSyncStatus('saving');
-        setDoc(doc(db, GAMES_COL, docId), rec).then(() => setSyncStatus('saved')).catch(() => setSyncStatus('offline'));
+        setDoc(doc(db, GAMES_COL, docId), rec)
+          .then(() => { delete pending.games[docId]; savePending(); setSyncStatus('saved'); })
+          .catch((e) => setSyncStatus('offline', e?.message));
         fireConfetti();
         document.getElementById('game-result-pts').textContent = `+${bonusPoints} نقاط`;
       } else {
@@ -2045,11 +2255,11 @@
     }
 
     // =========================================================
-    // 11. LEADERBOARD (WORSHIP + GAME BONUS)
+    // 10. LEADERBOARD
     // =========================================================
     function getGroupRankings() {
       return GROUPS.map(g => {
-        const members = STUDENTS.filter(s => s.groupId === g.id);
+        const members = appConfig.students.filter(s => s.groupId === g.id);
         let total = 0;
         members.forEach(m => { total += getStudentStats(m.id).totalPoints; });
         const avg = members.length ? Math.round((total / members.length) * 10) / 10 : 0;
@@ -2089,13 +2299,13 @@
       }).join('');
 
       const filter = document.getElementById('lb-group-filter').value;
-      const list = STUDENTS
+      const list = appConfig.students
         .filter(s => filter === 'all' || s.groupId === filter)
         .map(s => ({ ...s, stats: getStudentStats(s.id) }))
         .sort((a, b) => b.stats.totalPoints - a.stats.totalPoints);
 
       document.getElementById('students-rank-container').innerHTML = list.map((s, idx) => {
-        const g = GROUPS.find(x => x.id === s.groupId);
+        const g = GROUPS.find(x => x.id === s.groupId) || GROUPS[0];
         const isMe = s.id === currentStudentId;
         const rankBadge = idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `${idx + 1}`;
         return `
@@ -2121,7 +2331,7 @@
     };
 
     // =========================================================
-    // 12. SUPERVISOR DASHBOARD (PIN: 2026) + DELETE + EXCEL CSV
+    // 11. SUPERVISOR DASHBOARD (TRACKING + STUDENTS + TASKS + POINTS)
     // =========================================================
     window.openSupervisorPinModal = () => {
       document.getElementById('pin-input').value = '';
@@ -2139,7 +2349,7 @@
         document.getElementById('view-supervisor').classList.remove('hidden');
         const di = document.getElementById('sup-date-input');
         if (!di.value) di.value = getDateStr(0);
-        renderSupervisorDashboard();
+        switchSupTab('tracking');
       } else {
         document.getElementById('pin-error').classList.remove('hidden');
       }
@@ -2151,13 +2361,28 @@
       if (currentStudentId) enterStudentApp(); else showLoginScreen();
     };
 
+    window.switchSupTab = function(tab) {
+      activeSupTab = tab;
+      ['tracking', 'students', 'tasks', 'points'].forEach(t => {
+        document.getElementById(`sup-panel-${t}`).classList.toggle('hidden', t !== tab);
+        document.getElementById(`sup-nav-${t}`).className = t === tab
+          ? 'p-3 rounded-2xl border-2 border-emeraldDeep bg-emeraldDeep text-white font-black text-xs flex items-center justify-center gap-2 shadow transition active:scale-95'
+          : 'p-3 rounded-2xl border-2 border-gray-200 bg-white text-emeraldDeep hover:border-emeraldDeep font-black text-xs flex items-center justify-center gap-2 transition active:scale-95';
+      });
+      if (tab === 'tracking') renderSupervisorDashboard();
+      if (tab === 'students') renderManageStudents();
+      if (tab === 'tasks') renderManageTasks();
+      if (tab === 'points') renderPointsConfigForm();
+    };
+
+    // --- SUP TAB 1: TRACKING ---
     window.renderSupervisorDashboard = function() {
       const dateKey = document.getElementById('sup-date-input').value || getDateStr(0);
       const dayNum = getJourneyDayNum(dateKey);
       const groupFilter = document.getElementById('sup-group-filter').value;
       const statusFilter = document.getElementById('sup-status-filter').value;
 
-      const scoped = STUDENTS.filter(s => groupFilter === 'all' || s.groupId === groupFilter);
+      const scoped = appConfig.students.filter(s => groupFilter === 'all' || s.groupId === groupFilter);
       let submittedCount = 0, fajrMosqueCount = 0, gamesTodayCount = 0;
 
       scoped.forEach(s => {
@@ -2178,7 +2403,7 @@
       document.getElementById('sup-table-body').innerHTML = displayed.length === 0
         ? `<tr><td colspan="7" class="py-8 text-center text-gray-400 font-bold">لا يوجد طلاب مطابقون.</td></tr>`
         : displayed.map(s => {
-          const g = GROUPS.find(x => x.id === s.groupId);
+          const g = GROUPS.find(x => x.id === s.groupId) || GROUPS[0];
           const l = logs[`${s.id}_${dateKey}`];
           const dayPts = l ? (l.points || computeWorshipPoints(l.data)) : 0;
           const isSub = dayPts > 0;
@@ -2199,7 +2424,7 @@
               <td class="py-3 px-3 text-center whitespace-nowrap">
                 <div class="inline-flex items-center gap-1.5">
                   <button onclick="openDetailsModal('${s.id}','${dateKey}')" class="text-xs font-bold bg-emeraldLight text-emeraldDeep px-2.5 py-1.5 rounded-xl">التفاصيل</button>
-                  ${isSub ? `<button onclick="requestDeleteRecord('${s.id}','${dateKey}')" class="text-xs font-extrabold bg-rose-50 text-rose-600 border border-rose-200 px-2.5 py-1.5 rounded-xl">حذف السجل</button>` : ''}
+                  ${isSub ? `<button onclick="requestDeleteRecord('${s.id}','${dateKey}')" class="text-xs font-extrabold bg-rose-50 text-rose-600 border border-rose-200 px-2.5 py-1.5 rounded-xl">حذف</button>` : ''}
                 </div>
               </td>
             </tr>`;
@@ -2217,6 +2442,169 @@
       document.getElementById('kpi-top-group-avg').textContent = topG ? `متوسط ${topG.avgPoints} نقطة` : '';
     };
 
+    // --- SUP TAB 2: MANAGE STUDENTS ---
+    window.renderManageStudents = function() {
+      const filter = document.getElementById('manage-students-filter').value;
+      const list = appConfig.students.filter(s => filter === 'all' || s.groupId === filter);
+      document.getElementById('manage-students-list').innerHTML = list.map(s => `
+        <div class="p-3 rounded-2xl bg-creamBg border border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+          <div class="flex items-center gap-2 flex-1">
+            <input type="text" id="edit-st-name-${s.id}" value="${s.name}" class="flex-1 text-xs font-extrabold bg-white border border-gray-200 rounded-xl px-3 py-2 focus:outline-none focus:border-emeraldDeep" />
+            <select id="edit-st-group-${s.id}" class="text-xs font-bold bg-white border border-gray-200 rounded-xl px-2 py-2 text-emeraldDeep">
+              ${GROUPS.map(g => `<option value="${g.id}" ${g.id === s.groupId ? 'selected' : ''}>${g.name.replace('طليعة ', '')}</option>`).join('')}
+            </select>
+          </div>
+          <div class="flex items-center gap-1.5 flex-wrap">
+            <button onclick="toggleStudentLeader('${s.id}')" class="text-[11px] font-extrabold px-2.5 py-2 rounded-xl border ${s.isLeader ? 'bg-goldWarm text-emeraldDeep border-goldWarm' : 'bg-white text-gray-500 border-gray-200'}">
+              ${s.isLeader ? '⭐ عريف' : 'تعيين عريف'}
+            </button>
+            <button onclick="saveStudentEdit('${s.id}')" class="text-[11px] font-extrabold bg-emeraldDeep text-white px-3 py-2 rounded-xl">حفظ</button>
+            <button onclick="deleteStudent('${s.id}')" class="text-[11px] font-extrabold bg-rose-50 text-rose-600 border border-rose-200 px-2.5 py-2 rounded-xl">حذف</button>
+          </div>
+        </div>`).join('');
+    };
+
+    window.addNewStudent = function() {
+      const name = document.getElementById('new-student-name').value.trim();
+      const groupId = document.getElementById('new-student-group').value;
+      if (!name) { showToast('يرجى كتابة اسم الطالب أولاً ✍️', 'warning'); return; }
+      const newId = 'st_' + Date.now().toString().slice(-6);
+      appConfig.students.push({ id: newId, name, groupId, isLeader: false });
+      document.getElementById('new-student-name').value = '';
+      pushConfigToCloud();
+      renderManageStudents();
+      showToast(`تمت إضافة الطالب "${name}" بنجاح ✅`, 'success');
+    };
+
+    window.saveStudentEdit = function(id) {
+      const s = appConfig.students.find(x => x.id === id);
+      if (!s) return;
+      const newName = document.getElementById(`edit-st-name-${id}`).value.trim();
+      const newGroup = document.getElementById(`edit-st-group-${id}`).value;
+      if (!newName) return;
+      s.name = newName;
+      s.groupId = newGroup;
+      pushConfigToCloud();
+      renderManageStudents();
+      showToast(`تم تحديث بيانات "${newName}" ✅`, 'success');
+    };
+
+    window.toggleStudentLeader = function(id) {
+      const s = appConfig.students.find(x => x.id === id);
+      if (!s) return;
+      const next = !s.isLeader;
+      if (next) {
+        // Only one leader per patrol
+        appConfig.students.filter(x => x.groupId === s.groupId).forEach(x => { x.isLeader = false; });
+      }
+      s.isLeader = next;
+      pushConfigToCloud();
+      renderManageStudents();
+      showToast(next ? `تم تعيين "${s.name}" عريفاً للطليعة ⭐` : `تمت إزالة شارة العريف عن "${s.name}"`, 'success');
+    };
+
+    window.deleteStudent = function(id) {
+      const s = appConfig.students.find(x => x.id === id);
+      if (!s) return;
+      openConfirmModal('حذف طالب', `هل أنت متأكد من إزالة الطالب "${s.name}" من القائمة؟`, () => {
+        appConfig.students = appConfig.students.filter(x => x.id !== id);
+        pushConfigToCloud();
+        renderManageStudents();
+        showToast(`تم حذف "${s.name}" من القائمة 🗑️`, 'success');
+      });
+    };
+
+    // --- SUP TAB 3: MANAGE CUSTOM TASKS ---
+    window.renderManageTasks = function() {
+      const box = document.getElementById('manage-tasks-list');
+      if (appConfig.customTasks.length === 0) {
+        box.innerHTML = `<div class="text-center py-6 text-xs text-gray-400 font-bold">لا توجد مهام إضافية حالياً. أضف أول مهمة من النموذج أعلاه!</div>`;
+        return;
+      }
+      box.innerHTML = appConfig.customTasks.map(t => `
+        <div class="p-3.5 rounded-2xl bg-creamBg border border-gray-200 flex items-center justify-between gap-2 flex-wrap">
+          <div>
+            <div class="font-extrabold text-sm text-gray-800">${t.title}</div>
+            <div class="text-[11px] font-bold text-goldDeep">+${t.points} نقاط • ${t.active !== false ? 'مفعّلة للطلاب ✅' : 'موقوفة مؤقتاً ⏸️'}</div>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <button onclick="toggleCustomTaskActive('${t.id}')" class="text-xs font-extrabold px-3 py-1.5 rounded-xl border ${t.active !== false ? 'bg-amber-50 text-amber-700 border-amber-200' : 'bg-emeraldLight text-emeraldDeep border-emeraldDeep/20'}">
+              ${t.active !== false ? 'إيقاف' : 'تفعيل'}
+            </button>
+            <button onclick="deleteCustomTask('${t.id}')" class="text-xs font-extrabold bg-rose-50 text-rose-600 border border-rose-200 px-3 py-1.5 rounded-xl">حذف</button>
+          </div>
+        </div>`).join('');
+    };
+
+    window.addCustomTask = function() {
+      const title = document.getElementById('new-task-title').value.trim();
+      const points = Math.max(1, parseInt(document.getElementById('new-task-points').value, 10) || 5);
+      if (!title) { showToast('يرجى كتابة اسم المهمة ✍️', 'warning'); return; }
+      appConfig.customTasks.push({ id: 'task_' + Date.now(), title, points, active: true });
+      document.getElementById('new-task-title').value = '';
+      pushConfigToCloud();
+      renderManageTasks();
+      showToast(`تمت إضافة المهمة "${title}" (+${points} نقاط) ✅`, 'success');
+    };
+
+    window.toggleCustomTaskActive = function(id) {
+      const t = appConfig.customTasks.find(x => x.id === id);
+      if (!t) return;
+      t.active = t.active === false ? true : false;
+      pushConfigToCloud();
+      renderManageTasks();
+    };
+
+    window.deleteCustomTask = function(id) {
+      appConfig.customTasks = appConfig.customTasks.filter(x => x.id !== id);
+      pushConfigToCloud();
+      renderManageTasks();
+      showToast('تم حذف المهمة 🗑️', 'success');
+    };
+
+    // --- SUP TAB 4: EDIT POINTS ---
+    const POINTS_LABELS = [
+      { key: 'prayerMosque', label: 'الفريضة بالمسجد' },
+      { key: 'prayerHome', label: 'الفريضة بالبيت' },
+      { key: 'prayerLate', label: 'الفريضة متأخر' },
+      { key: 'rawatibPerPrayer', label: 'كل صلاة راتبة (من الـ 6)' },
+      { key: 'duha', label: 'صلاة الضحى' },
+      { key: 'witr', label: 'صلاة الوتر' },
+      { key: 'qiyam', label: 'قيام الليل' },
+      { key: 'quranPerPage', label: 'ورد القرآن (لكل صفحة من 5)' },
+      { key: 'morningAdhkar', label: 'أذكار الصباح' },
+      { key: 'eveningAdhkar', label: 'أذكار المساء' },
+      { key: 'dua', label: 'الدعاء' },
+      { key: 'tasbih100', label: '100 تسبيحة' },
+      { key: 'salawat100', label: '100 صلاة على النبي ﷺ' },
+      { key: 'istighfar100', label: '100 استغفار' }
+    ];
+
+    function renderPointsConfigForm() {
+      document.getElementById('points-config-form').innerHTML = POINTS_LABELS.map(item => `
+        <div class="p-3 rounded-2xl bg-creamBg border border-gray-200 flex items-center justify-between gap-2">
+          <label class="text-xs font-extrabold text-gray-700">${item.label}</label>
+          <input type="number" min="0" max="100" id="pt-cfg-${item.key}" value="${appConfig.points[item.key]}" class="w-16 text-center text-sm font-black bg-white border border-gray-300 rounded-xl py-1.5 text-emeraldDeep focus:outline-none focus:border-emeraldDeep" />
+        </div>`).join('');
+    }
+
+    window.savePointsConfig = function() {
+      POINTS_LABELS.forEach(item => {
+        const val = Math.max(0, parseInt(document.getElementById(`pt-cfg-${item.key}`).value, 10) || 0);
+        appConfig.points[item.key] = val;
+      });
+      pushConfigToCloud();
+      showToast('تم حفظ جدول النقاط الجديد بنجاح ✅', 'success');
+    };
+
+    window.resetPointsDefaults = function() {
+      appConfig.points = { ...DEFAULT_POINTS };
+      pushConfigToCloud();
+      renderPointsConfigForm();
+      showToast('تمت استعادة النقاط الافتراضية ✅', 'info');
+    };
+
+    // --- STUDENT DETAILS & GAME POINTS CONTROL ---
     function openConfirmModal(title, msg, cb) {
       document.getElementById('confirm-title').textContent = title;
       document.getElementById('confirm-message').textContent = msg;
@@ -2227,242 +2615,160 @@
     window.executeConfirmedAction = () => { if (confirmCallback) confirmCallback(); closeConfirmModal(); };
 
     window.requestDeleteRecord = function(studentId, dateKey) {
-      const s = STUDENTS.find(x => x.id === studentId);
-      openConfirmModal('حذف سجل اليوم', `هل أنت متأكد من حذف سجل الطالب "${s.name}" لتاريخ (${dateKey})؟`, () => {
+      const s = appConfig.students.find(x => x.id === studentId);
+      openConfirmModal('حذف سجل اليوم', `هل أنت متأكد من حذف سجل الطالب "${s?.name || ''}" لتاريخ (${dateKey})؟`, () => {
         const docId = `${studentId}_${dateKey}`;
         delete logs[docId];
+        delete pending.logs[docId];
+        pending.deletedLogs[docId] = true;
         localStorage.setItem(LS_LOGS, JSON.stringify(logs));
+        savePending();
         renderSupervisorDashboard();
         closeDetailsModal();
-        showToast(`تم حذف سجل ${s.name} بنجاح 🗑️`, 'success');
+        showToast(`تم حذف سجل ${s?.name || ''} بنجاح 🗑️`, 'success');
         setSyncStatus('saving');
-        deleteDoc(doc(db, LOGS_COL, docId)).then(() => setSyncStatus('saved')).catch(() => setSyncStatus('offline'));
+        deleteDoc(doc(db, LOGS_COL, docId))
+          .then(() => { delete pending.deletedLogs[docId]; savePending(); setSyncStatus('saved'); })
+          .catch((e) => setSyncStatus('offline', e?.message));
       });
     };
 
     window.requestResetStudent = function(studentId) {
-      const s = STUDENTS.find(x => x.id === studentId);
+      const s = appConfig.students.find(x => x.id === studentId);
       const logIds = Object.keys(logs).filter(id => logs[id]?.studentId === studentId);
       const gameIds = Object.keys(games).filter(id => games[id]?.studentId === studentId);
-      if (logIds.length === 0 && gameIds.length === 0) {
-        showToast(`لا توجد أي سجلات للطالب "${s.name}".`, 'info');
-        return;
-      }
-      openConfirmModal('حذف كل سجلات الطالب', `هل أنت متأكد من حذف جميع سجلات العبادة والتحدي للطالب "${s.name}" وتصفير نقاطه بالكامل؟`, () => {
-        logIds.forEach(id => delete logs[id]);
-        gameIds.forEach(id => delete games[id]);
+      if (logIds.length === 0 && gameIds.length === 0) { showToast(`لا توجد أي سجلات للطالب "${s?.name || ''}".`, 'info'); return; }
+      openConfirmModal('حذف كل سجلات الطالب', `هل أنت متأكد من حذف جميع سجلات العبادة والتحدي للطالب "${s?.name || ''}" وتصفير نقاطه بالكامل؟`, () => {
+        logIds.forEach(id => { delete logs[id]; delete pending.logs[id]; pending.deletedLogs[id] = true; });
+        gameIds.forEach(id => { delete games[id]; delete pending.games[id]; pending.deletedGames[id] = true; });
         localStorage.setItem(LS_LOGS, JSON.stringify(logs));
         localStorage.setItem(LS_GAMES, JSON.stringify(games));
+        savePending();
         renderSupervisorDashboard();
         closeDetailsModal();
-        showToast(`تم تصفير جميع سجلات ${s.name} بنجاح 🗑️`, 'success');
+        showToast(`تم تصفير جميع سجلات ${s?.name || ''} بنجاح 🗑️`, 'success');
         setSyncStatus('saving');
         Promise.all([
-          ...logIds.map(id => deleteDoc(doc(db, LOGS_COL, id))),
-          ...gameIds.map(id => deleteDoc(doc(db, GAMES_COL, id)))
-        ]).then(() => setSyncStatus('saved')).catch(() => setSyncStatus('offline'));
+          ...logIds.map(id => deleteDoc(doc(db, LOGS_COL, id)).then(() => { delete pending.deletedLogs[id]; })),
+          ...gameIds.map(id => deleteDoc(doc(db, GAMES_COL, id)).then(() => { delete pending.deletedGames[id]; }))
+        ]).then(() => { savePending(); setSyncStatus('saved'); }).catch((e) => setSyncStatus('offline', e?.message));
       });
     };
 
+    window.deleteSingleGameRecord = function(studentId, dayNum, dateKey) {
+      const docId = `${studentId}_${dayNum}`;
+      delete games[docId];
+      delete pending.games[docId];
+      pending.deletedGames[docId] = true;
+      localStorage.setItem(LS_GAMES, JSON.stringify(games));
+      savePending();
+      renderSupervisorDashboard();
+      openDetailsModal(studentId, dateKey);
+      showToast(`تم حذف سجل تحدي اليوم ${dayNum} 🗑️`, 'success');
+      setSyncStatus('saving');
+      deleteDoc(doc(db, GAMES_COL, docId))
+        .then(() => { delete pending.deletedGames[docId]; savePending(); setSyncStatus('saved'); })
+        .catch((e) => setSyncStatus('offline', e?.message));
+    };
+
+    window.saveManualGameBonus = function(studentId, dateKey) {
+      const dayNum = Math.max(1, Math.min(TOTAL_DAYS, parseInt(document.getElementById('sup-game-day-input').value, 10) || getJourneyDayNum(dateKey)));
+      const pts = Math.max(0, Math.min(20, parseInt(document.getElementById('sup-game-pts-input').value, 10) || 0));
+      const docId = `${studentId}_${dayNum}`;
+      const rec = { studentId, dayNum, type: 'manual', bonusPoints: pts, completedAt: new Date().toISOString() };
+      games[docId] = rec;
+      delete pending.deletedGames[docId];
+      pending.games[docId] = rec;
+      localStorage.setItem(LS_GAMES, JSON.stringify(games));
+      savePending();
+      renderSupervisorDashboard();
+      openDetailsModal(studentId, dateKey);
+      showToast(`تم حفظ +${pts} نقاط لتحدي اليوم ${dayNum} ✅`, 'success');
+      setSyncStatus('saving');
+      setDoc(doc(db, GAMES_COL, docId), rec)
+        .then(() => { delete pending.games[docId]; savePending(); setSyncStatus('saved'); })
+        .catch((e) => setSyncStatus('offline', e?.message));
+    };
+
     window.openDetailsModal = function(studentId, dateKey) {
-      const s = STUDENTS.find(x => x.id === studentId);
-      const g = GROUPS.find(x => x.id === s.groupId);
+      const s = appConfig.students.find(x => x.id === studentId);
+      if (!s) return;
+      const g = GROUPS.find(x => x.id === s.groupId) || GROUPS[0];
       const l = logs[`${studentId}_${dateKey}`];
       const hasSub = Boolean(l && l.data && (l.points || computeWorshipPoints(l.data)) > 0);
       const stats = getStudentStats(studentId);
-      const defaultDayNum = getJourneyDayNum(dateKey);
-
-      const studentGames = Object.values(games)
-        .filter(rec => rec && rec.studentId === studentId)
-        .sort((a, b) => (a.dayNum || 0) - (b.dayNum || 0));
+      const studentGames = Object.values(games).filter(x => x.studentId === studentId).sort((a, b) => a.dayNum - b.dayNum);
 
       document.getElementById('details-title').textContent = `${s.name} — ${g.name}`;
       document.getElementById('details-subtitle').textContent = `تقرير ${dateKey} • الكلي: ${stats.totalPoints} (عبادة ${stats.worshipPoints} + تحدي ${stats.gamePoints})`;
 
       const box = document.getElementById('details-content');
-      let worshipHtml = '';
+      let html = '';
       if (!hasSub) {
-        worshipHtml = `<div class="text-center py-6 text-gray-500 bg-creamBg rounded-2xl"><div class="text-3xl mb-1.5">📭</div><p class="font-bold text-xs">لم يقم الطالب بتعبئة برنامج العبادة لهذا اليوم.</p></div>`;
+        html += `<div class="text-center py-4 text-gray-500 bg-creamBg rounded-2xl"><div class="text-3xl mb-1">📭</div><p class="font-bold text-xs">لم يقم الطالب بتعبئة برنامج هذا اليوم.</p></div>`;
       } else {
-        const pTxt = (v) => v === 'mosque' ? 'مسجد ✅ (10)' : v === 'home' ? 'بالبيت 🏠 (7)' : v === 'late' ? 'متأخر ⏱️ (3)' : 'لم يُسجل ❌';
+        const pTxt = (v) => v === 'mosque' ? 'مسجد ✅' : v === 'home' ? 'بالبيت 🏠' : v === 'late' ? 'متأخر ⏱️' : 'لم يُسجل ❌';
         const bTxt = (v) => v ? '<span class="text-emerald-700 font-extrabold">تم ✅</span>' : '<span class="text-gray-400">لم يتم</span>';
         const d = l.data;
-        worshipHtml = `
+        const rwCount = RAWATIB_LIST.filter(r => d.rawatib?.[r.key]).length;
+        html += `
           <div class="bg-creamBg rounded-2xl p-3.5 space-y-1.5 text-xs">
             <div class="font-black text-emeraldDeep mb-1">1. الفرائض:</div>
             ${PRAYERS_LIST.map(p => `<div class="flex justify-between"><span class="font-bold text-gray-700">${p.label}</span><span class="font-bold">${pTxt(d.prayers?.[p.key])}</span></div>`).join('')}
           </div>
           <div class="bg-creamBg rounded-2xl p-3.5 space-y-1.5 text-xs">
             <div class="font-black text-emeraldDeep mb-1">2. السنن والنوافل:</div>
-            <div class="flex justify-between"><span>السنن الرواتب</span><span class="font-bold">${d.sunnah?.rawatib === 'full' ? 'كاملة ✅' : d.sunnah?.rawatib === 'partial' ? 'جزء منها' : 'لم يتم'}</span></div>
+            <div class="flex justify-between"><span>السنن الرواتب</span><span class="font-bold text-emeraldDeep">${rwCount} / 6 صلوات (${rwCount * 2} ركعة)</span></div>
             <div class="flex justify-between"><span>صلاة الضحى</span>${bTxt(d.sunnah?.duha)}</div>
             <div class="flex justify-between"><span>صلاة الوتر</span>${bTxt(d.sunnah?.witr)}</div>
             <div class="flex justify-between"><span>قيام الليل</span>${bTxt(d.sunnah?.qiyam)}</div>
           </div>
           <div class="bg-creamBg rounded-2xl p-3.5 space-y-1.5 text-xs">
             <div class="font-black text-emeraldDeep mb-1">3. زاد القلب والأذكار:</div>
-            <div class="flex justify-between"><span>ورد القرآن</span>${bTxt(d.heart?.quran)}</div>
+            <div class="flex justify-between"><span>ورد القرآن</span><span class="font-bold text-emeraldDeep">${d.heart?.quranPages || 0} / 5 صفحات</span></div>
             <div class="flex justify-between"><span>أذكار الصباح</span>${bTxt(d.heart?.morningAdhkar)}</div>
             <div class="flex justify-between"><span>أذكار المساء</span>${bTxt(d.heart?.eveningAdhkar)}</div>
             <div class="flex justify-between"><span>الدعاء</span>${bTxt(d.heart?.dua)}</div>
-            <div class="flex justify-between"><span>100 تسبيحة</span>${bTxt(d.heart?.tasbih100)}</div>
-            <div class="flex justify-between"><span>100 صلاة على النبي ﷺ</span>${bTxt(d.heart?.salawat100)}</div>
-            <div class="flex justify-between"><span>100 استغفار</span>${bTxt(d.heart?.istighfar100)}</div>
+            <div class="flex justify-between"><span>100 تسبيحة / صلاة / استغفار</span><span class="font-bold">${[d.heart?.tasbih100, d.heart?.salawat100, d.heart?.istighfar100].filter(Boolean).length} / 3</span></div>
           </div>`;
       }
 
-      const dayOptionsHtml = Array.from({ length: 40 }, (_, i) => {
-        const dNum = i + 1;
-        return `<option value="${dNum}" ${dNum === defaultDayNum ? 'selected' : ''}>اليوم ${dNum}</option>`;
-      }).join('');
-
-      const gameRecordsHtml = studentGames.length === 0
-        ? `<div class="text-center py-3 text-gray-400 font-bold text-xs bg-white rounded-xl border border-dashed border-gray-200">لا توجد نقاط تحدي مسجلة لهذا الطالب بعد.</div>`
-        : `<div class="space-y-2">${studentGames.map(rec => `
-            <div class="bg-white rounded-xl p-2.5 border border-goldWarm/30 flex items-center justify-between gap-2 flex-wrap">
-              <div class="min-w-0">
-                <div class="font-extrabold text-xs text-emeraldDeep">تحدي اليوم ${rec.dayNum}</div>
-                <div class="text-[10px] font-bold text-gray-500">${rec.type === 'match' ? 'بطاقات' : 'أسئلة'}</div>
-              </div>
-              <div class="flex items-center gap-1.5 shrink-0">
-                <input type="number" id="sup-game-pts-${studentId}-${rec.dayNum}" value="${rec.bonusPoints ?? 0}" min="0" max="20"
-                       class="w-14 text-center text-xs font-black py-1.5 rounded-lg border border-gray-200 bg-creamBg text-emeraldDeep focus:outline-none focus:border-emeraldDeep" />
-                <button onclick="updateStudentGamePoints('${studentId}', ${rec.dayNum}, '${dateKey}')"
-                        class="text-[11px] font-extrabold bg-emeraldDeep text-white px-2.5 py-1.5 rounded-lg active:scale-95">حفظ</button>
-                <button onclick="requestDeleteGameRecord('${studentId}', ${rec.dayNum}, '${dateKey}')"
-                        class="text-[11px] font-extrabold bg-rose-50 text-rose-600 border border-rose-200 px-2.5 py-1.5 rounded-lg active:scale-95">حذف</button>
-              </div>
-            </div>`).join('')}</div>`;
-
-      const gamesControlHtml = `
-        <div class="bg-goldLight/60 rounded-2xl p-3.5 border border-goldWarm/40 space-y-3 text-xs">
-          <div class="flex items-center justify-between gap-2">
-            <div class="font-black text-emeraldDeep text-sm">🎮 إدارة نقاط ساحة التحدي</div>
-            <span class="bg-white text-goldDeep font-black px-2.5 py-1 rounded-xl border border-goldWarm/30">المجموع: +${stats.gamePoints}</span>
+      // Game Points Management Section
+      html += `
+        <div class="bg-goldLight/60 rounded-2xl p-3.5 border border-goldWarm/40 space-y-2.5 text-xs">
+          <div class="font-black text-emeraldDeep flex items-center justify-between">
+            <span>🎮 إدارة نقاط ساحة التحدي</span>
+            <span class="text-goldDeep">المجموع: +${stats.gamePoints}</span>
           </div>
-
-          ${gameRecordsHtml}
-
-          <div class="pt-2 border-t border-goldWarm/25 space-y-2">
-            <div class="font-extrabold text-amber-900 text-[11px]">إضافة / تعديل يدوي ليوم محدد:</div>
-            <div class="flex items-center gap-1.5">
-              <select id="sup-manual-game-day-${studentId}" class="flex-1 text-xs font-bold bg-white border border-gray-200 rounded-xl px-2.5 py-2 text-emeraldDeep focus:outline-none">
-                ${dayOptionsHtml}
-              </select>
-              <input type="number" id="sup-manual-game-pts-${studentId}" value="6" min="0" max="20"
-                     class="w-16 text-center text-xs font-black py-2 rounded-xl border border-gray-200 bg-white text-emeraldDeep focus:outline-none" />
-              <button onclick="manualSetGamePoints('${studentId}', '${dateKey}')"
-                      class="shrink-0 text-xs font-black bg-goldWarm hover:bg-amber-500 text-emeraldDeep px-3 py-2 rounded-xl shadow-sm active:scale-95">إضافة/تحديث</button>
-            </div>
+          <div class="flex items-center gap-1.5">
+            <input type="number" id="sup-game-day-input" value="${getJourneyDayNum(dateKey)}" min="1" max="${TOTAL_DAYS}" class="w-16 text-center font-bold bg-white border border-gray-200 rounded-xl py-1.5" title="رقم اليوم" />
+            <input type="number" id="sup-game-pts-input" value="6" min="0" max="20" class="w-16 text-center font-bold bg-white border border-gray-200 rounded-xl py-1.5" title="النقاط" />
+            <button onclick="saveManualGameBonus('${studentId}','${dateKey}')" class="flex-1 bg-emeraldDeep text-white font-black py-1.5 px-2 rounded-xl">تعديل / إضافة</button>
           </div>
-
-          ${studentGames.length > 0 ? `
-            <div class="pt-1">
-              <button onclick="requestResetStudentGames('${studentId}', '${dateKey}')"
-                      class="w-full py-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 font-extrabold text-xs transition active:scale-95">
-                🗑️ تصفير جميع نقاط التحدي فقط
-              </button>
-            </div>` : ''}
+          ${studentGames.length === 0 ? '<div class="text-gray-400 text-[11px] font-bold">لا توجد سجلات تحدي مسجلة.</div>' : `
+            <div class="space-y-1 max-h-28 overflow-y-auto">
+              ${studentGames.map(gm => `
+                <div class="flex items-center justify-between bg-white px-2.5 py-1.5 rounded-xl border border-goldWarm/25">
+                  <span class="font-bold">تحدي اليوم ${gm.dayNum} <span class="text-emeraldDeep">(+${gm.bonusPoints})</span></span>
+                  <button onclick="deleteSingleGameRecord('${studentId}',${gm.dayNum},'${dateKey}')" class="text-rose-600 font-black">حذف</button>
+                </div>`).join('')}
+            </div>`}
         </div>`;
 
-      box.innerHTML = worshipHtml + gamesControlHtml;
-
+      box.innerHTML = html;
       document.getElementById('details-footer').innerHTML = `
-        <button onclick="requestResetStudent('${studentId}')" class="text-xs font-extrabold bg-rose-600 text-white px-3 py-2 rounded-xl">حذف كل سجلات هذا الطالب</button>
+        <button onclick="requestResetStudent('${studentId}')" class="text-xs font-extrabold bg-rose-600 text-white px-3 py-2 rounded-xl">تصفير كل السجلات</button>
         ${hasSub ? `<button onclick="requestDeleteRecord('${studentId}','${dateKey}')" class="text-xs font-extrabold bg-rose-50 text-rose-600 border border-rose-200 px-3 py-2 rounded-xl">حذف سجل اليوم</button>` : `<button onclick="closeDetailsModal()" class="text-xs font-bold bg-gray-200 text-gray-700 px-4 py-2 rounded-xl">إغلاق</button>`}
       `;
       document.getElementById('modal-details').classList.remove('hidden');
     };
     window.closeDetailsModal = () => document.getElementById('modal-details').classList.add('hidden');
 
-    window.updateStudentGamePoints = function(studentId, dayNum, dateKey) {
-      const input = document.getElementById(`sup-game-pts-${studentId}-${dayNum}`);
-      const pts = Math.max(0, Math.min(20, parseInt(input?.value, 10) || 0));
-      const docId = `${studentId}_${dayNum}`;
-      const existing = games[docId];
-      if (!existing) return;
-
-      const updated = { ...existing, bonusPoints: pts, updatedAt: new Date().toISOString() };
-      games[docId] = updated;
-      localStorage.setItem(LS_GAMES, JSON.stringify(games));
-      renderSupervisorDashboard();
-      openDetailsModal(studentId, dateKey);
-      showToast(`تم تحديث نقاط تحدي اليوم ${dayNum} إلى ${pts} نقطة ✅`, 'success');
-
-      setSyncStatus('saving');
-      setDoc(doc(db, GAMES_COL, docId), updated).then(() => setSyncStatus('saved')).catch(() => setSyncStatus('offline'));
-    };
-
-    window.requestDeleteGameRecord = function(studentId, dayNum, dateKey) {
-      const s = STUDENTS.find(x => x.id === studentId);
-      openConfirmModal('حذف سجل التحدي', `هل أنت متأكد من حذف تحدي اليوم ${dayNum} للطالب "${s.name}"؟ سيتمكن الطالب من إعادة التحدي إذا أراد.`, () => {
-        const docId = `${studentId}_${dayNum}`;
-        delete games[docId];
-        localStorage.setItem(LS_GAMES, JSON.stringify(games));
-        renderSupervisorDashboard();
-        openDetailsModal(studentId, dateKey);
-        showToast(`تم حذف تحدي اليوم ${dayNum} للطالب ${s.name} بنجاح 🗑️`, 'success');
-
-        setSyncStatus('saving');
-        deleteDoc(doc(db, GAMES_COL, docId)).then(() => setSyncStatus('saved')).catch(() => setSyncStatus('offline'));
-      });
-    };
-
-    window.manualSetGamePoints = function(studentId, dateKey) {
-      const dayEl = document.getElementById(`sup-manual-game-day-${studentId}`);
-      const ptsEl = document.getElementById(`sup-manual-game-pts-${studentId}`);
-      const dayNum = Math.max(1, Math.min(40, parseInt(dayEl?.value, 10) || 1));
-      const pts = Math.max(0, Math.min(20, parseInt(ptsEl?.value, 10) || 0));
-      const docId = `${studentId}_${dayNum}`;
-      const existing = games[docId];
-      const cfg = GAMES_40[dayNum] || { type: 'quiz' };
-
-      const rec = {
-        ...(existing || {}),
-        studentId,
-        dayNum,
-        type: existing?.type || cfg.type || 'quiz',
-        bonusPoints: pts,
-        completedAt: existing?.completedAt || new Date().toISOString(),
-        updatedAt: new Date().toISOString()
-      };
-
-      games[docId] = rec;
-      localStorage.setItem(LS_GAMES, JSON.stringify(games));
-      renderSupervisorDashboard();
-      openDetailsModal(studentId, dateKey);
-      showToast(`تم حفظ ${pts} نقطة لتحدي اليوم ${dayNum} ✅`, 'success');
-
-      setSyncStatus('saving');
-      setDoc(doc(db, GAMES_COL, docId), rec).then(() => setSyncStatus('saved')).catch(() => setSyncStatus('offline'));
-    };
-
-    window.requestResetStudentGames = function(studentId, dateKey) {
-      const s = STUDENTS.find(x => x.id === studentId);
-      const gameIds = Object.keys(games).filter(id => games[id]?.studentId === studentId);
-      if (gameIds.length === 0) {
-        showToast(`لا توجد نقاط تحدي مسجلة للطالب "${s.name}".`, 'info');
-        return;
-      }
-      openConfirmModal('تصفير نقاط التحدي فقط', `هل أنت متأكد من حذف جميع نقاط التحدي للطالب "${s.name}"؟ (ستبقى سجلات العبادة اليومية كما هي دون تغيير)`, () => {
-        gameIds.forEach(id => delete games[id]);
-        localStorage.setItem(LS_GAMES, JSON.stringify(games));
-        renderSupervisorDashboard();
-        openDetailsModal(studentId, dateKey);
-        showToast(`تم تصفير جميع نقاط التحدي للطالب ${s.name} بنجاح 🗑️`, 'success');
-
-        setSyncStatus('saving');
-        Promise.all(gameIds.map(id => deleteDoc(doc(db, GAMES_COL, id))))
-          .then(() => setSyncStatus('saved'))
-          .catch(() => setSyncStatus('offline'));
-      });
-    };
-
     window.exportExcelCSV = function() {
       const dateKey = document.getElementById('sup-date-input').value || getDateStr(0);
       const headers = ['الاسم', 'الصفة', 'الطليعة', 'الشيخ', `حالة (${dateKey})`, 'نقاط عبادة اليوم', 'مجموع العبادة', 'بونص ساحة التحدي', 'المجموع الكلي', 'أيام الالتزام', 'السلسلة'];
-      const rows = STUDENTS.map(s => {
-        const g = GROUPS.find(x => x.id === s.groupId);
+      const rows = appConfig.students.map(s => {
+        const g = GROUPS.find(x => x.id === s.groupId) || GROUPS[0];
         const l = logs[`${s.id}_${dateKey}`];
         const dayPts = l ? (l.points || computeWorshipPoints(l.data)) : 0;
         const stats = getStudentStats(s.id);
@@ -2472,14 +2778,14 @@
       const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
-      a.href = url; a.download = `متابعة_باص_الأنصار.csv`;
+      a.href = url; a.download = `متابعة_باص_الأنصار_شهر_إلى_الحرم.csv`;
       document.body.appendChild(a); a.click(); document.body.removeChild(a);
       URL.revokeObjectURL(url);
       showToast('تم تنزيل ملف الإكسل بنجاح 📥', 'success');
     };
 
     // =========================================================
-    // 13. MISBAHA, ARCHIVE, AVATAR, TOAST & CONFETTI
+    // 12. MISBAHA, ARCHIVE, AVATAR, TOAST & CONFETTI
     // =========================================================
     window.openMisbaha = (k, title, phrase) => {
       misbahaKey = k; misbahaCounter = draftData.heart[k] ? 100 : 0;
@@ -2526,8 +2832,7 @@
     window.openAvatarModal = () => {
       const cur = avatars[currentStudentId] || '🕋';
       document.getElementById('modal-avatar-grid').innerHTML = AVATARS.map(av => `
-        <button onclick="updateAvatar('${av}')" class="py-3 rounded-2xl text-3xl border-2 transition ${av === cur ? 'border-emeraldDeep bg-emeraldLight' : 'border-gray-100 bg-creamBg'}">${av}</button>
-      `).join('');
+        <button onclick="updateAvatar('${av}')" class="py-3 rounded-2xl text-3xl border-2 transition ${av === cur ? 'border-emeraldDeep bg-emeraldLight' : 'border-gray-100 bg-creamBg'}">${av}</button>`).join('');
       document.getElementById('modal-avatar').classList.remove('hidden');
     };
     window.closeAvatarModal = () => document.getElementById('modal-avatar').classList.add('hidden');
@@ -2563,12 +2868,15 @@
     }
 
     function populateDropdowns() {
-      const opts = '<option value="all">جميع الطلائع (26 طالباً)</option>' + GROUPS.map(g => `<option value="${g.id}">${g.name} (الشيخ ${g.sheikh})</option>`).join('');
-      document.getElementById('lb-group-filter').innerHTML = opts;
-      document.getElementById('sup-group-filter').innerHTML = opts;
+      const total = appConfig.students.length;
+      const allOpt = `<option value="all">جميع الطلائع (${total} طالباً)</option>` + GROUPS.map(g => `<option value="${g.id}">${g.name} (الشيخ ${g.sheikh})</option>`).join('');
+      const groupsOnly = GROUPS.map(g => `<option value="${g.id}">${g.name} (الشيخ ${g.sheikh})</option>`).join('');
+      document.getElementById('lb-group-filter').innerHTML = allOpt;
+      document.getElementById('sup-group-filter').innerHTML = allOpt;
+      document.getElementById('manage-students-filter').innerHTML = allOpt;
+      document.getElementById('new-student-group').innerHTML = groupsOnly;
     }
 
-    // BOOTSTRAP
     window.addEventListener('DOMContentLoaded', () => {
       populateDropdowns();
       renderLoginGroups();
