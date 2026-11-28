@@ -719,8 +719,15 @@
     <div id="sup-panel-tracking" class="space-y-4">
       <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 grid grid-cols-1 sm:grid-cols-3 gap-3">
         <div class="flex flex-col gap-1">
-          <label class="text-xs font-extrabold text-gray-600">تاريخ المتابعة:</label>
-          <input type="date" id="sup-date-input" onchange="renderSupervisorDashboard()" class="text-xs font-bold bg-creamBg border border-gray-200 rounded-xl px-3 py-2.5 text-emeraldDeep focus:outline-none" />
+          <div class="flex items-center justify-between">
+            <label class="text-xs font-extrabold text-gray-600">تاريخ المتابعة:</label>
+            <button type="button" onclick="shiftSupDate(0)" class="text-[10px] font-black text-emeraldDeep bg-emeraldLight px-2 py-0.5 rounded-lg border border-emeraldDeep/20 active:scale-95">العودة لليوم</button>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <button type="button" onclick="shiftSupDate(-1)" title="اليوم السابق" class="px-2.5 py-2.5 rounded-xl bg-creamBg hover:bg-emeraldLight border border-gray-200 text-emeraldDeep font-black text-xs active:scale-95 shrink-0">◀</button>
+            <input type="date" id="sup-date-input" onchange="renderSupervisorDashboard()" oninput="renderSupervisorDashboard()" class="flex-1 min-w-0 text-xs font-bold bg-creamBg border border-gray-200 rounded-xl px-2.5 py-2.5 text-emeraldDeep focus:outline-none focus:border-emeraldDeep" />
+            <button type="button" onclick="shiftSupDate(1)" title="اليوم التالي" class="px-2.5 py-2.5 rounded-xl bg-creamBg hover:bg-emeraldLight border border-gray-200 text-emeraldDeep font-black text-xs active:scale-95 shrink-0">▶</button>
+          </div>
         </div>
         <div class="flex flex-col gap-1">
           <label class="text-xs font-extrabold text-gray-600">تصفية حسب الطليعة:</label>
@@ -738,6 +745,15 @@
         </div>
       </div>
 
+      <div id="sup-active-date-banner" class="bg-emeraldLight border border-emeraldDeep/20 rounded-2xl px-4 py-2.5 flex items-center justify-between gap-2 flex-wrap">
+        <div class="text-xs font-black text-emeraldDeep flex items-center gap-1.5">
+          <span>📅</span>
+          <span>بيانات تاريخ:</span>
+          <span id="sup-selected-date-label" class="text-goldDeep">--</span>
+        </div>
+        <span id="sup-selected-day-pill" class="text-[11px] font-extrabold bg-white text-emeraldDeep px-2.5 py-0.5 rounded-full border border-emeraldDeep/15">--</span>
+      </div>
+
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
         <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
           <div class="text-xs font-bold text-gray-500">عبّأوا في هذا التاريخ</div>
@@ -745,12 +761,12 @@
           <div id="kpi-submitted-pct" class="text-[11px] font-bold text-emeraldMid mt-0.5">0% التزام</div>
         </div>
         <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
-          <div class="text-xs font-bold text-gray-500">الفجر بالمسجد اليوم</div>
+          <div class="text-xs font-bold text-gray-500">الفجر بالمسجد (للتاريخ)</div>
           <div id="kpi-fajr" class="text-2xl font-black text-goldDeep mt-1">0</div>
           <div id="kpi-fajr-pct" class="text-[11px] font-bold text-gray-500 mt-0.5">0% من الطلاب</div>
         </div>
         <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
-          <div class="text-xs font-bold text-gray-500">أتموا تحدي اليوم</div>
+          <div class="text-xs font-bold text-gray-500">أتموا تحدي هذا اليوم</div>
           <div id="kpi-games-today" class="text-2xl font-black text-emeraldDeep mt-1">0</div>
           <div class="text-[11px] font-bold text-gray-500 mt-0.5">في ساحة التحدي</div>
         </div>
@@ -773,8 +789,8 @@
                 <th class="py-3 px-4">الطالب</th>
                 <th class="py-3 px-3">الطليعة</th>
                 <th class="py-3 px-3 text-center">الحالة</th>
-                <th class="py-3 px-3 text-center">عبادة اليوم</th>
-                <th class="py-3 px-3 text-center">بونص التحدي</th>
+                <th class="py-3 px-3 text-center">عبادة التاريخ</th>
+                <th class="py-3 px-3 text-center">تحدي التاريخ</th>
                 <th class="py-3 px-3 text-center">المجموع الكلي</th>
                 <th class="py-3 px-3 text-center">إجراءات</th>
               </tr>
@@ -2376,11 +2392,45 @@
     };
 
     // --- SUP TAB 1: TRACKING ---
+    function getRawJourneyDayNum(dateStr) {
+      const start = new Date(START_DATE + 'T00:00:00').getTime();
+      const cur = new Date(dateStr + 'T00:00:00').getTime();
+      return Math.floor((cur - start) / (1000 * 60 * 60 * 24)) + 1;
+    }
+
+    window.shiftSupDate = function(deltaDays) {
+      const input = document.getElementById('sup-date-input');
+      if (deltaDays === 0) {
+        input.value = getDateStr(0);
+      } else {
+        const base = input.value || getDateStr(0);
+        const d = new Date(base + 'T12:00:00');
+        d.setDate(d.getDate() + deltaDays);
+        input.value = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+      }
+      renderSupervisorDashboard();
+    };
+
     window.renderSupervisorDashboard = function() {
-      const dateKey = document.getElementById('sup-date-input').value || getDateStr(0);
-      const dayNum = getJourneyDayNum(dateKey);
+      const inputEl = document.getElementById('sup-date-input');
+      if (!inputEl.value) inputEl.value = getDateStr(0);
+      const dateKey = inputEl.value;
+      const rawDayNum = getRawJourneyDayNum(dateKey);
+      const isWithinJourney = rawDayNum >= 1 && rawDayNum <= TOTAL_DAYS;
       const groupFilter = document.getElementById('sup-group-filter').value;
       const statusFilter = document.getElementById('sup-status-filter').value;
+
+      // Update active date banner clearly
+      const todayKey = getDateStr(0);
+      const dateLabelEl = document.getElementById('sup-selected-date-label');
+      const dayPillEl = document.getElementById('sup-selected-day-pill');
+      if (dateLabelEl) {
+        const pretty = formatShortArabicDate(dateKey);
+        dateLabelEl.textContent = `${pretty} (${dateKey})${dateKey === todayKey ? ' — اليوم' : ''}`;
+      }
+      if (dayPillEl) {
+        dayPillEl.textContent = isWithinJourney ? `اليوم ${rawDayNum} من ${TOTAL_DAYS}` : 'خارج نطاق أيام الحملة';
+      }
 
       const scoped = appConfig.students.filter(s => groupFilter === 'all' || s.groupId === groupFilter);
       let submittedCount = 0, fajrMosqueCount = 0, gamesTodayCount = 0;
@@ -2389,7 +2439,7 @@
         const l = logs[`${s.id}_${dateKey}`];
         if (l && (l.points || computeWorshipPoints(l.data)) > 0) submittedCount++;
         if (l?.data?.prayers?.fajr === 'mosque') fajrMosqueCount++;
-        if (games[`${s.id}_${dayNum}`]) gamesTodayCount++;
+        if (isWithinJourney && games[`${s.id}_${rawDayNum}`]) gamesTodayCount++;
       });
 
       const displayed = scoped.filter(s => {
@@ -2401,12 +2451,14 @@
       });
 
       document.getElementById('sup-table-body').innerHTML = displayed.length === 0
-        ? `<tr><td colspan="7" class="py-8 text-center text-gray-400 font-bold">لا يوجد طلاب مطابقون.</td></tr>`
+        ? `<tr><td colspan="7" class="py-8 text-center text-gray-400 font-bold">لا يوجد طلاب مطابقون لتاريخ ${dateKey}.</td></tr>`
         : displayed.map(s => {
           const g = GROUPS.find(x => x.id === s.groupId) || GROUPS[0];
           const l = logs[`${s.id}_${dateKey}`];
           const dayPts = l ? (l.points || computeWorshipPoints(l.data)) : 0;
           const isSub = dayPts > 0;
+          const dayGameRec = isWithinJourney ? games[`${s.id}_${rawDayNum}`] : null;
+          const dayGamePts = dayGameRec ? (dayGameRec.bonusPoints || 0) : 0;
           const stats = getStudentStats(s.id);
 
           return `
@@ -2419,7 +2471,10 @@
                 ${isSub ? '<span class="bg-emerald-100 text-emerald-800 font-extrabold text-[11px] px-2.5 py-1 rounded-full">عبّى ✅</span>' : '<span class="bg-rose-100 text-rose-700 font-extrabold text-[11px] px-2.5 py-1 rounded-full">لم يعبّئ ❌</span>'}
               </td>
               <td class="py-3 px-3 text-center font-black text-emeraldDeep">${dayPts}</td>
-              <td class="py-3 px-3 text-center font-bold text-goldDeep">+${stats.gamePoints}</td>
+              <td class="py-3 px-3 text-center">
+                <div class="font-bold ${dayGamePts > 0 ? 'text-goldDeep' : 'text-gray-400'}">+${dayGamePts}</div>
+                <div class="text-[10px] text-gray-400 font-semibold">الكلي: +${stats.gamePoints}</div>
+              </td>
               <td class="py-3 px-3 text-center font-black text-gray-800">${stats.totalPoints}</td>
               <td class="py-3 px-3 text-center whitespace-nowrap">
                 <div class="inline-flex items-center gap-1.5">
@@ -2778,7 +2833,7 @@
       const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
-      a.href = url; a.download = `متابعة_باص_الأنصار_شهر_إلى_الحرم.csv`;
+      a.href = url; a.download = `متابعة_باص_الأنصار_${dateKey}.csv`;
       document.body.appendChild(a); a.click(); document.body.removeChild(a);
       URL.revokeObjectURL(url);
       showToast('تم تنزيل ملف الإكسل بنجاح 📥', 'success');
@@ -2878,6 +2933,11 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
+      const supDateInput = document.getElementById('sup-date-input');
+      if (supDateInput) {
+        supDateInput.addEventListener('change', () => renderSupervisorDashboard());
+        supDateInput.addEventListener('input', () => renderSupervisorDashboard());
+      }
       populateDropdowns();
       renderLoginGroups();
       renderHeaderDates();
